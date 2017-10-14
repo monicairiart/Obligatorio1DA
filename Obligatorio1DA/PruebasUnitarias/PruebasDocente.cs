@@ -51,6 +51,21 @@ namespace PruebasUnitarias
             Assert.IsInstanceOfType(docente.Nombre, typeof(string));
             Assert.AreNotEqual("Nombre cualquiera", docente.Nombre);
             Assert.AreEqual("Nombre del Docente", docente.Nombre);
+            // Validamos si el docente tiene un atributo CI de tipo string
+            // y si la ci es igual al asignado en el AltaDatosDocente
+            Assert.IsInstanceOfType(docente.Ci, typeof(string));
+            Assert.AreNotEqual("1111", docente.Ci);
+            Assert.AreEqual("1234", docente.Ci);
+            // Creamos una lista de materias diferente de la que asignamos
+            // al docente para validar que una es igual y la otra no lo es
+            List<string> materiasDiferentes = new List<string>();
+            materiasDiferentes.Add("Ingles");
+            materiasDiferentes.Add("Dibujo");
+            // Validamos que el docente tiene un atributo materias de tipo List<string>
+            // y que las materias del docente son las asignadas por el metodo AltaDatosDocente
+            Assert.IsInstanceOfType(docente.Materias, typeof(List<string>));
+            Assert.AreNotEqual(materiasDiferentes, docente.Materias);
+            Assert.AreEqual(materias, docente.Materias);
         }
     }
 }
