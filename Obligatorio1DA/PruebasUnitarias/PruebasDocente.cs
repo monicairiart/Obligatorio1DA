@@ -40,5 +40,17 @@ namespace PruebasUnitarias
             // Validamos si el docente creado es del tipo Docente
             Assert.IsInstanceOfType(docente, typeof(Docente));
         }
+
+        [TestMethod]
+        public void ProbarDatosAltaDocente()
+        {
+            // Validamos si el docente tiene un atributo nombre de tipo string
+            // y si el nombre es igual al nombre asignado en AltaDatosDocente
+            List<string> materias = new List<string>();
+            Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "1234", materias);
+            Assert.IsInstanceOfType(docente.Nombre, typeof(string));
+            Assert.AreNotEqual("Nombre cualquiera", docente.Nombre);
+            Assert.AreEqual("Nombre del Docente", docente.Nombre);
+        }
     }
 }
