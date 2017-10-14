@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interfaces;
 
-namespace Obligatorio1DA
+namespace GestionDocente
 {
-    class MantenimientoDocente
+    public class MantenimientoDocente : IModuloGestion
     {
+        public MantenimientoDocente()
+        { 
+        Console.WriteLine();
+        }
     }
 }

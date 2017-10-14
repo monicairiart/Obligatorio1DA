@@ -1,5 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using GestionDocente;
+using Interfaces;
 
 namespace PruebasUnitarias
 {
@@ -10,7 +12,9 @@ namespace PruebasUnitarias
 
         public void ProbarTipoModuloGestionDocente()
         {
-            mantenimientoDocente = new GestionDocente.MantenimientoDocente();
-            Assert.IsInstanceOfType(mantenimientoDocente, typeof(IModulo));
+            // Creamos el ambDocente para gestionar los docentes
+            MantenimientoDocente mantenimientoDocente = new MantenimientoDocente();
+            Assert.IsInstanceOfType(mantenimientoDocente, typeof(IModuloGestion));
         }
+    }
 }

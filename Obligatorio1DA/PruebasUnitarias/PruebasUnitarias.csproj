@@ -54,6 +54,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{1a27e14a-3f49-476a-bad9-e118b4a628d1}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Obligatorio1DA\GestionDocente.csproj">
       <Project>{99b99cde-b8e9-4fe3-8ff5-e3f908092c11}</Project>
       <Name>GestionDocente</Name>
