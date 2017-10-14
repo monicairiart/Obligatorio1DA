@@ -11,11 +11,21 @@ namespace GestionDocente
     {
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        private List<Docente> docentes = new List<Docente>();
         public MantenimientoDocente()
         { 
             Console.WriteLine();
             Nombre = "Gestion Docente";
             Descripcion = "Alta, Baja y Modificación de Docentes";
+        }
+        public Docente AltaDatosDocente(string nombreDocente, string ciDocente, List<string> materias)
+        {
+            Docente docente = new Docente();
+            docente.Nombre = nombreDocente;
+            docente.Ci = ciDocente;
+            docente.Materias = materias;
+            docentes.Add(docente);
+            return docente;
         }
     }
 }

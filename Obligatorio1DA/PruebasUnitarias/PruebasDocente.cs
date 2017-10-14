@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GestionDocente;
 using Interfaces;
+using System.Collections.Generic;
 
 namespace PruebasUnitarias
 {
@@ -32,6 +33,7 @@ namespace PruebasUnitarias
         {
             // Creamos el abmDocente para gestionar docentes
             MantenimientoDocente Docente = new GestionDocente.MantenimientoDocente();
+            List<string> materias = new List<string>();
             // Creamos un docente utilizando el abmDocente.AltaDatosDocente
             Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "1234", materias);
 
