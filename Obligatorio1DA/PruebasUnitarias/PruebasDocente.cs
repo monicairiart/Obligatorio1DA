@@ -9,13 +9,13 @@ namespace PruebasUnitarias
     public class PruebasDocente
     {
         [TestMethod]
-
         public void ProbarTipoModuloGestionDocente()
         {
             // Creamos el ambDocente para gestionar los docentes
             MantenimientoDocente mantenimientoDocente = new MantenimientoDocente();
             Assert.IsInstanceOfType(mantenimientoDocente, typeof(IModuloGestion));
         }
+        [TestMethod]
         public void ProbarDatosTipoModuloGestionDocente()
         {
             // Test si abm tiene nombre y descripción

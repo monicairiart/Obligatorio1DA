@@ -9,9 +9,13 @@ namespace GestionDocente
 {
     public class MantenimientoDocente : IModuloGestion
     {
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
         public MantenimientoDocente()
         { 
-        Console.WriteLine();
+            Console.WriteLine();
+            Nombre = "Gestion Docente";
+            Descripcion = "Alta, Baja y Modificación de Docentes";
         }
     }
 }
