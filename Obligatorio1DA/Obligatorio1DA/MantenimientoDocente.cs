@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Obligatorio1DA
 {
-    public class Class1
+    class MantenimientoDocente
     {
     }
 }
