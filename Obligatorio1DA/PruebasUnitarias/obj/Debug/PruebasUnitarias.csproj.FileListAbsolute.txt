@@ -2,10 +2,8 @@ C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\obj\Deb
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\PruebasUnitarias.dll
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\PruebasUnitarias.pdb
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\Interfaces.dll
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\Obligatorio1DA.dll
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\Interfaces.pdb
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\Obligatorio1DA.pdb
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\obj\Debug\PruebasUnitarias.dll
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\obj\Debug\PruebasUnitarias.pdb

@@ -18,10 +18,11 @@ namespace GestionDocente
             Nombre = "Gestion Docente";
             Descripcion = "Alta, Baja y Modificación de Docentes";
         }
-        public Docente AltaDatosDocente(string nombreDocente, string ciDocente, List<string> materias)
+        public Docente AltaDatosDocente(string nombreDocente, string apellidoDocente, string ciDocente, List<string> materias)
         {
             Docente docente = new Docente();
             docente.Nombre = nombreDocente;
+            docente.Apellido = apellidoDocente;
             docente.Ci = ciDocente;
             docente.Materias = materias;
             docentes.Add(docente);
