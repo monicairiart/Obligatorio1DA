@@ -90,8 +90,6 @@ namespace PruebasUnitarias
 
             // Creamos una lista de docentes para realizar las validaciones
             List<Docente> misDocentes = new List<Docente>();
-            Console.WriteLine("baja docente");
-            Console.ReadKey();
             // Agrego Docentes con AltaDatosDocente para tener una lista
             misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
             misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
@@ -104,10 +102,12 @@ namespace PruebasUnitarias
             Console.WriteLine("Docentes mi lista > " + misDocentes.ToString());
 
             // Valido que antes de eliminar un docente, ambas listas son iguales
-            CollectionAssert.AreEqual(misDocentes, docentes);
+            CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.GetDocentes());
 
             // Damos de baja al docente con CI 1234
             mantenimientoDocente.BajaDocente("1234");
+            Console.WriteLine("Docentes actuales > " + mantenimientoDocente.GetDocentes().Count);
+
         }
         public void GenerarDatos()
         {
