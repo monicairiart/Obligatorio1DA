@@ -96,6 +96,7 @@ namespace PruebasUnitarias
             CollectionAssert.AreNotEqual(misDocentes, mantenimientoDocente.GetDocentes());
 
         }
+        [TestMethod]
         public void ProbarDatosBajaDocenteNoExiste()
         {
             MantenimientoDocente mantenimientoDocente = new GestionDocente.MantenimientoDocente();
@@ -107,6 +108,20 @@ namespace PruebasUnitarias
             CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.GetDocentes());
             mantenimientoDocente.BajaDocente("123466");
             CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.GetDocentes());
+        }
+        [TestMethod]
+        public void TestModificacionDocente()
+        {
+
+            // Creamos un nuevo docente para modificar
+            Docente nuevosValoresDocente = new Docente();
+            nuevosValoresDocente.Nombre = "Juan Daniel";
+
+            // Modificamos el docente con CI 111 (docentes[0]) con los nuevos valores del docente
+            mantenimientoDocente.ModificarDocente("111", nuevosValoresDocente);
+
+            // Validamos que el nombre del docente modificado es igual al nuevo nombre asignado
+            Assert.AreEqual("Juan Daniel", docentes[0].Nombre);
         }
         public void GenerarDatos()
         {
