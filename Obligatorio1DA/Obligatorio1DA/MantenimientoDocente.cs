@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Interfaces;
 
-namespace GestionDocente
+namespace GestionDocente 
 {
     public class MantenimientoDocente : IModuloGestion
     {
@@ -65,6 +65,7 @@ namespace GestionDocente
                 docentes[indiceDelDocenteAModificar].Apellido = nuevosValores.Apellido != "" ? nuevosValores.Apellido : docenteAModificar.Apellido;
                 docentes[indiceDelDocenteAModificar].Ci = nuevosValores.Ci != "" ? nuevosValores.Ci : docenteAModificar.Ci;
 
+                docentes[indiceDelDocenteAModificar].Materias = nuevosValores.Materias[0] != "" ? nuevosValores.Materias : docenteAModificar.Materias;
 
             }
             catch (Exception e)

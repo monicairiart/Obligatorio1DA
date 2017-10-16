@@ -151,6 +151,8 @@ namespace PruebasUnitarias
             Assert.AreEqual("Perezo", misDocentes[0].Apellido);
             Console.WriteLine("nvos valor apellido " + misDocentes[0].Apellido);
         }
+        
+
         [TestMethod]
         public void ProbarModificacionDocenteCi()
         {
@@ -170,10 +172,15 @@ namespace PruebasUnitarias
 
             mantenimientoDocente.ModificarDocente("111", nuevosValoresDocente);
 
-            // Validamos que el apellido del docente modificado es igual al nuevo nombre asignado
+            // Validamos que el ci del docente modificado es igual al nuevo nombre asignado
             Assert.AreEqual("1212", misDocentes[0].Ci);
             Console.WriteLine("nvos valor ci " + misDocentes[0].Ci);
         }
+
+        [TestMethod]
+        
+
+
         public void GenerarDatos()
         {
             // Creamos el abmDocente para gestionar docentes

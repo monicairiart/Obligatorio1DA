@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestionDocente
 {
-    public class Docente
+    public class Docente:IPersona
     {
         public string Nombre { get; set; }
         public string Apellido { get; set; }
