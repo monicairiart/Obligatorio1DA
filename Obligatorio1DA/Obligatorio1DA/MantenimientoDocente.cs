@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Interfaces;
+using System.Collections;
 
 namespace GestionDocente 
 {
@@ -11,6 +12,8 @@ namespace GestionDocente
     {
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        public object Menu { get; set; }
+        public IList Acciones { get; set; }
         private List<Docente> docentes = new List<Docente>();
         public List<Docente> GetDocentes()
         {
@@ -39,12 +42,7 @@ namespace GestionDocente
 
             try
             {
-                // Filtro los docentes por la ci que recibo por parametro
-                // Single es un metodo iterativo que recibe una funcion anonima por cada
-                // elemento de la lista y retorna el elemento que cumpla con el filtro
                 Docente docenteAEliminar = docentes.Single(docente => docente.Ci == ci);
-
-                // Removemos el docenteAEliminar de la lista de docentes
                 docentes.Remove(docenteAEliminar);
             }
             catch (Exception e)
