@@ -29,5 +29,14 @@ namespace PruebasUnitarias
             Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "1000", materias);
             Assert.IsInstanceOfType(alumno, typeof(Alumno));
         }
+        [TestMethod]
+        public void ProbarDatosAltaAlumnoNombre()
+        {
+            List<string> materias = new List<string>();
+            Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "1000", materias);
+            Assert.IsInstanceOfType(alumno.Nombre, typeof(string));
+            Assert.AreNotEqual("Nombre cualquiera", alumno.Nombre);
+            Assert.AreEqual("Nombre del Docente", alumno.Nombre);
+        }
     }
 }
