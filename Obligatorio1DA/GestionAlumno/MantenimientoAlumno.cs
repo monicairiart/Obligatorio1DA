@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Interfaces;
+using System.Collections;
 
 namespace GestionAlumno
 {
-    public class MantenimientoAlumno
+    public class MantenimientoAlumno : IModuloGestion
     {
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        public object Menu { get; set; }
+        public IList Acciones { get; set; }
         private List<Alumno> alumnos = new List<Alumno>();
         public MantenimientoAlumno()
         {

@@ -10,6 +10,10 @@ namespace PruebasUnitarias
     public class PruebasAlumno
     {
         public MantenimientoAlumno mantenimientoAlumno { get; set; }
+        public PruebasAlumno()
+        {
+            mantenimientoAlumno = new MantenimientoAlumno();
+        }
         [TestMethod]
         public void ProbarTipoModuloGestionAlumno()
         {
@@ -36,7 +40,7 @@ namespace PruebasUnitarias
             Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "1000", materias);
             Assert.IsInstanceOfType(alumno.Nombre, typeof(string));
             Assert.AreNotEqual("Nombre cualquiera", alumno.Nombre);
-            Assert.AreEqual("Nombre del Docente", alumno.Nombre);
+            Assert.AreEqual("Nombre del Alumno", alumno.Nombre);
         }
         [TestMethod]
         public void ProbarDatosAltaAlumnoApellido()
@@ -45,7 +49,16 @@ namespace PruebasUnitarias
             Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "1000", materias);
             Assert.IsInstanceOfType(alumno.Apellido, typeof(string));
             Assert.AreNotEqual("Apellido cualquiera", alumno.Apellido);
-            Assert.AreEqual("Apellido del Docente", alumno.Apellido);
+            Assert.AreEqual("Apellido del Alumno", alumno.Apellido);
+        }
+        [TestMethod]
+        public void ProbarDatosAltaAlumnoCi()
+        {
+            List<string> materias = new List<string>();
+            Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "1000", materias);
+            Assert.IsInstanceOfType(alumno.Ci, typeof(string));
+            Assert.AreNotEqual("1111", alumno.Ci);
+            Assert.AreEqual("1000", alumno.Ci);
         }
     }
 }
