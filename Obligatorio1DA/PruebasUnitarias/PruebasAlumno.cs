@@ -88,5 +88,18 @@ namespace PruebasUnitarias
             CollectionAssert.AreNotEqual(misAlumnos, mantenimientoAlumno.GetAlumnos());
 
         }
+        [TestMethod]
+        public void ProbarDatosBajaDocenteNoExiste()
+        {
+            MantenimientoAlumno mantenimientoAlumno = new GestionAlumno.MantenimientoAlumno();
+            List<Alumno> misAlumnos = new List<Alumno>();
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "1000", new List<string>()));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "1001", new List<string>()));
+            misAlunnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "1002", new List<string>()));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "1003", new List<string>()));
+            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.GetAlumnos());
+            mantenimientoAlumno.BajaAlumno("123466");
+            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.GetAlumnos());
+        }
     }
 }
