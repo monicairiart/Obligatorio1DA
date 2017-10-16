@@ -151,6 +151,29 @@ namespace PruebasUnitarias
             Assert.AreEqual("Perezo", misDocentes[0].Apellido);
             Console.WriteLine("nvos valor apellido " + misDocentes[0].Apellido);
         }
+        [TestMethod]
+        public void ProbarModificacionDocenteCi()
+        {
+            // Creamos una lista de docentes para realizar las validaciones
+            List<Docente> misDocentes = new List<Docente>();
+
+            // Agrego Docentes con AltaDatosDocente para tener una lista
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "1234", new List<string>()));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "333", new List<string>()));
+
+
+            // Creamos un nuevo docente para modificar
+            Docente nuevosValoresDocente = new Docente();
+            nuevosValoresDocente.Ci = "1212";
+
+            mantenimientoDocente.ModificarDocente("111", nuevosValoresDocente);
+
+            // Validamos que el apellido del docente modificado es igual al nuevo nombre asignado
+            Assert.AreEqual("1212", misDocentes[0].Ci);
+            Console.WriteLine("nvos valor ci " + misDocentes[0].Ci);
+        }
         public void GenerarDatos()
         {
             // Creamos el abmDocente para gestionar docentes

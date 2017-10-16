@@ -63,6 +63,7 @@ namespace GestionDocente
                 docentes[indiceDelDocenteAModificar].Nombre = nuevosValores.Nombre != "" ? nuevosValores.Nombre : docenteAModificar.Nombre;
 
                 docentes[indiceDelDocenteAModificar].Apellido = nuevosValores.Apellido != "" ? nuevosValores.Apellido : docenteAModificar.Apellido;
+                docentes[indiceDelDocenteAModificar].Ci = nuevosValores.Ci != "" ? nuevosValores.Ci : docenteAModificar.Ci;
 
 
             }
