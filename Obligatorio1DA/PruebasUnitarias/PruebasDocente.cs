@@ -85,37 +85,28 @@ namespace PruebasUnitarias
         [TestMethod]
         public void ProbarDatosBajaDocente()
         {
-            // Creamos el abmDocente para gestionar docentes
             MantenimientoDocente mantenimientoDocente = new GestionDocente.MantenimientoDocente();
-
-            // Creamos una lista de docentes para realizar las validaciones
             List<Docente> misDocentes = new List<Docente>();
-            // Agrego Docentes con AltaDatosDocente para tener una lista
             misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
             misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
             misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "1234", new List<string>()));
             misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "333", new List<string>()));
-
-            Console.WriteLine("Docentes Creados > " + mantenimientoDocente.GetDocentes().Count);
-            Console.WriteLine("Docentes en misDocentes > " + misDocentes.Count);
-            Console.WriteLine("Docentes del ABM-mantenimientoDocente > " + mantenimientoDocente.GetDocentes().ToString());
-            Console.WriteLine("Docentes mi lista > " + misDocentes.ToString());
-
-            // Valido que antes de eliminar un docente, ambas listas son iguales
             CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.GetDocentes());
-            
-            // Damos de baja al docente con CI 123466 que no existe
-            mantenimientoDocente.BajaDocente("123466");
-            Console.WriteLine("Docentes actuales > " + mantenimientoDocente.GetDocentes().Count);
-            // Validamos que las listas ahora son diferentes
-            CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.GetDocentes());
-            
-            // Damos de baja al docente con CI 1234
             mantenimientoDocente.BajaDocente("1234");
-            Console.WriteLine("Docentes actuales > " + mantenimientoDocente.GetDocentes().Count);
-            // Validamos que las listas ahora son diferentes
             CollectionAssert.AreNotEqual(misDocentes, mantenimientoDocente.GetDocentes());
 
+        }
+        public void ProbarDatosBajaDocenteNoExiste()
+        {
+            MantenimientoDocente mantenimientoDocente = new GestionDocente.MantenimientoDocente();
+            List<Docente> misDocentes = new List<Docente>();
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "1234", new List<string>()));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "333", new List<string>()));
+            CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.GetDocentes());
+            mantenimientoDocente.BajaDocente("123466");
+            CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.GetDocentes());
         }
         public void GenerarDatos()
         {
