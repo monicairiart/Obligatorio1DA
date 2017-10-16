@@ -103,10 +103,18 @@ namespace PruebasUnitarias
 
             // Valido que antes de eliminar un docente, ambas listas son iguales
             CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.GetDocentes());
-
+            
+            // Damos de baja al docente con CI 123466 que no existe
+            mantenimientoDocente.BajaDocente("123466");
+            Console.WriteLine("Docentes actuales > " + mantenimientoDocente.GetDocentes().Count);
+            // Validamos que las listas ahora son diferentes
+            CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.GetDocentes());
+            
             // Damos de baja al docente con CI 1234
             mantenimientoDocente.BajaDocente("1234");
             Console.WriteLine("Docentes actuales > " + mantenimientoDocente.GetDocentes().Count);
+            // Validamos que las listas ahora son diferentes
+            CollectionAssert.AreNotEqual(misDocentes, mantenimientoDocente.GetDocentes());
 
         }
         public void GenerarDatos()
