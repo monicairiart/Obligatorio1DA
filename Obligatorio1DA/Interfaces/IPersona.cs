@@ -9,6 +9,7 @@ namespace Interfaces
     public interface IPersona
     {
         string Nombre { get; set; }
+        string Apellido { get; set; }
         string Ci { get; set; }
     }
 }

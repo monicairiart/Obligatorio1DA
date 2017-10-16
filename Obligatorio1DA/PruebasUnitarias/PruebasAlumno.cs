@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GestionAlumno;
 using Interfaces;
+using System.Collections.Generic;
 
 namespace PruebasUnitarias
 {
