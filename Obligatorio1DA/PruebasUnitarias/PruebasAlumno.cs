@@ -14,5 +14,11 @@ namespace PruebasUnitarias
         {
             Assert.IsInstanceOfType(mantenimientoAlumno, typeof(IModuloGestion));
         }
+        [TestMethod]
+        public void ProbarDatosTipoModuloGestionAlumno()
+        {
+            Assert.AreEqual("Gestion Alumno", mantenimientoAlumno.Nombre);
+            Assert.AreEqual("Alta, Baja y Modificación de Alumnos", mantenimientoAlumno.Descripcion);
+        }
     }
 }
