@@ -7,3 +7,5 @@ C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Deb
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\Obligatorio1DA.pdb
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\obj\Debug\PruebasUnitarias.dll
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\obj\Debug\PruebasUnitarias.pdb
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\GestionAlumno.dll
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\GestionAlumno.pdb

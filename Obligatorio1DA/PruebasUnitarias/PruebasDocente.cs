@@ -10,6 +10,12 @@ namespace PruebasUnitarias
     public class PruebasDocente
     {
         public MantenimientoDocente mantenimientoDocente { get; set; }
+        public List<Docente> docentes { get; set; }
+        public List<Docente> misDocentes { get; set; }
+        public void PruebasDocentes()
+        {
+            GenerarDatos();
+        }
         public PruebasDocente()
         {
             mantenimientoDocente = new MantenimientoDocente();
@@ -68,11 +74,56 @@ namespace PruebasUnitarias
             List<string> materias = new List<string>();
             List<string> materiasDiferentes = new List<string>();
             Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "1234", materias);
+            materias.Add("Aritmetica");
+            materias.Add("Sistemas informaticos");
             materiasDiferentes.Add("Ingles");
             materiasDiferentes.Add("Dibujo");
             Assert.IsInstanceOfType(docente.Materias, typeof(List<string>));
             Assert.AreNotEqual(materiasDiferentes, docente.Materias);
             Assert.AreEqual(materias, docente.Materias);
+        }
+        [TestMethod]
+        public void ProbarDatosBajaDocente()
+        {
+            // Creamos el abmDocente para gestionar docentes
+            MantenimientoDocente mantenimientoDocente = new GestionDocente.MantenimientoDocente();
+
+            // Creamos una lista de docentes para realizar las validaciones
+            List<Docente> misDocentes = new List<Docente>();
+            Console.WriteLine("baja docente");
+            Console.ReadKey();
+            // Agrego Docentes con AltaDatosDocente para tener una lista
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "1234", new List<string>()));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "333", new List<string>()));
+
+            Console.WriteLine("Docentes Creados > " + mantenimientoDocente.GetDocentes().Count);
+            Console.WriteLine("Docentes en misDocentes > " + misDocentes.Count);
+            Console.WriteLine("Docentes del ABM-mantenimientoDocente > " + mantenimientoDocente.GetDocentes().ToString());
+            Console.WriteLine("Docentes mi lista > " + misDocentes.ToString());
+
+            // Valido que antes de eliminar un docente, ambas listas son iguales
+            CollectionAssert.AreEqual(misDocentes, docentes);
+
+            // Damos de baja al docente con CI 1234
+            mantenimientoDocente.BajaDocente("1234");
+        }
+        public void GenerarDatos()
+        {
+            // Creamos el abmDocente para gestionar docentes
+            mantenimientoDocente = new GestionDocente.MantenimientoDocente();
+
+            // Creamos una lista de docentes para realizar las validaciones
+            misDocentes = new List<Docente>();
+
+            // Agrego Docentes con AltaDatosDocente para tener una lista
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "1234", new List<string>()));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro","Gonzalez", "333", new List<string>()));
+
+            docentes = mantenimientoDocente.GetDocentes();
         }
     }
 }

@@ -12,6 +12,10 @@ namespace GestionDocente
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         private List<Docente> docentes = new List<Docente>();
+        public List<Docente> GetDocentes()
+        {
+            return docentes;
+        }
         public MantenimientoDocente()
         { 
             Console.WriteLine();
