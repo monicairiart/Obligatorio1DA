@@ -14,7 +14,12 @@ namespace GestionAlumno
         public string Descripcion { get; set; }
         public object Menu { get; set; }
         public IList Acciones { get; set; }
+
         private List<Alumno> alumnos = new List<Alumno>();
+        public List<Alumno> GetAlumnos()
+        {
+            return alumnos;
+        }
         public MantenimientoAlumno()
         {
             Console.WriteLine();
@@ -30,6 +35,20 @@ namespace GestionAlumno
             alumno.Materias = materias;
             alumnos.Add(alumno);
             return alumno;
+        }
+        public void BajaAlumno(string ci)
+        {
+            Console.WriteLine("Cedula de Identidad a Baja de Alumno > " + ci);
+
+            try
+            {
+                Alumno alumnoAEliminar = alumnos.Single(alumno => alumno.Ci == ci);
+                alumnos.Remove(alumnoAEliminar);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Excepcion al filtrar alumno > " + e.ToString());
+            }
         }
     }
 }
