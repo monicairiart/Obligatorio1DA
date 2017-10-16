@@ -55,17 +55,21 @@ namespace GestionDocente
         public void ModificarDocente(string ci, Docente nuevosValores)
         {
             Console.WriteLine("Docente a modificar > " + ci);
+            try
+            {
+                Docente docenteAModificar = docentes.Single(docente => docente.Ci == ci);
+                int indiceDelDocenteAModificar = docentes.IndexOf(docenteAModificar);
 
-            Docente docenteAModificar = docentes.Single(docente => docente.Ci == ci);
-            int indiceDelDocenteAModificar = docentes.IndexOf(docenteAModificar);
+                docentes[indiceDelDocenteAModificar].Nombre = nuevosValores.Nombre != "" ? nuevosValores.Nombre : docenteAModificar.Nombre;
 
-            docentes[indiceDelDocenteAModificar].Nombre = nuevosValores.Nombre != "" ? nuevosValores.Nombre : docenteAModificar.Nombre;
-            //docentes[indiceDelDocenteAModificar].Ci = nuevosValores.Ci != "" ? nuevosValores.Ci : docenteAModificar.Ci;
+                docentes[indiceDelDocenteAModificar].Apellido = nuevosValores.Apellido != "" ? nuevosValores.Apellido : docenteAModificar.Apellido;
 
-            //Docente docenteModificado = docentes.Single(docente => docente.Ci == ci);
 
-            //Console.WriteLine("Nombre del docente modificado > " + docenteModificado.Nombre);
-            //Console.WriteLine("Ci del docente modificado > " + docenteModificado.Ci);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Excepcion al filtrar docente > " + e.ToString());
+            }
         }
     }
 }
