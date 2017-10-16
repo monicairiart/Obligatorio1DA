@@ -116,7 +116,10 @@ namespace PruebasUnitarias
             // Creamos un nuevo docente para modificar
             Docente nuevosValoresDocente = new Docente();
             nuevosValoresDocente.Nombre = "Juan Daniel";
-
+            nuevosValoresDocente.Apellido = "Perez";
+            nuevosValoresDocente.Ci = "111";
+            nuevosValoresDocente.Materias[0] = "Matematicas";
+            nuevosValoresDocente.Materias[1] = "Informatica";
             // Modificamos el docente con CI 111 (docentes[0]) con los nuevos valores del docente
             mantenimientoDocente.ModificarDocente("111", nuevosValoresDocente);
 
