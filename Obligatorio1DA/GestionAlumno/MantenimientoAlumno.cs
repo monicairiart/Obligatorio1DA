@@ -50,5 +50,26 @@ namespace GestionAlumno
                 Console.WriteLine("Excepcion al filtrar alumno > " + e.ToString());
             }
         }
+        public void ModificarAlumno(string ci, Alumno nuevosValores)
+        {
+            Console.WriteLine("Alumno a modificar > " + ci);
+            try
+            {
+                Alumno alumnoAModificar = alumnos.Single(alumno => alumno.Ci == ci);
+                int indiceDelAlumnoAModificar = alumnos.IndexOf(alumnoAModificar);
+
+                alumnos[indiceDelAlumnoAModificar].Nombre = nuevosValores.Nombre != "" ? nuevosValores.Nombre : alumnoAModificar.Nombre;
+
+                alumnos[indiceDelAlumnoAModificar].Apellido = nuevosValores.Apellido != "" ? nuevosValores.Apellido : alumnoAModificar.Apellido;
+                alumnos[indiceDelAlumnoAModificar].Ci = nuevosValores.Ci != "" ? nuevosValores.Ci : alumnoAModificar.Ci;
+
+                alumnos[indiceDelAlumnoAModificar].Materias = nuevosValores.Materias[0] != "" ? nuevosValores.Materias : alumnoAModificar.Materias;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Excepcion al filtrar alumno > " + e.ToString());
+            }
+        }
     }
 }
