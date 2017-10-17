@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GestionAlumno\GestionAlumno.csproj">
-      <Project>{670b2ce6-f844-4cd9-90f9-830fa1869dd4}</Project>
+      <Project>{fe17b301-31c3-47e8-9576-60f23264a7f6}</Project>
       <Name>GestionAlumno</Name>
     </ProjectReference>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">

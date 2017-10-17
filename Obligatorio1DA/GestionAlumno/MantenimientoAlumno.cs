@@ -14,7 +14,6 @@ namespace GestionAlumno
         public string Descripcion { get; set; }
         public object Menu { get; set; }
         public IList Acciones { get; set; }
-
         private List<Alumno> alumnos = new List<Alumno>();
         public List<Alumno> GetAlumnos()
         {
@@ -36,13 +35,19 @@ namespace GestionAlumno
             alumnos.Add(alumno);
             return alumno;
         }
+
         public void BajaAlumno(string ci)
         {
             Console.WriteLine("Cedula de Identidad a Baja de Alumno > " + ci);
 
             try
             {
+                // Filtro los docentes por la ci que recibo por parametro
+                // Single es un metodo iterativo que recibe una funcion anonima por cada
+                // elemento de la lista y retorna el elemento que cumpla con el filtro
                 Alumno alumnoAEliminar = alumnos.Single(alumno => alumno.Ci == ci);
+
+                // Removemos el docenteAEliminar de la lista de docentes
                 alumnos.Remove(alumnoAEliminar);
             }
             catch (Exception e)

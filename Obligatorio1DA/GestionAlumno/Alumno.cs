@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Interfaces;
 
-namespace GestionDocente
+namespace GestionAlumno
 {
-    public class Docente:IPersona
+    public class Alumno : IPersona
     {
         public string Nombre { get; set; }
         public string Apellido { get; set; }
