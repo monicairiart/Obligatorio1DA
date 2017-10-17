@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionDocente", "Obligatorio1DA\GestionDocente.csproj", "{99B99CDE-B8E9-4FE3-8FF5-E3F908092C11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PruebasUnitarias", "PruebasUnitarias\PruebasUnitarias.csproj", "{A9F5BCC4-CFF0-4741-A221-3EC6BB398DD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{1A27E14A-3F49-476A-BAD9-E118B4A628D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionAlumno", "GestionAlumno\GestionAlumno.csproj", "{670B2CE6-F844-4CD9-90F9-830FA1869DD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AplicacionUI", "AplicacionUI\AplicacionUI.csproj", "{82139F9E-C4A8-435E-961B-759D1CFF0C44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionMateria", "GestionMateria\GestionMateria.csproj", "{3DE4C6BC-4FDE-4500-8F36-D9897F3C2C0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99B99CDE-B8E9-4FE3-8FF5-E3F908092C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99B99CDE-B8E9-4FE3-8FF5-E3F908092C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99B99CDE-B8E9-4FE3-8FF5-E3F908092C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99B99CDE-B8E9-4FE3-8FF5-E3F908092C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9F5BCC4-CFF0-4741-A221-3EC6BB398DD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9F5BCC4-CFF0-4741-A221-3EC6BB398DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9F5BCC4-CFF0-4741-A221-3EC6BB398DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9F5BCC4-CFF0-4741-A221-3EC6BB398DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A27E14A-3F49-476A-BAD9-E118B4A628D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A27E14A-3F49-476A-BAD9-E118B4A628D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A27E14A-3F49-476A-BAD9-E118B4A628D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A27E14A-3F49-476A-BAD9-E118B4A628D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{670B2CE6-F844-4CD9-90F9-830FA1869DD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{670B2CE6-F844-4CD9-90F9-830FA1869DD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{670B2CE6-F844-4CD9-90F9-830FA1869DD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{670B2CE6-F844-4CD9-90F9-830FA1869DD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82139F9E-C4A8-435E-961B-759D1CFF0C44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82139F9E-C4A8-435E-961B-759D1CFF0C44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82139F9E-C4A8-435E-961B-759D1CFF0C44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82139F9E-C4A8-435E-961B-759D1CFF0C44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DE4C6BC-4FDE-4500-8F36-D9897F3C2C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DE4C6BC-4FDE-4500-8F36-D9897F3C2C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DE4C6BC-4FDE-4500-8F36-D9897F3C2C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DE4C6BC-4FDE-4500-8F36-D9897F3C2C0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

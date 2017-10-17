@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="PruebasDocente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PruebasAlumno.cs" />
+    <Compile Include="PruebasMateria.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GestionAlumno\GestionAlumno.csproj">

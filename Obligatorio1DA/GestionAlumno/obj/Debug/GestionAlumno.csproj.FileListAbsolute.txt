@@ -3,3 +3,8 @@ C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\GestionAlumno\bin\Debug\
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\GestionAlumno\obj\Debug\GestionAlumno.csprojResolveAssemblyReference.cache
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\GestionAlumno\obj\Debug\GestionAlumno.dll
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\GestionAlumno\obj\Debug\GestionAlumno.pdb
+<<<<<<< HEAD
+=======
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\GestionAlumno\bin\Debug\Interfaces.dll
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\GestionAlumno\bin\Debug\Interfaces.pdb
+>>>>>>> parent of f0b4c2c... subir pruebas alumno
