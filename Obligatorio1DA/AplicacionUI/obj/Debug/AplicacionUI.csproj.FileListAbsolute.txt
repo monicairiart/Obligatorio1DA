@@ -1,0 +1,10 @@
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\AplicacionUI\obj\Debug\AplicacionUI.csprojResolveAssemblyReference.cache
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\AplicacionUI\obj\Debug\AplicacionUI.Properties.Resources.resources
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\AplicacionUI\obj\Debug\AplicacionUI.csproj.GenerateResource.Cache
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\AplicacionUI\bin\Debug\AplicacionUI.exe.config
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\AplicacionUI\bin\Debug\AplicacionUI.exe
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\AplicacionUI\bin\Debug\AplicacionUI.pdb
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\AplicacionUI\bin\Debug\Interfaces.dll
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\AplicacionUI\bin\Debug\Interfaces.pdb
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\AplicacionUI\obj\Debug\AplicacionUI.exe
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\AplicacionUI\obj\Debug\AplicacionUI.pdb

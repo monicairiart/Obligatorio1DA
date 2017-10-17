@@ -2,10 +2,10 @@ C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\obj\Deb
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\PruebasUnitarias.dll
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\PruebasUnitarias.pdb
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\Interfaces.dll
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\Obligatorio1DA.dll
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\Interfaces.pdb
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\Obligatorio1DA.pdb
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\obj\Debug\PruebasUnitarias.dll
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\obj\Debug\PruebasUnitarias.pdb
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\GestionAlumno.dll
 C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\GestionAlumno.pdb
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\Obligatorio1DA.exe
+C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\PruebasUnitarias\bin\Debug\GestionAlumno.exe

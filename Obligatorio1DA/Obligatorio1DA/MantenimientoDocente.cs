@@ -15,6 +15,7 @@ namespace GestionDocente
         public object Menu { get; set; }
         public IList Acciones { get; set; }
         private List<Docente> docentes = new List<Docente>();
+        public IContenedorModulo Contenedor { get; set; }
         public List<Docente> GetDocentes()
         {
             return docentes;
@@ -24,6 +25,11 @@ namespace GestionDocente
             Console.WriteLine();
             Nombre = "Gestion Docente";
             Descripcion = "Alta, Baja y Modificación de Docentes";
+        }
+        public void Mostrar()
+        {
+            GestionDocenteFormulario formularioPrincipal = new GestionDocenteFormulario();
+            formularioPrincipal.ShowDialog();
         }
         public Docente AltaDatosDocente(string nombreDocente, string apellidoDocente, string ciDocente, List<string> materias)
         {

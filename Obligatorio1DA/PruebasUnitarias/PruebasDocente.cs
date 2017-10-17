@@ -85,7 +85,7 @@ namespace PruebasUnitarias
         [TestMethod]
         public void ProbarDatosBajaDocente()
         {
-            MantenimientoDocente mantenimientoDocente = new GestionDocente.MantenimientoDocente();
+            // MantenimientoDocente mantenimientoDocente = new GestionDocente.MantenimientoDocente();
             List<Docente> misDocentes = new List<Docente>();
             misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
             misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));

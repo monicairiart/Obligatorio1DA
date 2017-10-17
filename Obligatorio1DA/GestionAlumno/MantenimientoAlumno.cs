@@ -16,6 +16,7 @@ namespace GestionAlumno
         public IList Acciones { get; set; }
 
         private List<Alumno> alumnos = new List<Alumno>();
+        public IContenedorModulo Contenedor { get; set; }
         public List<Alumno> GetAlumnos()
         {
             return alumnos;
@@ -25,6 +26,11 @@ namespace GestionAlumno
             Console.WriteLine();
             Nombre = "Gestion Alumno";
             Descripcion = "Alta, Baja y Modificación de Alumnos";
+        }
+        public void Mostrar()
+        {
+            GestionAlumnoFormulario formularioPrincipal = new GestionAlumnoFormulario();
+            formularioPrincipal.ShowDialog();
         }
         public Alumno AltaDatosAlumno(string nombreAlumno, string apellidoAlumno, string ciAlumno, List<string> materias)
         {

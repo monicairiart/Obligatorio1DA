@@ -121,5 +121,28 @@ namespace PruebasUnitarias
             Assert.AreEqual("Juanita", misAlumnos[0].Nombre);
             Console.WriteLine("nvos valor nombre " + misAlumnos[0].Nombre);
         }
+        [TestMethod]
+        public void ProbarModificacionAlumnoApellido()
+        {
+            // Creamos una lista de docentes para realizar las validaciones
+            List<Alumno> misAlumnos = new List<Alumno>();
+
+            // Agrego Docentes con AltaDatosDocente para tener una lista
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "1000", new List<string>()));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "1001", new List<string>()));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "1002", new List<string>()));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "1003", new List<string>()));
+
+
+            // Creamos un nuevo alumno para modificar
+            Alumno nuevosValoresAlumno = new Alumno();
+            nuevosValoresAlumno.Apellido = "Sosita";
+
+            mantenimientoAlumno.ModificarAlumno("1000", nuevosValoresAlumno);
+
+            // Validamos que el apellido del alumno modificado es igual al nuevo nombre asignado
+            Assert.AreEqual("Sosita", misAlumnos[0].Apellido);
+            Console.WriteLine("nvos valor apellido " + misAlumnos[0].Apellido);
+        }
     }
 }
