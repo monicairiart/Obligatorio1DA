@@ -15,6 +15,7 @@ namespace GestionDocente
         public object Menu { get; set; }
         public IList Acciones { get; set; }
         private List<Docente> docentes = new List<Docente>();
+        public List<Docente> docentesPrueba = new List<Docente>();
         public List<Docente> GetDocentes()
         {
             return docentes;
@@ -75,6 +76,16 @@ namespace GestionDocente
             {
                 Console.WriteLine("Excepcion al filtrar docente > " + e.ToString());
             }
+        }
+        public void GenerarDatos()
+        {
+            // Agrego Docentes con AltaDatosDocente para tener una lista
+            docentesPrueba.Add(AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
+            docentesPrueba.Add(AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
+            docentesPrueba.Add(AltaDatosDocente("Horacio", "Gabriel", "1234", new List<string>()));
+            docentesPrueba.Add(AltaDatosDocente("Alejandro", "Gonzalez", "333", new List<string>()));
+
+            docentes = GetDocentes();
         }
     }
 }

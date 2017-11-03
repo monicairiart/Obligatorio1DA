@@ -1,7 +1,0 @@
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\GestionAlumno\bin\Debug\GestionAlumno.dll
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\GestionAlumno\bin\Debug\GestionAlumno.pdb
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\GestionAlumno\bin\Debug\Interfaces.dll
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\GestionAlumno\bin\Debug\Interfaces.pdb
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\GestionAlumno\obj\Debug\GestionAlumno.csprojResolveAssemblyReference.cache
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\GestionAlumno\obj\Debug\GestionAlumno.dll
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\GestionAlumno\obj\Debug\GestionAlumno.pdb

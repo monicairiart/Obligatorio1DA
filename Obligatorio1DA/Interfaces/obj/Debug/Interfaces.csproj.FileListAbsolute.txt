@@ -1,5 +1,0 @@
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\Interfaces\bin\Debug\Interfaces.dll
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\Interfaces\bin\Debug\Interfaces.pdb
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\Interfaces\obj\Debug\Interfaces.dll
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\Interfaces\obj\Debug\Interfaces.pdb
-C:\Users\Monica\Documents\Obligatorio1DA\Obligatorio1DA\Interfaces\obj\Debug\Interfaces.csprojResolveAssemblyReference.cache
