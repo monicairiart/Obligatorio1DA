@@ -14,7 +14,7 @@ namespace PruebasUnitarias
         public List<Materia> misMaterias { get; set; }
         public void PruebasMaterias()
         {
-            GenerarDatos();
+            //GenerarDatos();
         }
         public PruebasMateria()
         {
@@ -137,10 +137,12 @@ namespace PruebasUnitarias
             Console.WriteLine("nvos valor nombre " + misMaterias[0].Nombre);
         }
         [TestMethod]
-
-
-
-        public void GenerarDatos()
+        public void ProbarObtenerMateriasPorAlumno()
+        {
+            
+        }
+        [TestMethod]
+        public void ProbarGenerarDatos()
         {
             // Creamos el abmDocente para gestionar docentes
             mantenimientoMateria = new GestionMateria.MantenimientoMateria();
