@@ -74,5 +74,9 @@ namespace GestionMateria
                 Console.WriteLine("Excepcion al filtrar materia > " + e.ToString());
             }
         }
+        public void GenerarDatos()
+        {
+
+        }
     }
 }

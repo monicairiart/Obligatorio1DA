@@ -29,15 +29,13 @@ namespace PruebasUnitarias
         public void ProbarTipoModuloAltaAlumno()
         {
             MantenimientoAlumno Alumno = new GestionAlumno.MantenimientoAlumno();
-            List<string> materias = new List<string>();
-            Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "1000", materias);
+            Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "1000");
             Assert.IsInstanceOfType(alumno, typeof(Alumno));
         }
         [TestMethod]
         public void ProbarDatosAltaAlumnoNombre()
         {
-            List<string> materias = new List<string>();
-            Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "1000", materias);
+            Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "1000");
             Assert.IsInstanceOfType(alumno.Nombre, typeof(string));
             Assert.AreNotEqual("Nombre cualquiera", alumno.Nombre);
             Assert.AreEqual("Nombre del Alumno", alumno.Nombre);
@@ -45,8 +43,7 @@ namespace PruebasUnitarias
         [TestMethod]
         public void ProbarDatosAltaAlumnoApellido()
         {
-            List<string> materias = new List<string>();
-            Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "1000", materias);
+            Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "1000");
             Assert.IsInstanceOfType(alumno.Apellido, typeof(string));
             Assert.AreNotEqual("Apellido cualquiera", alumno.Apellido);
             Assert.AreEqual("Apellido del Alumno", alumno.Apellido);
@@ -54,72 +51,82 @@ namespace PruebasUnitarias
         [TestMethod]
         public void ProbarDatosAltaAlumnoCi()
         {
-            List<string> materias = new List<string>();
-            Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "1000", materias);
+            Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "50001002");
             Assert.IsInstanceOfType(alumno.Ci, typeof(string));
-            Assert.AreNotEqual("1111", alumno.Ci);
-            Assert.AreEqual("1000", alumno.Ci);
-        }
-        [TestMethod]
-        public void ProbarDatosAltaAlumnoMaterias()
-        {
-            List<string> materias = new List<string>();
-            List<string> materiasDiferentes = new List<string>();
-            Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "1000", materias);
-            materias.Add("Aritmetica");
-            materias.Add("Sistemas informaticos");
-            materiasDiferentes.Add("Ingles");
-            materiasDiferentes.Add("Dibujo");
-            Assert.IsInstanceOfType(alumno.Materias, typeof(List<string>));
-            Assert.AreNotEqual(materiasDiferentes, alumno.Materias);
-            Assert.AreEqual(materias, alumno.Materias);
+            Assert.AreNotEqual("50001001", alumno.Ci);
+            Assert.AreEqual("50001002", alumno.Ci);
         }
         [TestMethod]
         public void ProbarDatosBajaAlumno()
         {
             MantenimientoAlumno mantenimientoAlumno = new GestionAlumno.MantenimientoAlumno();
             List<Alumno> misAlumnos = new List<Alumno>();
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "1000", new List<string>()));
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "1001", new List<string>()));
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "1002", new List<string>()));
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "1003", new List<string>()));
-            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.GetAlumnos());
-            mantenimientoAlumno.BajaAlumno("1000");
-            CollectionAssert.AreNotEqual(misAlumnos, mantenimientoAlumno.GetAlumnos());
-
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "49912233"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "38824456"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "39937650"));
+            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.ObtenerAlumnos());
+            mantenimientoAlumno.BajarAlumno("50001002");
+            CollectionAssert.AreNotEqual(misAlumnos, mantenimientoAlumno.ObtenerAlumnos());
         }
         [TestMethod]
-        public void ProbarDatosBajaDocenteNoExiste()
+        public void ProbarDatosBajaAlumnoNoExiste()
         {
             MantenimientoAlumno mantenimientoAlumno = new GestionAlumno.MantenimientoAlumno();
             List<Alumno> misAlumnos = new List<Alumno>();
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "1000", new List<string>()));
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "1001", new List<string>()));
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "1002", new List<string>()));
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "1003", new List<string>()));
-            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.GetAlumnos());
-            mantenimientoAlumno.BajaAlumno("123466");
-            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.GetAlumnos());
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "49912233"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "38824456"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "39937650"));
+            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.ObtenerAlumnos());
+            mantenimientoAlumno.BajarAlumno("55550005");
+            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.ObtenerAlumnos());
         }
         [TestMethod]
         public void ProbarModificacionAlumnoNombre()
         {
-            // Creamos una lista de docentes para realizar las validaciones
             List<Alumno> misAlumnos = new List<Alumno>();
-
-            // Agrego Alumnos con AltaDatosAlumno para tener una lista
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "1000", new List<string>()));
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "1001", new List<string>()));
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "1002", new List<string>()));
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "1003", new List<string>()));
-
-   
-            // Creamos un nuevo alumno para modificar
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "49912233"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "38824456"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "39937650"));
             Alumno nuevosValoresAlumno = new Alumno();
             nuevosValoresAlumno.Nombre = "Juanita";
-            mantenimientoAlumno.ModificarAlumno("1000", nuevosValoresAlumno);
+            mantenimientoAlumno.ModificarAlumno("50001002", nuevosValoresAlumno);
             Assert.AreEqual("Juanita", misAlumnos[0].Nombre);
             Console.WriteLine("nvos valor nombre " + misAlumnos[0].Nombre);
         }
+        [TestMethod]
+        public void ProbarAlumnoExistente()
+        {
+            MantenimientoAlumno mantenimientoAlumno = new GestionAlumno.MantenimientoAlumno();
+            List<Alumno> misAlumnos = new List<Alumno>();
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002"));
+            Assert.IsTrue(mantenimientoAlumno.AlumnoExistente("50001002"));
+        }
+        [TestMethod]
+        public void ProbarObtenerAlumno()
+        {
+            MantenimientoAlumno mantenimientoAlumno = new GestionAlumno.MantenimientoAlumno();
+            List<Alumno> misAlumnos = new List<Alumno>();
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "49912233"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "38824456"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "39937650"));
+            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.ObtenerAlumnos());
+        }
+        [TestMethod]
+        public void ProbarGenerarDatos()
+        {
+            List<Alumno> alumnosPrueba = new List<Alumno>();
+            MantenimientoAlumno mantenimientoAlumno = new GestionAlumno.MantenimientoAlumno();
+            alumnosPrueba.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002"));
+            alumnosPrueba.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "49912233"));
+            alumnosPrueba.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "38824456"));
+            alumnosPrueba.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "39937650"));
+            mantenimientoAlumno.GenerarDatos();
+            CollectionAssert.AreEqual(alumnosPrueba, mantenimientoAlumno.ObtenerAlumnos());
+        }
+
     }
 }
