@@ -55,11 +55,24 @@
     <Compile Include="PruebasDocente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PruebasAlumno.cs" />
+<<<<<<< HEAD
+=======
+    <Compile Include="PruebasMateria.cs" />
+    <Compile Include="PruebasCamioneta.cs" />
+>>>>>>> 4be53b10208b4a61328b3ba062a68b1afe7ec930
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GestionAlumno\GestionAlumno.csproj">
-      <Project>{670b2ce6-f844-4cd9-90f9-830fa1869dd4}</Project>
+      <Project>{fe17b301-31c3-47e8-9576-60f23264a7f6}</Project>
       <Name>GestionAlumno</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GestionCamioneta\GestionCamioneta.csproj">
+      <Project>{23ac0844-1fce-4251-bcb9-0d2dde13bdea}</Project>
+      <Name>GestionCamioneta</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GestionMateria\GestionMateria.csproj">
+      <Project>{f469051a-8078-4ac2-8f7d-2cdf527cf01c}</Project>
+      <Name>GestionMateria</Name>
     </ProjectReference>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
       <Project>{1a27e14a-3f49-476a-bad9-e118b4a628d1}</Project>

@@ -121,6 +121,7 @@ namespace PruebasUnitarias
             Assert.AreEqual("Juanita", misAlumnos[0].Nombre);
             Console.WriteLine("nvos valor nombre " + misAlumnos[0].Nombre);
         }
+<<<<<<< HEAD
         [TestMethod]
         public void ProbarModificacionAlumnoApellido()
         {
@@ -144,5 +145,7 @@ namespace PruebasUnitarias
             Assert.AreEqual("Sosita", misAlumnos[0].Apellido);
             Console.WriteLine("nvos valor apellido " + misAlumnos[0].Apellido);
         }
+=======
+>>>>>>> 4be53b10208b4a61328b3ba062a68b1afe7ec930
     }
 }
