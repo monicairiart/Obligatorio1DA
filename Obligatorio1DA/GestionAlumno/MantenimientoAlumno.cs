@@ -15,7 +15,8 @@ namespace GestionAlumno
         public object Menu { get; set; }
         public IList Acciones { get; set; }
         private List<Alumno> alumnos = new List<Alumno>();
-        public List<Alumno> GetAlumnos()
+        public List<Alumno> alumnosPrueba = new List<Alumno>();
+        public List<Alumno> ObtenerAlumnos()
         {
             return alumnos;
         }
@@ -25,30 +26,29 @@ namespace GestionAlumno
             Nombre = "Gestion Alumno";
             Descripcion = "Alta, Baja y Modificación de Alumnos";
         }
-        public Alumno AltaDatosAlumno(string nombreAlumno, string apellidoAlumno, string ciAlumno, List<string> materias)
+        public Alumno AltaDatosAlumno(string nombreAlumno, string apellidoAlumno, string ciAlumno)
         {
             Alumno alumno = new Alumno();
-            alumno.Nombre = nombreAlumno;
-            alumno.Apellido = apellidoAlumno;
-            alumno.Ci = ciAlumno;
-            alumno.Materias = materias;
-            alumnos.Add(alumno);
+            if (!AlumnoExistente(ciAlumno))
+            {
+                alumno.Nombre = nombreAlumno;
+                alumno.Apellido = apellidoAlumno;
+                alumno.Ci = ciAlumno;
+                alumnos.Add(alumno);
+                return alumno;
+            }
             return alumno;
         }
 
-        public void BajaAlumno(string ci)
+        public void BajarAlumno(string ci)
         {
-            Console.WriteLine("Cedula de Identidad a Baja de Alumno > " + ci);
-
             try
             {
-                // Filtro los docentes por la ci que recibo por parametro
-                // Single es un metodo iterativo que recibe una funcion anonima por cada
-                // elemento de la lista y retorna el elemento que cumpla con el filtro
-                Alumno alumnoAEliminar = alumnos.Single(alumno => alumno.Ci == ci);
-
-                // Removemos el docenteAEliminar de la lista de docentes
-                alumnos.Remove(alumnoAEliminar);
+                if (AlumnoExistente(ci))
+                {
+                    Alumno alumnoAEliminar = alumnos.Single(alumno => alumno.Ci == ci);
+                    alumnos.Remove(alumnoAEliminar);
+                }
             }
             catch (Exception e)
             {
@@ -57,24 +57,32 @@ namespace GestionAlumno
         }
         public void ModificarAlumno(string ci, Alumno nuevosValores)
         {
-            Console.WriteLine("Alumno a modificar > " + ci);
             try
             {
                 Alumno alumnoAModificar = alumnos.Single(alumno => alumno.Ci == ci);
                 int indiceDelAlumnoAModificar = alumnos.IndexOf(alumnoAModificar);
-
                 alumnos[indiceDelAlumnoAModificar].Nombre = nuevosValores.Nombre != "" ? nuevosValores.Nombre : alumnoAModificar.Nombre;
-
                 alumnos[indiceDelAlumnoAModificar].Apellido = nuevosValores.Apellido != "" ? nuevosValores.Apellido : alumnoAModificar.Apellido;
                 alumnos[indiceDelAlumnoAModificar].Ci = nuevosValores.Ci != "" ? nuevosValores.Ci : alumnoAModificar.Ci;
-
-                alumnos[indiceDelAlumnoAModificar].Materias = nuevosValores.Materias[0] != "" ? nuevosValores.Materias : alumnoAModificar.Materias;
-
             }
             catch (Exception e)
             {
                 Console.WriteLine("Excepcion al filtrar alumno > " + e.ToString());
             }
+        }
+        public Boolean AlumnoExistente(string ci)
+        {
+            Boolean alumnoExistente = alumnos.Exists(alumnoEncontrado => alumnoEncontrado.Ci == ci);
+            return alumnoExistente;
+        }
+
+        public void GenerarDatos()
+        {
+            alumnosPrueba.Add(AltaDatosAlumno("Juana", "Sosa", "50001002"));
+            alumnosPrueba.Add(AltaDatosAlumno("Paola", "Bianco", "49912233"));
+            alumnosPrueba.Add(AltaDatosAlumno("Hugo", "Cabral", "38824456"));
+            alumnosPrueba.Add(AltaDatosAlumno("Alejandra", "Suarez", "39937650"));
+            alumnos = ObtenerAlumnos();
         }
     }
 }

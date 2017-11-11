@@ -26,7 +26,7 @@ namespace InterfazUsuario
 
         private void botonGestionAlumnos_Click(object sender, EventArgs e)
         {
-            Form nuevaVentana = new GestionAlumnosUI();
+            Form nuevaVentana = new GestionAlumnoUI();
             nuevaVentana.Show();
            // Console.ReadKey();
         }
