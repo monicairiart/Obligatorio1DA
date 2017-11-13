@@ -41,7 +41,6 @@ namespace InterfazUsuario
                 ListViewItem itemAlumno = new ListViewItem(alumno.Ci);
                 itemAlumno.SubItems.Add(alumno.Nombre);
                 itemAlumno.SubItems.Add(alumno.Apellido);
-
                 listaAlumnos.Items.Add(itemAlumno);
             }
         }
@@ -55,8 +54,8 @@ namespace InterfazUsuario
                 entradaNombreAlumno.Text = alumnoSeleccionado[0].SubItems[1].Text;
                 entradaApellidoAlumno.Text = alumnoSeleccionado[0].SubItems[2].Text;
                 ciAlumnoSeleccionado = alumnoSeleccionado[0].SubItems[0].Text;
-                //materiasDelAlumno = mantenimientoMateria.ObtenerMateriasPorAlumno(ciAlumnoSeleccionado);
-                //cargarListaMateriaAlumno(materiasDelAlumno);
+ //               materiasDelAlumno = mantenimientoMateria.ObtenerMateriasPorAlumno(ciAlumnoSeleccionado);
+ //               cargarListaMateriaAlumno(materiasDelAlumno);
             }
         }
 
@@ -90,21 +89,40 @@ namespace InterfazUsuario
                 entradaNombreAlumno.Clear();
                 cargarListaAlumno();
             }
-
         }
-        private void botonBajaAlumno_Click(object sender, EventArgs e)
+        private void botonBajarAlumno_Click_1(object sender, EventArgs e)
         {
             mantenimientoAlumno.BajarAlumno(ciAlumnoSeleccionado);
             limpiarValoresViejos();
             cargarListaAlumno();
         }
-
+        private void botonAsignarMateriaAAlumno_Click(object sender, EventArgs e)
+        {
+            Form nuevaVentana = new AsignarMateriaUI();
+            nuevaVentana.Show();
+        }
         private void limpiarValoresViejos()
         {
             entradaNombreAlumno.Clear();
             entradaApellidoAlumno.Clear();
             entradaCIAlumno.Clear();
         }
+        public void actualizarListaMateriaAlumno()
+        {
+            cargarListaMateriaAlumno(mantenimientoMateria.ObtenerMaterias());
+        }
+        private void cargarListaMateriaAlumno(List<Materia> materiasARetornar)
+        {
+            listaMaterias.Items.Clear();
+            listaMaterias.View = View.Details;
+            foreach (Materia materia in materiasARetornar)
+            {
+                ListViewItem itemMateria = new ListViewItem(materia.CodigoMateria);
+                itemMateria.SubItems.Add(materia.Nombre);
+                listaMaterias.Items.Add(itemMateria);
+            }
+        }
+
         private Boolean ValidarDatos(string ci, Alumno nuevosValores, Boolean comprobarDuplicado)
         {
             if ((ci.Length == 0) || (nuevosValores.Apellido.Length == 0) || (nuevosValores.Nombre.Length == 0))
@@ -124,14 +142,6 @@ namespace InterfazUsuario
             }
             return (true);
         }
-
-        private void botonAsignarMateriaAAlumno_Click(object sender, EventArgs e)
-        {
-//            AsignarMateriaUI.ciAlumnoSeleccionado = ciAlumnoSeleccionado;
-            Form nuevaVentana = new AsignarMateriaUI();
-            nuevaVentana.Show();
-        }
-
         private void botonSalir_Click(object sender, EventArgs e)
         {
             Close();

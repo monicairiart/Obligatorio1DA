@@ -22,7 +22,6 @@ namespace GestionAlumno
         }
         public MantenimientoAlumno()
         {
-            Console.WriteLine();
             Nombre = "Gestion Alumno";
             Descripcion = "Alta, Baja y Modificación de Alumnos";
         }
@@ -69,6 +68,11 @@ namespace GestionAlumno
             {
                 Console.WriteLine("Excepcion al filtrar alumno > " + e.ToString());
             }
+        }
+        public Alumno ObtenerAlumnoPorCi(string ciAlumno)
+        {
+            Alumno alumnoARetornar = alumnos.Find(alumno => alumno.Ci == ciAlumno);
+            return alumnoARetornar;
         }
         public Boolean AlumnoExistente(string ci)
         {

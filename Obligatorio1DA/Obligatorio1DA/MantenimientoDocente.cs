@@ -16,40 +16,38 @@ namespace GestionDocente
         public IList Acciones { get; set; }
         private List<Docente> docentes = new List<Docente>();
         public List<Docente> docentesPrueba = new List<Docente>();
-        public List<Docente> GetDocentes()
+        public List<Docente> ObtenerDocentes()
         {
             return docentes;
         }
         public MantenimientoDocente()
         { 
-            Console.WriteLine();
             Nombre = "Gestion Docente";
             Descripcion = "Alta, Baja y Modificación de Docentes";
         }
-        public Docente AltaDatosDocente(string nombreDocente, string apellidoDocente, string ciDocente, List<string> materias)
+        public Docente AltaDatosDocente(string nombreDocente, string apellidoDocente, string ciDocente)
         {
             Docente docente = new Docente();
-            docente.Nombre = nombreDocente;
-            docente.Apellido = apellidoDocente;
-            docente.Ci = ciDocente;
-            docente.Materias = materias;
-            docentes.Add(docente);
+            if (!DocenteExistente(ciDocente))
+            {
+                docente.Nombre = nombreDocente;
+                docente.Apellido = apellidoDocente;
+                docente.Ci = ciDocente;
+                docentes.Add(docente);
+                return docente;
+            }
             return docente;
         }
             
-        public void BajaDocente(string ci)
+        public void BajarDocente(string ci)
         {
-            Console.WriteLine("Cedula de Identidad a Baja de Docente > " + ci);
-
             try
             {
-                // Filtro los docentes por la ci que recibo por parametro
-                // Single es un metodo iterativo que recibe una funcion anonima por cada
-                // elemento de la lista y retorna el elemento que cumpla con el filtro
-                Docente docenteAEliminar = docentes.Single(docente => docente.Ci == ci);
-
-                // Removemos el docenteAEliminar de la lista de docentes
-                docentes.Remove(docenteAEliminar);
+                if (DocenteExistente(ci))
+                {
+                    Docente docenteAEliminar = docentes.Single(docente => docente.Ci == ci);
+                    docentes.Remove(docenteAEliminar);
+                }
             }
             catch (Exception e)
             {
@@ -58,34 +56,36 @@ namespace GestionDocente
         }
         public void ModificarDocente(string ci, Docente nuevosValores)
         {
-            Console.WriteLine("Docente a modificar > " + ci);
             try
             {
                 Docente docenteAModificar = docentes.Single(docente => docente.Ci == ci);
                 int indiceDelDocenteAModificar = docentes.IndexOf(docenteAModificar);
-
                 docentes[indiceDelDocenteAModificar].Nombre = nuevosValores.Nombre != "" ? nuevosValores.Nombre : docenteAModificar.Nombre;
-
                 docentes[indiceDelDocenteAModificar].Apellido = nuevosValores.Apellido != "" ? nuevosValores.Apellido : docenteAModificar.Apellido;
                 docentes[indiceDelDocenteAModificar].Ci = nuevosValores.Ci != "" ? nuevosValores.Ci : docenteAModificar.Ci;
-
-                docentes[indiceDelDocenteAModificar].Materias = nuevosValores.Materias[0] != "" ? nuevosValores.Materias : docenteAModificar.Materias;
-
             }
             catch (Exception e)
             {
                 Console.WriteLine("Excepcion al filtrar docente > " + e.ToString());
             }
         }
+        public Docente ObtenerDocentePorCi(string ciDocente)
+        {
+            Docente docenteARetornar = docentes.Find(docente => docente.Ci == ciDocente);
+            return docenteARetornar;
+        }
+        public Boolean DocenteExistente(string ciDocente)
+        {
+            Boolean docenteExistente = docentes.Exists(docenteEncontrado => docenteEncontrado.Ci == ciDocente);
+            return docenteExistente;
+        }
         public void GenerarDatos()
         {
-            // Agrego Docentes con AltaDatosDocente para tener una lista
-            docentesPrueba.Add(AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
-            docentesPrueba.Add(AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
-            docentesPrueba.Add(AltaDatosDocente("Horacio", "Gabriel", "1234", new List<string>()));
-            docentesPrueba.Add(AltaDatosDocente("Alejandro", "Gonzalez", "333", new List<string>()));
-
-            docentes = GetDocentes();
+            docentesPrueba.Add(AltaDatosDocente("Juan Pablo", "Perez", "38667442"));
+            docentesPrueba.Add(AltaDatosDocente("Pedro", "Malan", "51112145"));
+            docentesPrueba.Add(AltaDatosDocente("Horacio", "Gabriel", "35466661"));
+            docentesPrueba.Add(AltaDatosDocente("Alejandro", "Gonzalez", "42227230"));
+            docentes = ObtenerDocentes();
         }
     }
 }

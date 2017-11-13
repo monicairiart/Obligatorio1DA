@@ -11,7 +11,6 @@ namespace GestionAlumno
     {
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-        public string Ci { get; set; }
-       
+        public string Ci { get; set; }   
     }
 }

@@ -33,15 +33,18 @@ namespace InterfazUsuario
             this.botonSalir = new System.Windows.Forms.Button();
             this.botonAltaDocente = new System.Windows.Forms.Button();
             this.panelVentanaDocente = new System.Windows.Forms.Panel();
+            this.tituloListaMaterias = new System.Windows.Forms.Label();
+            this.listaMaterias = new System.Windows.Forms.ListView();
+            this.tituloCIDocente = new System.Windows.Forms.Label();
+            this.tituloApellidoDocente = new System.Windows.Forms.Label();
+            this.tituloNombreDocente = new System.Windows.Forms.Label();
+            this.entradaCIDocente = new System.Windows.Forms.TextBox();
+            this.entradaApellidoDocente = new System.Windows.Forms.TextBox();
+            this.entradaNombreDocente = new System.Windows.Forms.TextBox();
             this.listaDocentes = new System.Windows.Forms.ListView();
             this.botonBajarDocente = new System.Windows.Forms.Button();
             this.botonModificarDocente = new System.Windows.Forms.Button();
-            this.entradaNombreDocente = new System.Windows.Forms.TextBox();
-            this.entradaApellidoDocente = new System.Windows.Forms.TextBox();
-            this.entradaCIDocente = new System.Windows.Forms.TextBox();
-            this.tituloNombreDocente = new System.Windows.Forms.Label();
-            this.tituloApellidoDocente = new System.Windows.Forms.Label();
-            this.tituloCIDocente = new System.Windows.Forms.Label();
+            this.botonAsignarMateriaADocente = new System.Windows.Forms.Button();
             this.panelVentanaDocente.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +66,7 @@ namespace InterfazUsuario
             this.botonSalir.TabIndex = 18;
             this.botonSalir.Text = "Salir";
             this.botonSalir.UseVisualStyleBackColor = true;
+            this.botonSalir.Click += new System.EventHandler(this.botonSalir_Click_1);
             // 
             // botonAltaDocente
             // 
@@ -76,6 +80,8 @@ namespace InterfazUsuario
             // 
             // panelVentanaDocente
             // 
+            this.panelVentanaDocente.Controls.Add(this.tituloListaMaterias);
+            this.panelVentanaDocente.Controls.Add(this.listaMaterias);
             this.panelVentanaDocente.Controls.Add(this.tituloCIDocente);
             this.panelVentanaDocente.Controls.Add(this.tituloApellidoDocente);
             this.panelVentanaDocente.Controls.Add(this.tituloNombreDocente);
@@ -85,12 +91,77 @@ namespace InterfazUsuario
             this.panelVentanaDocente.Controls.Add(this.listaDocentes);
             this.panelVentanaDocente.Location = new System.Drawing.Point(45, 61);
             this.panelVentanaDocente.Name = "panelVentanaDocente";
-            this.panelVentanaDocente.Size = new System.Drawing.Size(475, 313);
+            this.panelVentanaDocente.Size = new System.Drawing.Size(510, 313);
             this.panelVentanaDocente.TabIndex = 24;
+            // 
+            // tituloListaMaterias
+            // 
+            this.tituloListaMaterias.AutoSize = true;
+            this.tituloListaMaterias.Location = new System.Drawing.Point(384, 55);
+            this.tituloListaMaterias.Name = "tituloListaMaterias";
+            this.tituloListaMaterias.Size = new System.Drawing.Size(99, 13);
+            this.tituloListaMaterias.TabIndex = 10;
+            this.tituloListaMaterias.Text = "Materias Asignadas";
+            // 
+            // listaMaterias
+            // 
+            this.listaMaterias.Location = new System.Drawing.Point(384, 84);
+            this.listaMaterias.Name = "listaMaterias";
+            this.listaMaterias.Size = new System.Drawing.Size(120, 186);
+            this.listaMaterias.TabIndex = 9;
+            this.listaMaterias.UseCompatibleStateImageBehavior = false;
+            // 
+            // tituloCIDocente
+            // 
+            this.tituloCIDocente.AutoSize = true;
+            this.tituloCIDocente.Location = new System.Drawing.Point(18, 19);
+            this.tituloCIDocente.Name = "tituloCIDocente";
+            this.tituloCIDocente.Size = new System.Drawing.Size(87, 13);
+            this.tituloCIDocente.TabIndex = 6;
+            this.tituloCIDocente.Text = "Cédula Identidad";
+            // 
+            // tituloApellidoDocente
+            // 
+            this.tituloApellidoDocente.AutoSize = true;
+            this.tituloApellidoDocente.Location = new System.Drawing.Point(266, 18);
+            this.tituloApellidoDocente.Name = "tituloApellidoDocente";
+            this.tituloApellidoDocente.Size = new System.Drawing.Size(44, 13);
+            this.tituloApellidoDocente.TabIndex = 5;
+            this.tituloApellidoDocente.Text = "Apellido";
+            // 
+            // tituloNombreDocente
+            // 
+            this.tituloNombreDocente.AutoSize = true;
+            this.tituloNombreDocente.Location = new System.Drawing.Point(136, 19);
+            this.tituloNombreDocente.Name = "tituloNombreDocente";
+            this.tituloNombreDocente.Size = new System.Drawing.Size(44, 13);
+            this.tituloNombreDocente.TabIndex = 4;
+            this.tituloNombreDocente.Text = "Nombre";
+            // 
+            // entradaCIDocente
+            // 
+            this.entradaCIDocente.Location = new System.Drawing.Point(12, 48);
+            this.entradaCIDocente.Name = "entradaCIDocente";
+            this.entradaCIDocente.Size = new System.Drawing.Size(100, 20);
+            this.entradaCIDocente.TabIndex = 3;
+            // 
+            // entradaApellidoDocente
+            // 
+            this.entradaApellidoDocente.Location = new System.Drawing.Point(266, 48);
+            this.entradaApellidoDocente.Name = "entradaApellidoDocente";
+            this.entradaApellidoDocente.Size = new System.Drawing.Size(100, 20);
+            this.entradaApellidoDocente.TabIndex = 2;
+            // 
+            // entradaNombreDocente
+            // 
+            this.entradaNombreDocente.Location = new System.Drawing.Point(136, 48);
+            this.entradaNombreDocente.Name = "entradaNombreDocente";
+            this.entradaNombreDocente.Size = new System.Drawing.Size(100, 20);
+            this.entradaNombreDocente.TabIndex = 1;
             // 
             // listaDocentes
             // 
-            this.listaDocentes.Location = new System.Drawing.Point(56, 84);
+            this.listaDocentes.Location = new System.Drawing.Point(12, 85);
             this.listaDocentes.Name = "listaDocentes";
             this.listaDocentes.Size = new System.Drawing.Size(349, 177);
             this.listaDocentes.TabIndex = 0;
@@ -105,6 +176,7 @@ namespace InterfazUsuario
             this.botonBajarDocente.TabIndex = 25;
             this.botonBajarDocente.Text = "Bajar";
             this.botonBajarDocente.UseVisualStyleBackColor = true;
+            this.botonBajarDocente.Click += new System.EventHandler(this.botonBajarDocente_Click_1);
             // 
             // botonModificarDocente
             // 
@@ -114,54 +186,17 @@ namespace InterfazUsuario
             this.botonModificarDocente.TabIndex = 26;
             this.botonModificarDocente.Text = "Modificar";
             this.botonModificarDocente.UseVisualStyleBackColor = true;
+            this.botonModificarDocente.Click += new System.EventHandler(this.botonModificarDocente_Click);
             // 
-            // entradaNombreDocente
+            // botonAsignarMateriaADocente
             // 
-            this.entradaNombreDocente.Location = new System.Drawing.Point(56, 48);
-            this.entradaNombreDocente.Name = "entradaNombreDocente";
-            this.entradaNombreDocente.Size = new System.Drawing.Size(100, 20);
-            this.entradaNombreDocente.TabIndex = 1;
-            // 
-            // entradaApellidoDocente
-            // 
-            this.entradaApellidoDocente.Location = new System.Drawing.Point(186, 48);
-            this.entradaApellidoDocente.Name = "entradaApellidoDocente";
-            this.entradaApellidoDocente.Size = new System.Drawing.Size(100, 20);
-            this.entradaApellidoDocente.TabIndex = 2;
-            // 
-            // entradaCIDocente
-            // 
-            this.entradaCIDocente.Location = new System.Drawing.Point(332, 50);
-            this.entradaCIDocente.Name = "entradaCIDocente";
-            this.entradaCIDocente.Size = new System.Drawing.Size(100, 20);
-            this.entradaCIDocente.TabIndex = 3;
-            // 
-            // tituloNombreDocente
-            // 
-            this.tituloNombreDocente.AutoSize = true;
-            this.tituloNombreDocente.Location = new System.Drawing.Point(56, 19);
-            this.tituloNombreDocente.Name = "tituloNombreDocente";
-            this.tituloNombreDocente.Size = new System.Drawing.Size(44, 13);
-            this.tituloNombreDocente.TabIndex = 4;
-            this.tituloNombreDocente.Text = "Nombre";
-            // 
-            // tituloApellidoDocente
-            // 
-            this.tituloApellidoDocente.AutoSize = true;
-            this.tituloApellidoDocente.Location = new System.Drawing.Point(186, 18);
-            this.tituloApellidoDocente.Name = "tituloApellidoDocente";
-            this.tituloApellidoDocente.Size = new System.Drawing.Size(44, 13);
-            this.tituloApellidoDocente.TabIndex = 5;
-            this.tituloApellidoDocente.Text = "Apellido";
-            // 
-            // tituloCIDocente
-            // 
-            this.tituloCIDocente.AutoSize = true;
-            this.tituloCIDocente.Location = new System.Drawing.Point(332, 18);
-            this.tituloCIDocente.Name = "tituloCIDocente";
-            this.tituloCIDocente.Size = new System.Drawing.Size(87, 13);
-            this.tituloCIDocente.TabIndex = 6;
-            this.tituloCIDocente.Text = "Cédula Identidad";
+            this.botonAsignarMateriaADocente.Location = new System.Drawing.Point(561, 179);
+            this.botonAsignarMateriaADocente.Name = "botonAsignarMateriaADocente";
+            this.botonAsignarMateriaADocente.Size = new System.Drawing.Size(75, 23);
+            this.botonAsignarMateriaADocente.TabIndex = 27;
+            this.botonAsignarMateriaADocente.Text = "Asignar";
+            this.botonAsignarMateriaADocente.UseVisualStyleBackColor = true;
+            this.botonAsignarMateriaADocente.Click += new System.EventHandler(this.botonAsignarMateriaADocente_Click);
             // 
             // GestionDocenteUI
             // 
@@ -169,6 +204,7 @@ namespace InterfazUsuario
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClientSize = new System.Drawing.Size(648, 305);
+            this.Controls.Add(this.botonAsignarMateriaADocente);
             this.Controls.Add(this.botonModificarDocente);
             this.Controls.Add(this.botonBajarDocente);
             this.Controls.Add(this.panelVentanaDocente);
@@ -199,5 +235,8 @@ namespace InterfazUsuario
         private System.Windows.Forms.TextBox entradaNombreDocente;
         private System.Windows.Forms.Button botonBajarDocente;
         private System.Windows.Forms.Button botonModificarDocente;
+        private System.Windows.Forms.Button botonAsignarMateriaADocente;
+        private System.Windows.Forms.Label tituloListaMaterias;
+        private System.Windows.Forms.ListView listaMaterias;
     }
 }

@@ -10,13 +10,13 @@ namespace GestionMateria
 {
     public class MantenimientoMateria : IModuloGestion
     {
-        public int CodigoMateria { get; set; }
+        public string CodigoMateria { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public object Menu { get; set; }
         public IList Acciones { get; set; }
         private List<Materia> materias = new List<Materia>();
-        public List<Materia> GetMaterias()
+        public List<Materia> ObtenerMaterias()
         {
             return materias;
         }
@@ -26,7 +26,7 @@ namespace GestionMateria
             Nombre = "Gestion Materia";
             Descripcion = "Alta, Baja y Modificación de Materias";
         }
-        public Materia AltaDatosMateria(int codigoMateria, string nombreMateria, List<string> docentes, List<string>alumnos)
+        public Materia AltaDatosMateria(string codigoMateria, string nombreMateria, List<string> docentes, List<string>alumnos)
         {
             Materia materia = new Materia();
             materia.CodigoMateria = codigoMateria;
@@ -36,7 +36,7 @@ namespace GestionMateria
             materias.Add(materia);
             return materia;
         }
-        public void BajaMateria(int codigoMateria)
+        public void BajaMateria(string codigoMateria)
         {
             Console.WriteLine("Código de Materia a bajar de Materia > " + codigoMateria);
 
@@ -55,7 +55,7 @@ namespace GestionMateria
                 Console.WriteLine("Excepcion al filtrar materia > " + e.ToString());
             }
         }
-        public void ModificarMateria(int codigoMateria, Materia nuevosValores)
+        public void ModificarMateria(string codigoMateria, Materia nuevosValores)
         {
             Console.WriteLine("Materia a modificar > " + codigoMateria);
             try

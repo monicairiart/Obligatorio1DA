@@ -31,7 +31,7 @@ namespace InterfazUsuario
         private void InitializeComponent()
         {
             this.botonAltaAlumno = new System.Windows.Forms.Button();
-            this.botonBajaAlumno = new System.Windows.Forms.Button();
+            this.botonBajarAlumno = new System.Windows.Forms.Button();
             this.botonModificarAlumno = new System.Windows.Forms.Button();
             this.botonSalir = new System.Windows.Forms.Button();
             this.tituloCIAlumno = new System.Windows.Forms.Label();
@@ -61,15 +61,15 @@ namespace InterfazUsuario
             this.botonAltaAlumno.UseVisualStyleBackColor = true;
             this.botonAltaAlumno.Click += new System.EventHandler(this.botonAltaAlumno_Click);
             // 
-            // botonBajaAlumno
+            // botonBajarAlumno
             // 
-            this.botonBajaAlumno.Location = new System.Drawing.Point(571, 96);
-            this.botonBajaAlumno.Name = "botonBajaAlumno";
-            this.botonBajaAlumno.Size = new System.Drawing.Size(75, 23);
-            this.botonBajaAlumno.TabIndex = 1;
-            this.botonBajaAlumno.Text = "Bajar";
-            this.botonBajaAlumno.UseVisualStyleBackColor = true;
-            this.botonBajaAlumno.Click += new System.EventHandler(this.botonBajaAlumno_Click);
+            this.botonBajarAlumno.Location = new System.Drawing.Point(571, 96);
+            this.botonBajarAlumno.Name = "botonBajarAlumno";
+            this.botonBajarAlumno.Size = new System.Drawing.Size(75, 23);
+            this.botonBajarAlumno.TabIndex = 1;
+            this.botonBajarAlumno.Text = "Bajar";
+            this.botonBajarAlumno.UseVisualStyleBackColor = true;
+            this.botonBajarAlumno.Click += new System.EventHandler(this.botonBajarAlumno_Click_1);
             // 
             // botonModificarAlumno
             // 
@@ -231,7 +231,7 @@ namespace InterfazUsuario
             this.Controls.Add(this.tituloMantenimientoAlumnos);
             this.Controls.Add(this.botonSalir);
             this.Controls.Add(this.botonModificarAlumno);
-            this.Controls.Add(this.botonBajaAlumno);
+            this.Controls.Add(this.botonBajarAlumno);
             this.Controls.Add(this.botonAltaAlumno);
             this.Name = "GestionAlumnoUI";
             this.Text = "Gestion de Alumnos";
@@ -246,7 +246,7 @@ namespace InterfazUsuario
         #endregion
 
         private System.Windows.Forms.Button botonAltaAlumno;
-        private System.Windows.Forms.Button botonBajaAlumno;
+        private System.Windows.Forms.Button botonBajarAlumno;
         private System.Windows.Forms.Button botonModificarAlumno;
         private System.Windows.Forms.Button botonSalir;
         private System.Windows.Forms.Label tituloCIAlumno;

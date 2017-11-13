@@ -36,16 +36,14 @@ namespace PruebasUnitarias
         public void ProbarTipoModuloAltaDocente()
         {
             MantenimientoDocente Docente = new GestionDocente.MantenimientoDocente();
-            List<string> materias = new List<string>();
-            Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "1234", materias);
+            Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "35466661");
             Assert.IsInstanceOfType(docente, typeof(Docente));
         }
 
         [TestMethod]
         public void ProbarDatosAltaDocenteNombre()
         {
-            List<string> materias = new List<string>();
-            Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "1234", materias);
+            Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "35466661");
             Assert.IsInstanceOfType(docente.Nombre, typeof(string));
             Assert.AreNotEqual("Nombre cualquiera", docente.Nombre);
             Assert.AreEqual("Nombre del Docente", docente.Nombre);
@@ -53,8 +51,7 @@ namespace PruebasUnitarias
         [TestMethod]
         public void ProbarDatosAltaDocenteApellido()
         {
-            List<string> materias = new List<string>();
-            Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "1234", materias);
+            Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "35466661");
             Assert.IsInstanceOfType(docente.Apellido, typeof(string));
             Assert.AreNotEqual("Apellido cualquiera", docente.Apellido);
             Assert.AreEqual("Apellido del Docente", docente.Apellido);
@@ -62,38 +59,23 @@ namespace PruebasUnitarias
         [TestMethod]
         public void ProbarDatosAltaDocenteCi()
         {
-            List<string> materias = new List<string>();
-            Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "1234", materias);
+            Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "35466661");
             Assert.IsInstanceOfType(docente.Ci, typeof(string));
             Assert.AreNotEqual("1111", docente.Ci);
-            Assert.AreEqual("1234", docente.Ci);
-        }
-        [TestMethod]
-        public void ProbarDatosAltaDocenteMaterias()
-        {
-            List<string> materias = new List<string>();
-            List<string> materiasDiferentes = new List<string>();
-            Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "1234", materias);
-            materias.Add("Aritmetica");
-            materias.Add("Sistemas informaticos");
-            materiasDiferentes.Add("Ingles");
-            materiasDiferentes.Add("Dibujo");
-            Assert.IsInstanceOfType(docente.Materias, typeof(List<string>));
-            Assert.AreNotEqual(materiasDiferentes, docente.Materias);
-            Assert.AreEqual(materias, docente.Materias);
+            Assert.AreEqual("35466661", docente.Ci);
         }
         [TestMethod]
         public void ProbarDatosBajaDocente()
         {
             MantenimientoDocente mantenimientoDocente = new GestionDocente.MantenimientoDocente();
             List<Docente> misDocentes = new List<Docente>();
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "1234", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "333", new List<string>()));
-            CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.GetDocentes());
-            mantenimientoDocente.BajaDocente("1234");
-            CollectionAssert.AreNotEqual(misDocentes, mantenimientoDocente.GetDocentes());
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "38667442"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "51112145"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "35466661"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "42227230"));
+            CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.ObtenerDocentes());
+            mantenimientoDocente.BajarDocente("35466661");
+            CollectionAssert.AreNotEqual(misDocentes, mantenimientoDocente.ObtenerDocentes());
 
         }
         [TestMethod]
@@ -101,101 +83,66 @@ namespace PruebasUnitarias
         {
             MantenimientoDocente mantenimientoDocente = new GestionDocente.MantenimientoDocente();
             List<Docente> misDocentes = new List<Docente>();
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "1234", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "333", new List<string>()));
-            CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.GetDocentes());
-            mantenimientoDocente.BajaDocente("123466");
-            CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.GetDocentes());
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "38667442"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "51112145"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "35466661"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "42227230"));
+            CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.ObtenerDocentes());
+            mantenimientoDocente.BajarDocente("123466");
+            CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.ObtenerDocentes());
         }
         [TestMethod]
         public void ProbarModificacionDocenteNombre()
         {
-            // Creamos una lista de docentes para realizar las validaciones
             List<Docente> misDocentes = new List<Docente>();
-
-            // Agrego Docentes con AltaDatosDocente para tener una lista
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "1234", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "333", new List<string>()));
-
-            // Creamos un nuevo docente para modificar
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "38667442"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "51112145"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "35466661"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "42227230"));
             Docente nuevosValoresDocente = new Docente();
             nuevosValoresDocente.Nombre = "Juan Daniel";
-            mantenimientoDocente.ModificarDocente("111", nuevosValoresDocente);
+            mantenimientoDocente.ModificarDocente("38667442", nuevosValoresDocente);
             Assert.AreEqual("Juan Daniel", misDocentes[0].Nombre);
             Console.WriteLine("nvos valor nombre " + misDocentes[0].Nombre);
         }
         [TestMethod]
         public void ProbarModificacionDocenteApellido()
         {
-            // Creamos una lista de docentes para realizar las validaciones
             List<Docente> misDocentes = new List<Docente>();
-
-            // Agrego Docentes con AltaDatosDocente para tener una lista
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "1234", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "333", new List<string>()));
-
-
-            // Creamos un nuevo docente para modificar
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "38667442"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "51112145"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "35466661"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "42227230"));
             Docente nuevosValoresDocente = new Docente();
             nuevosValoresDocente.Apellido = "Perezo";
-            
-            mantenimientoDocente.ModificarDocente("111", nuevosValoresDocente);
-
-            // Validamos que el apellido del docente modificado es igual al nuevo nombre asignado
+            mantenimientoDocente.ModificarDocente("38667442", nuevosValoresDocente);
             Assert.AreEqual("Perezo", misDocentes[0].Apellido);
             Console.WriteLine("nvos valor apellido " + misDocentes[0].Apellido);
         }
-        
-
         [TestMethod]
         public void ProbarModificacionDocenteCi()
         {
-            // Creamos una lista de docentes para realizar las validaciones
             List<Docente> misDocentes = new List<Docente>();
-
-            // Agrego Docentes con AltaDatosDocente para tener una lista
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "1234", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "333", new List<string>()));
-
-
-            // Creamos un nuevo docente para modificar
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "38667442"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "51112145"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "35466661"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "42227230"));
             Docente nuevosValoresDocente = new Docente();
             nuevosValoresDocente.Ci = "1212";
-
-            mantenimientoDocente.ModificarDocente("111", nuevosValoresDocente);
-
-            // Validamos que el ci del docente modificado es igual al nuevo nombre asignado
+            mantenimientoDocente.ModificarDocente("38667442", nuevosValoresDocente);
             Assert.AreEqual("1212", misDocentes[0].Ci);
             Console.WriteLine("nvos valor ci " + misDocentes[0].Ci);
         }
-
         [TestMethod]
-        
-
-
         public void GenerarDatos()
         {
-            // Creamos el abmDocente para gestionar docentes
             mantenimientoDocente = new GestionDocente.MantenimientoDocente();
-
-            // Creamos una lista de docentes para realizar las validaciones
             misDocentes = new List<Docente>();
-
-            // Agrego Docentes con AltaDatosDocente para tener una lista
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "111", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "1231", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "1234", new List<string>()));
-            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro","Gonzalez", "333", new List<string>()));
-
-            docentes = mantenimientoDocente.GetDocentes();
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "38667442"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "51112145"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "35466661"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro","Gonzalez", "42227230"));
+            docentes = mantenimientoDocente.ObtenerDocentes();
         }
     }
 }
