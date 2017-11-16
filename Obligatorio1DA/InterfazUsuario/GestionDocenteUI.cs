@@ -24,8 +24,8 @@ namespace InterfazUsuario
 
         private void GestionDocenteUI_Load(object sender, EventArgs e)
         {
-            mantenimientoDocente.GenerarDatos();
-            mantenimientoMateria.GenerarDatos();
+ //           mantenimientoDocente.GenerarDatos();
+ //          mantenimientoMateria.GenerarDatos();
             listaDocentes.Columns.Add("CI");
             listaDocentes.Columns.Add("Nombre");
             listaDocentes.Columns.Add("Apellido");
@@ -52,12 +52,12 @@ namespace InterfazUsuario
             ListView.SelectedListViewItemCollection docenteSeleccionado = listaDocentes.SelectedItems;
             if (docenteSeleccionado.Count > 0)
             {
-                entradaCIDocente.Text = docenteSeleccionado[0].SubItems[0].Text; //7 cambio todos los indices agrego +1
+                entradaCIDocente.Text = docenteSeleccionado[0].SubItems[0].Text; 
                 entradaNombreDocente.Text = docenteSeleccionado[0].SubItems[1].Text;
                 entradaApellidoDocente.Text = docenteSeleccionado[0].SubItems[2].Text;
                 ciDocenteSeleccionado = docenteSeleccionado[0].SubItems[0].Text;
-//                materiasDelDocente = mantenimientoMateria.ObtenerMateriasPorDocente(idDocenteSeleccionado); //7 ci x id
-//               cargarListaMateriaDocente(materiasDelDocente);
+                materiasDelDocente = mantenimientoMateria.ObtenerMateriasPorDocente(ciDocenteSeleccionado); 
+                cargarListaMateriaDocente(materiasDelDocente);
             }
         }
 
@@ -82,23 +82,18 @@ namespace InterfazUsuario
             docenteModificado.Nombre = entradaNombreDocente.Text;
             docenteModificado.Apellido = entradaApellidoDocente.Text;
             docenteModificado.Ci = entradaCIDocente.Text;
-
             if (ValidarDatos(docenteModificado.Ci, docenteModificado, false))
             {
-                mantenimientoDocente.ModificarDocente(ciDocenteSeleccionado, docenteModificado); //7 ci x id
+                mantenimientoDocente.ModificarDocente(ciDocenteSeleccionado, docenteModificado); 
                 entradaCIDocente.Clear();
                 entradaApellidoDocente.Clear();
                 entradaNombreDocente.Clear();
-
-
-
-
                 cargarListaDocente();
             }
         }
         private void botonBajarDocente_Click_1(object sender, EventArgs e)
         {
-            mantenimientoDocente.BajarDocente(ciDocenteSeleccionado); //7 ci x id
+            mantenimientoDocente.BajarDocente(ciDocenteSeleccionado); 
             limpiarValoresViejos();
             cargarListaDocente();
         }
@@ -125,10 +120,9 @@ namespace InterfazUsuario
                 listaMaterias.Items.Add(itemMateria);
             }
         }
-
         private void botonAsignarMateriaADocente_Click(object sender, EventArgs e)
         {
- //           AsignarMateriaUI.ciDocenteSeleccionado = idDocenteSeleccionado; //7 ci x id
+            AsignarMateriaUI.ciDocenteSeleccionado = ciDocenteSeleccionado; 
             Form nuevaVentana = new AsignarMateriaUI();
             nuevaVentana.Show();
         }

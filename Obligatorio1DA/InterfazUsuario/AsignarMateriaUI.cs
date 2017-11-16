@@ -12,6 +12,8 @@ namespace InterfazUsuario
 {
     public partial class AsignarMateriaUI : Form
     {
+        public static string ciDocenteSeleccionado;
+        public static string ciAlumnoSeleccionado;
         public AsignarMateriaUI()
         {
             InitializeComponent();

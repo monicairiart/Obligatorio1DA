@@ -13,9 +13,15 @@ namespace GestionMateria
         public string Nombre { get; set; }
         public List<string> Docentes { get; set; }
         public List<string> Alumnos { get; set; }
-        public override string ToString()
+        public Boolean GetCiDocente(string ciDocente)
         {
-            return "Nombre: " + Nombre;
+            Boolean existe = Docentes.ToList().Contains(ciDocente);
+            return existe;
+        }
+        public Boolean GetCiAlumno(string ciAlumno)
+        {
+            Boolean existe = Alumnos.ToList().Contains(ciAlumno);
+            return existe;
         }
     }
 }

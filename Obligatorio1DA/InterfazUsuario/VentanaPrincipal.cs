@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GestionAlumno;
+using GestionDocente;
+using GestionMateria;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +15,10 @@ namespace InterfazUsuario
 {
     public partial class VentanaPrincipal : Form
     {
+        MantenimientoDocente mantenimientoDocente = new MantenimientoDocente();
+        MantenimientoAlumno mantenimientoAlumno = new MantenimientoAlumno();
+        MantenimientoMateria mantenimientoMateria = new MantenimientoMateria();
+ //       MantenimientoCamioneta mantenimientoCamioneta = new MantenimientoCamioneta();
         public VentanaPrincipal()
         {
             InitializeComponent();
@@ -21,6 +28,10 @@ namespace InterfazUsuario
 
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
+            mantenimientoDocente.GenerarDatos();
+            mantenimientoAlumno.GenerarDatos();
+            mantenimientoMateria.GenerarDatos();
+//            mantenimientoCamioneta.GenerarDatos();
 
         }
 

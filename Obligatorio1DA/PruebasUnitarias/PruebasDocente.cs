@@ -134,6 +134,36 @@ namespace PruebasUnitarias
             Console.WriteLine("nvos valor ci " + misDocentes[0].Ci);
         }
         [TestMethod]
+        public void ProbarDocenteExistente()
+        {
+            MantenimientoDocente mantenimientoDocente = new GestionDocente.MantenimientoDocente();
+            List<Docente> misDocentes = new List<Docente>();
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "38667442"));
+            Assert.IsTrue(mantenimientoDocente.DocenteExistente("38667442"));
+        }
+        public void ProbarObtenerDocente()
+        {
+            MantenimientoDocente mantenimientoDocente = new GestionDocente.MantenimientoDocente();
+            List<Docente> misDocentes = new List<Docente>();
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "38667442"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "51112145"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "35466661"));
+            misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "42227230"));
+            CollectionAssert.AreEqual(misDocentes, mantenimientoDocente.ObtenerDocentes());
+        }
+        [TestMethod]
+        public void ProbarGenerarDatos()
+        {
+            List<Docente> docentesPrueba = new List<Docente>();
+            MantenimientoDocente mantenimientoDocente = new GestionDocente.MantenimientoDocente();
+            docentesPrueba.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "38667442"));
+            docentesPrueba.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "51112145"));
+            docentesPrueba.Add(mantenimientoDocente.AltaDatosDocente("Horacio", "Gabriel", "35466661"));
+            docentesPrueba.Add(mantenimientoDocente.AltaDatosDocente("Alejandro", "Gonzalez", "42227230"));
+            mantenimientoDocente.GenerarDatos();
+            CollectionAssert.AreEqual(docentesPrueba, mantenimientoDocente.ObtenerDocentes());
+        }
+        [TestMethod]
         public void GenerarDatos()
         {
             mantenimientoDocente = new GestionDocente.MantenimientoDocente();

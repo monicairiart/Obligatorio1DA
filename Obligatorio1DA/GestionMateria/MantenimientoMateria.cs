@@ -15,16 +15,20 @@ namespace GestionMateria
         public string Descripcion { get; set; }
         public object Menu { get; set; }
         public IList Acciones { get; set; }
-        private List<Materia> materias = new List<Materia>();
+        private static List<Materia> materias = new List<Materia>();
+        private static Boolean datosGenerados = false;
+        public List<Materia> materiasPrueba = new List<Materia>();
+        private string ciDocenteAFiltrar;
+        private string ciAlumnoAFiltrar;
         public List<Materia> ObtenerMaterias()
         {
             return materias;
         }
         public MantenimientoMateria()
         {
-            Console.WriteLine();
             Nombre = "Gestion Materia";
             Descripcion = "Alta, Baja y Modificación de Materias";
+            GenerarDatos();
         }
         public Materia AltaDatosMateria(string codigoMateria, string nombreMateria, List<string> docentes, List<string>alumnos)
         {
@@ -36,18 +40,11 @@ namespace GestionMateria
             materias.Add(materia);
             return materia;
         }
-        public void BajaMateria(string codigoMateria)
+        public void BajarMateria(string codigoMateria)
         {
-            Console.WriteLine("Código de Materia a bajar de Materia > " + codigoMateria);
-
             try
             {
-                // Filtro los docentes por la ci que recibo por parametro
-                // Single es un metodo iterativo que recibe una funcion anonima por cada
-                // elemento de la lista y retorna el elemento que cumpla con el filtro
                 Materia materiaAEliminar = materias.Single(materia => materia.CodigoMateria == codigoMateria);
-
-                // Removemos la materiaAEliminar de la lista de materias
                 materias.Remove(materiaAEliminar);
             }
             catch (Exception e)
@@ -57,26 +54,72 @@ namespace GestionMateria
         }
         public void ModificarMateria(string codigoMateria, Materia nuevosValores)
         {
-            Console.WriteLine("Materia a modificar > " + codigoMateria);
             try
             {
                 Materia materiaAModificar = materias.Single(materia => materia.CodigoMateria == codigoMateria);
                 int indiceDelaMateriaAModificar = materias.IndexOf(materiaAModificar);
-
                 materias[indiceDelaMateriaAModificar].Nombre = nuevosValores.Nombre != "" ? nuevosValores.Nombre : materiaAModificar.Nombre;
-
                 materias[indiceDelaMateriaAModificar].Docentes = nuevosValores.Docentes[0] != "" ? nuevosValores.Docentes : materiaAModificar.Docentes;
                 materias[indiceDelaMateriaAModificar].Alumnos = nuevosValores.Alumnos[0] != "" ? nuevosValores.Alumnos : materiaAModificar.Docentes;
-
             }
             catch (Exception e)
             {
                 Console.WriteLine("Excepcion al filtrar materia > " + e.ToString());
             }
         }
+        public Materia ObtenerMateriaPorCodigo(string codigoMateria)
+        {
+            Materia materiaARetornar = materias.Single(materia => materia.CodigoMateria == codigoMateria);
+            return materiaARetornar;
+        }
+        public List<Materia> ObtenerMateriasPorDocente(string ciDocente)
+        {
+            ciDocenteAFiltrar = ciDocente;
+            List<Materia> materiasARetornar = new List<Materia>();
+            materiasARetornar.Clear();
+            foreach (Materia materiaActual in materias)
+            {
+                if (materiaActual.GetCiDocente(ciDocente))
+                {
+                    materiasARetornar.Add(materiaActual); 
+                }
+            }
+            return materiasARetornar;
+        }
+        public List<Materia> ObtenerMateriasPorAlumno(string ciAlumno)
+        {
+            ciAlumnoAFiltrar = ciAlumno;
+            List<Materia> materiasARetornar = new List<Materia>();
+            materiasARetornar.Clear();
+            foreach (Materia materiaActual in materias)
+            {
+                if (materiaActual.GetCiAlumno(ciAlumno))
+                {
+                    materiasARetornar.Add(materiaActual);
+                }
+            }
+            return materiasARetornar;
+        }
+        public Boolean MateriaExistente(string codigoMateria)
+        {
+            Boolean materiaExistente = materias.Exists(materiaEncontrada => materiaEncontrada.CodigoMateria == codigoMateria);
+            return materiaExistente;
+        }
         public void GenerarDatos()
         {
-
+            if (!datosGenerados)
+            {
+                materiasPrueba.Add(AltaDatosMateria("111", "Matemáticas", new List<string>(), new List<string>()));
+                materiasPrueba.Add(AltaDatosMateria("444", "Algebra", new List<string>(), new List<string>()));
+                materiasPrueba.Add(AltaDatosMateria("333", "Etica", new List<string>(), new List<string>()));
+                materiasPrueba.Add(AltaDatosMateria("222", "Logica", new List<string>(), new List<string>()));
+                materias = ObtenerMaterias();
+                materias = AsignacionMateria.AsignarDocenteAMateria(materias, "38667442", "111");
+                materias = AsignacionMateria.AsignarDocenteAMateria(materias, "51112145", "333");
+                materias = AsignacionMateria.AsignarAlumnoAMateria(materias, "50001002", "111");
+                materias = AsignacionMateria.AsignarAlumnoAMateria(materias, "49912233", "444");
+                datosGenerados = true;
+            }
         }
     }
 }

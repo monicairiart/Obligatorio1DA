@@ -23,8 +23,8 @@ namespace InterfazUsuario
         }
         private void GestionAlumnoUI_Load(object sender, EventArgs e)
         {
-            mantenimientoAlumno.GenerarDatos();
-            mantenimientoMateria.GenerarDatos();
+//            mantenimientoAlumno.GenerarDatos();
+//            mantenimientoMateria.GenerarDatos();
             listaAlumnos.Columns.Add("CI");
             listaAlumnos.Columns.Add("Nombre");
             listaAlumnos.Columns.Add("Apellido");
@@ -54,8 +54,8 @@ namespace InterfazUsuario
                 entradaNombreAlumno.Text = alumnoSeleccionado[0].SubItems[1].Text;
                 entradaApellidoAlumno.Text = alumnoSeleccionado[0].SubItems[2].Text;
                 ciAlumnoSeleccionado = alumnoSeleccionado[0].SubItems[0].Text;
- //               materiasDelAlumno = mantenimientoMateria.ObtenerMateriasPorAlumno(ciAlumnoSeleccionado);
- //               cargarListaMateriaAlumno(materiasDelAlumno);
+                materiasDelAlumno = mantenimientoMateria.ObtenerMateriasPorAlumno(ciAlumnoSeleccionado);
+                cargarListaMateriaAlumno(materiasDelAlumno);
             }
         }
 
@@ -96,11 +96,6 @@ namespace InterfazUsuario
             limpiarValoresViejos();
             cargarListaAlumno();
         }
-        private void botonAsignarMateriaAAlumno_Click(object sender, EventArgs e)
-        {
-            Form nuevaVentana = new AsignarMateriaUI();
-            nuevaVentana.Show();
-        }
         private void limpiarValoresViejos()
         {
             entradaNombreAlumno.Clear();
@@ -122,7 +117,12 @@ namespace InterfazUsuario
                 listaMaterias.Items.Add(itemMateria);
             }
         }
-
+        private void botonAsignarMateriaAAlumno_Click(object sender, EventArgs e)
+        {
+            AsignarMateriaUI.ciAlumnoSeleccionado = ciAlumnoSeleccionado;
+            Form nuevaVentana = new AsignarMateriaUI();
+            nuevaVentana.Show();
+        }
         private Boolean ValidarDatos(string ci, Alumno nuevosValores, Boolean comprobarDuplicado)
         {
             if ((ci.Length == 0) || (nuevosValores.Apellido.Length == 0) || (nuevosValores.Nombre.Length == 0))

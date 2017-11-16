@@ -14,7 +14,7 @@ namespace GestionDocente
         public string Descripcion { get; set; }
         public object Menu { get; set; }
         public IList Acciones { get; set; }
-        private List<Docente> docentes = new List<Docente>();
+        private static List<Docente> docentes = new List<Docente>();
         public List<Docente> docentesPrueba = new List<Docente>();
         public List<Docente> ObtenerDocentes()
         {

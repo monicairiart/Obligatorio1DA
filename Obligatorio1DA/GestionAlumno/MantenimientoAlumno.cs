@@ -14,7 +14,7 @@ namespace GestionAlumno
         public string Descripcion { get; set; }
         public object Menu { get; set; }
         public IList Acciones { get; set; }
-        private List<Alumno> alumnos = new List<Alumno>();
+        private static List<Alumno> alumnos = new List<Alumno>();
         public List<Alumno> alumnosPrueba = new List<Alumno>();
         public List<Alumno> ObtenerAlumnos()
         {
