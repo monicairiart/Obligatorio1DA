@@ -62,6 +62,17 @@ namespace PruebasUnitarias
             Assert.AreNotEqual("Estado cualquiera", camioneta.Estado);
             Assert.AreEqual("Disponible", camioneta.Estado);
         }
+        [TestMethod]
+        public void ProbarDatosModificacionCamionetaMatricula()
+        {
+            List<Camioneta> misCamionetas = mantenimientoCamioneta.ObtenerCamionetas();
+            Camioneta nuevosValoresCamioneta = new Camioneta();
+            nuevosValoresCamioneta.Matricula = "SAF3685";
+            mantenimientoCamioneta.ModificarCamioneta("SAF1111", nuevosValoresCamioneta);
+            Assert.AreEqual("SAF3685", misCamionetas[0].Matricula);
+            Console.WriteLine("nvos valor matricula " + misCamionetas[0].Matricula);
+
+        }
         //[TestMethod]
         /*public void ProbarDatosAltaCamionetasViajes()
         {
