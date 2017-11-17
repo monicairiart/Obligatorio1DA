@@ -55,7 +55,6 @@ namespace GestionCamioneta
             try
             {
                 Camioneta camionetaAEliminar = camionetas.Single(camioneta => camioneta.Matricula == matricula);
-
                 camionetas.Remove(camionetaAEliminar);
             }
             catch (Exception e)
