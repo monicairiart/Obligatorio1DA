@@ -64,7 +64,7 @@ namespace PruebasUnitarias
             Assert.AreEqual("Disponible", camioneta.Estado);
         }
         [TestMethod]
-        public void ProbarModificacionCamionetaMatricula()
+        public void ProbarDatosModificacionCamionetaMatricula()
         {
             List<Camioneta> misCamionetas = new List<Camioneta>();
             misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>()));
@@ -76,7 +76,7 @@ namespace PruebasUnitarias
             Console.WriteLine("nvos valor matricula " + misCamionetas[0].Matricula);
         }
         [TestMethod]
-        public void ProbarModificacionCamionetaCapacidad()
+        public void ProbarDatosModificacionCamionetaCapacidad()
         {
             List<Camioneta> misCamionetas = new List<Camioneta>();
             misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>()));
@@ -89,7 +89,7 @@ namespace PruebasUnitarias
         }
 
         [TestMethod]
-        public void ProbarModificacionCamionetaEstado()
+        public void ProbarDatosModificacionCamionetaEstado()
         {
             List<Camioneta> misCamionetas = new List<Camioneta>();
             misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>()));
@@ -100,6 +100,7 @@ namespace PruebasUnitarias
             Assert.AreEqual("NoDisponible", misCamionetas[0].Estado);
             Console.WriteLine("nvos valor estado " + misCamionetas[0].Estado);
         }
+       
         //[TestMethod]
         /*public void ProbarDatosAltaCamionetasViajes()
         {
