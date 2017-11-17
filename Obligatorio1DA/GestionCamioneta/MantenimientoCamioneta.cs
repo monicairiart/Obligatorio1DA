@@ -40,7 +40,11 @@ namespace GestionCamioneta
             {
                 Camioneta camionetaAModificar = camionetas.Single(camioneta => camioneta.Matricula == matricula);
                 int indiceDelaCamionetaAModificar = camionetas.IndexOf(camionetaAModificar);
+                Console.WriteLine("indice camioneta a modif " + indiceDelaCamionetaAModificar);
                 camionetas[indiceDelaCamionetaAModificar].Matricula = nuevosValores.Matricula != "" ? nuevosValores.Matricula : camionetaAModificar.Matricula;
+                Console.WriteLine("matricula camioneta a modif " + camionetas[indiceDelaCamionetaAModificar].Matricula);
+                camionetas[indiceDelaCamionetaAModificar].Capacidad = nuevosValores.Capacidad != 0 ? nuevosValores.Capacidad : camionetaAModificar.Capacidad;
+                camionetas[indiceDelaCamionetaAModificar].Estado = nuevosValores.Estado != "" ? nuevosValores.Estado : camionetaAModificar.Estado;
                 camionetas[indiceDelaCamionetaAModificar].Viajes = nuevosValores.Viajes[0] != "" ? nuevosValores.Viajes : camionetaAModificar.Viajes;
             }
             catch (Exception e)

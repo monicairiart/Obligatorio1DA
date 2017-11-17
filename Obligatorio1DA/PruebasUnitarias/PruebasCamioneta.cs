@@ -11,6 +11,7 @@ namespace PruebasUnitarias
     {
         public MantenimientoCamioneta mantenimientoCamioneta { get; set; }
         public List<Camioneta> camionetas { get; set; }
+        public List<Camioneta> misCamionetas { get; set; }
         public PruebasCamioneta()
         {
             mantenimientoCamioneta = new MantenimientoCamioneta();
@@ -32,23 +33,23 @@ namespace PruebasUnitarias
         {
             MantenimientoCamioneta Camioneta = new GestionCamioneta.MantenimientoCamioneta();
             List<string> viajes = new List<string>();
-            Camioneta camioneta = mantenimientoCamioneta.AltaDatosCamioneta("Matrícula de la Camioneta", 50, "Estado", viajes);
+            Camioneta camioneta = mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Estado", viajes);
             Assert.IsInstanceOfType(camioneta, typeof(Camioneta));
         }
         [TestMethod]
         public void ProbarDatosAltaCamionetaMatricula()
         {
             List<string> viajes = new List<string>();
-            Camioneta camioneta = mantenimientoCamioneta.AltaDatosCamioneta("Matricula de la Camioneta", 50, "Disponible", viajes);
+            Camioneta camioneta = mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", viajes);
             Assert.IsInstanceOfType(camioneta.Matricula, typeof(string));
-            Assert.AreNotEqual("Matricula cualquiera", camioneta.Matricula);
-            Assert.AreEqual("Matricula de la Camioneta", camioneta.Matricula);
+            Assert.AreNotEqual("SAF0000", camioneta.Matricula);
+            Assert.AreEqual("SAF3685", camioneta.Matricula);
         }
         [TestMethod]
         public void ProbarDatosAltaCamionetaCapacidad()
         {
             List<string> viajes = new List<string>();
-            Camioneta camioneta = mantenimientoCamioneta.AltaDatosCamioneta("Matricula de la Camioneta", 50, "Disponible", viajes);
+            Camioneta camioneta = mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", viajes);
             Assert.IsInstanceOfType(camioneta.Matricula, typeof(string));
             Assert.AreNotEqual(40, camioneta.Capacidad);
             Assert.AreEqual(50, camioneta.Capacidad);
@@ -57,21 +58,47 @@ namespace PruebasUnitarias
         public void ProbarDatosAltaCamionetaEstado()
         {
             List<string> viajes = new List<string>();
-            Camioneta camioneta = mantenimientoCamioneta.AltaDatosCamioneta("Matricula de la Camioneta", 50, "Disponible", viajes);
+            Camioneta camioneta = mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>());
             Assert.IsInstanceOfType(camioneta.Estado, typeof(string));
             Assert.AreNotEqual("Estado cualquiera", camioneta.Estado);
             Assert.AreEqual("Disponible", camioneta.Estado);
         }
         [TestMethod]
-        public void ProbarDatosModificacionCamionetaMatricula()
+        public void ProbarModificacionCamionetaMatricula()
         {
-            List<Camioneta> misCamionetas = mantenimientoCamioneta.ObtenerCamionetas();
+            List<Camioneta> misCamionetas = new List<Camioneta>();
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>()));
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "NoDisponible", new List<string>()));
             Camioneta nuevosValoresCamioneta = new Camioneta();
-            nuevosValoresCamioneta.Matricula = "SAF3685";
-            mantenimientoCamioneta.ModificarCamioneta("SAF1111", nuevosValoresCamioneta);
-            Assert.AreEqual("SAF3685", misCamionetas[0].Matricula);
+            nuevosValoresCamioneta.Matricula = "SAF1111";
+            mantenimientoCamioneta.ModificarCamioneta("SAF3685", nuevosValoresCamioneta);
+            Assert.AreEqual("SAF1111", misCamionetas[0].Matricula);
             Console.WriteLine("nvos valor matricula " + misCamionetas[0].Matricula);
+        }
+        [TestMethod]
+        public void ProbarModificacionCamionetaCapacidad()
+        {
+            List<Camioneta> misCamionetas = new List<Camioneta>();
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>()));
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "NoDisponible", new List<string>()));
+            Camioneta nuevosValoresCamioneta = new Camioneta();
+            nuevosValoresCamioneta.Capacidad = 51;
+            mantenimientoCamioneta.ModificarCamioneta("SAF3685", nuevosValoresCamioneta);
+            Assert.AreEqual(51, misCamionetas[0].Capacidad);
+            Console.WriteLine("nvos valor capacidad " + misCamionetas[0].Capacidad);
+        }
 
+        [TestMethod]
+        public void ProbarModificacionCamionetaEstado()
+        {
+            List<Camioneta> misCamionetas = new List<Camioneta>();
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>()));
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "NoDisponible", new List<string>()));
+            Camioneta nuevosValoresCamioneta = new Camioneta();
+            nuevosValoresCamioneta.Estado = "NoDisponible";
+            mantenimientoCamioneta.ModificarCamioneta("SAF3685", nuevosValoresCamioneta);
+            Assert.AreEqual("NoDisponible", misCamionetas[0].Estado);
+            Console.WriteLine("nvos valor estado " + misCamionetas[0].Estado);
         }
         //[TestMethod]
         /*public void ProbarDatosAltaCamionetasViajes()

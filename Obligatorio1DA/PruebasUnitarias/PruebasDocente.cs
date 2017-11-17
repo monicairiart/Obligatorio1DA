@@ -52,6 +52,7 @@ namespace PruebasUnitarias
         public void ProbarDatosAltaDocenteApellido()
         {
             Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "35466661");
+            Console.WriteLine("docente apellido " + docente.Apellido);
             Assert.IsInstanceOfType(docente.Apellido, typeof(string));
             Assert.AreNotEqual("Apellido cualquiera", docente.Apellido);
             Assert.AreEqual("Apellido del Docente", docente.Apellido);
@@ -60,6 +61,7 @@ namespace PruebasUnitarias
         public void ProbarDatosAltaDocenteCi()
         {
             Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "35466661");
+            Console.WriteLine("docente ci " + docente.Ci);
             Assert.IsInstanceOfType(docente.Ci, typeof(string));
             Assert.AreNotEqual("1111", docente.Ci);
             Assert.AreEqual("35466661", docente.Ci);
