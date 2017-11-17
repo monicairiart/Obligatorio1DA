@@ -50,5 +50,18 @@ namespace GestionCamioneta
                 Console.WriteLine("Excepcion al filtrar materia > " + e.ToString());
             }
         }
+        public void BajarCamioneta(string matricula)
+        {
+            try
+            {
+                Camioneta camionetaAEliminar = camionetas.Single(camioneta => camioneta.Matricula == matricula);
+
+                camionetas.Remove(camionetaAEliminar);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Excepcion al filtrar materia > " + e.ToString());
+            }
+        }
     }
 }
