@@ -100,7 +100,18 @@ namespace PruebasUnitarias
             Assert.AreEqual("NoDisponible", misCamionetas[0].Estado);
             Console.WriteLine("nvos valor estado " + misCamionetas[0].Estado);
         }
-       
+        public void ProbarDatosBajaCamioneta()
+        {
+            MantenimientoCamioneta mantenimientoCamioneta = new GestionCamioneta.MantenimientoCamioneta();
+            List<Camioneta> misCamionetas = new List<Camioneta>();
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>()));
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "NoDisponible", new List<string>()));
+
+            Console.WriteLine("count de obtener camionetas " + mantenimientoCamioneta.ObtenerCamionetas().Count);
+            CollectionAssert.AreEqual(misCamionetas, mantenimientoCamioneta.ObtenerCamionetas());
+            mantenimientoCamioneta.BajarCamioneta("SAF3685");
+            CollectionAssert.AreNotEqual(misCamionetas, mantenimientoCamioneta.ObtenerCamionetas());
+        }
         //[TestMethod]
         /*public void ProbarDatosAltaCamionetasViajes()
         {
