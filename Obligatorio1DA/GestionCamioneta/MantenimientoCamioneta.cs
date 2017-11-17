@@ -15,7 +15,7 @@ namespace GestionCamioneta
         public object Menu { get; set; }
         public IList Acciones { get; set; }
         private List<Camioneta> camionetas = new List<Camioneta>();
-        public List<Camioneta> GetCamionetas()
+        public List<Camioneta> ObtenerCamionetas()
         {
             return camionetas;
         }
@@ -33,6 +33,20 @@ namespace GestionCamioneta
             camioneta.Estado = estadoCamioneta;
             camionetas.Add(camioneta);
             return camioneta;
+        }
+        public void ModificarCamioneta(string matricula, Camioneta nuevosValores)
+        {
+            try
+            {
+                Camioneta camionetaAModificar = camionetas.Single(camioneta => camioneta.Matricula == matricula);
+                int indiceDelaCamionetaAModificar = camionetas.IndexOf(camionetaAModificar);
+                camionetas[indiceDelaCamionetaAModificar].Matricula = nuevosValores.Matricula != "" ? nuevosValores.Matricula : camionetaAModificar.Matricula;
+                camionetas[indiceDelaCamionetaAModificar].Viajes = nuevosValores.Viajes[0] != "" ? nuevosValores.Viajes : camionetaAModificar.Viajes;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Excepcion al filtrar materia > " + e.ToString());
+            }
         }
     }
 }
