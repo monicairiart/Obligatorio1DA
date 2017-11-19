@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Interfaces;
 using GestionActividad;
+using System.Collections.Generic;
 
 namespace PruebasUnitarias
 {
@@ -31,8 +32,8 @@ namespace PruebasUnitarias
         {
             MantenimientoActividad Actividad = new GestionActividad.MantenimientoActividad();
             List<string> alumnos = new List<string>();
-            Camioneta camioneta = mantenimientoCamioneta.AltaDatosActividad("1", "Nombre de la Actividad", "22/01/2017", 100, alumnos);
-            Assert.IsInstanceOfType(camioneta, typeof(Camioneta));
+            Actividad actividad = mantenimientoActividad.AltaDatosActividad("1", "Nombre de la Actividad", new DateTime(2017, 01, 22), 100, alumnos);
+            Assert.IsInstanceOfType(actividad, typeof(Actividad));
         }
     }
 }
