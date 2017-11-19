@@ -25,21 +25,13 @@ namespace InterfazUsuario
             InitializeComponent();
         }
 
-        private void tituloMantenimientoAlumnos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /*private void botonAltaAlumno_Click(object sender, EventArgs e)
+ /*       private void tituloMantenimientoAlumnos_Click(object sender, EventArgs e)
         {
 
         }
 */
         private void GestionMateriaUI_Load(object sender, EventArgs e)
         {
-//            mantenimientoMateria.GenerarDatos();
-//           mantenimientoDocente.GenerarDatos();
-            //Console.WriteLine("count materias " + mantenimientoMateria.GetMaterias().Count());
             listaMaterias.Columns.Add("Código Materia");
             listaMaterias.Columns.Add("Nombre");
             listaMateriasDocente.Columns.Add("CI");

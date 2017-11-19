@@ -25,14 +25,17 @@ namespace GestionAlumno
             Nombre = "Gestion Alumno";
             Descripcion = "Alta, Baja y Modificación de Alumnos";
         }
-        public Alumno AltaDatosAlumno(string nombreAlumno, string apellidoAlumno, string ciAlumno)
+        public Alumno AltaDatosAlumno(string nombreAlumno, string apellidoAlumno, string ciAlumno, Tuple<double, double> ubicacion)
         {
+            Console.WriteLine("entra a alta datos alumno");
             Alumno alumno = new Alumno();
+            Console.WriteLine("luego de new alumno");
             if (!AlumnoExistente(ciAlumno))
             {
                 alumno.Nombre = nombreAlumno;
                 alumno.Apellido = apellidoAlumno;
                 alumno.Ci = ciAlumno;
+                alumno.Ubicacion = ubicacion;
                 alumnos.Add(alumno);
                 return alumno;
             }
@@ -41,11 +44,14 @@ namespace GestionAlumno
 
         public void BajarAlumno(string ci)
         {
+            Console.WriteLine("entra a bajar alumo" + ci);
             try
             {
                 if (AlumnoExistente(ci))
                 {
+                    Console.WriteLine("entra a if borrar ");
                     Alumno alumnoAEliminar = alumnos.Single(alumno => alumno.Ci == ci);
+                    Console.WriteLine("a borrar ci " + alumnoAEliminar.Ci);
                     alumnos.Remove(alumnoAEliminar);
                 }
             }
@@ -77,15 +83,16 @@ namespace GestionAlumno
         public Boolean AlumnoExistente(string ci)
         {
             Boolean alumnoExistente = alumnos.Exists(alumnoEncontrado => alumnoEncontrado.Ci == ci);
+            Console.WriteLine("alumno existente " + alumnoExistente);
             return alumnoExistente;
         }
 
         public void GenerarDatos()
         {
-            alumnosPrueba.Add(AltaDatosAlumno("Juana", "Sosa", "50001002"));
-            alumnosPrueba.Add(AltaDatosAlumno("Paola", "Bianco", "49912233"));
-            alumnosPrueba.Add(AltaDatosAlumno("Hugo", "Cabral", "38824456"));
-            alumnosPrueba.Add(AltaDatosAlumno("Alejandra", "Suarez", "39937650"));
+            alumnosPrueba.Add(AltaDatosAlumno("Juana", "Sosa", "50001002", Tuple.Create(1.0, 2.0)));
+            alumnosPrueba.Add(AltaDatosAlumno("Paola", "Bianco", "49912233", Tuple.Create(1.0, 3.0)));
+            alumnosPrueba.Add(AltaDatosAlumno("Hugo", "Cabral", "38824456", Tuple.Create(1.0, 4.0)));
+            alumnosPrueba.Add(AltaDatosAlumno("Alejandra", "Suarez", "39937650", Tuple.Create(1.0, 5.0)));
             alumnos = ObtenerAlumnos();
         }
     }

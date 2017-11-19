@@ -28,6 +28,7 @@ namespace InterfazUsuario
             listaAlumnos.Columns.Add("CI");
             listaAlumnos.Columns.Add("Nombre");
             listaAlumnos.Columns.Add("Apellido");
+            listaAlumnos.Columns.Add("Ubicación");
             listaMaterias.Columns.Add("Código");
             listaMaterias.Columns.Add("Materia");
             cargarListaAlumno();
@@ -70,7 +71,7 @@ namespace InterfazUsuario
             nuevosValoresAlumno.Apellido = apellido;
             if (ValidarDatos(ci, nuevosValoresAlumno, true))
             {
-                mantenimientoAlumno.AltaDatosAlumno(nombre, apellido, ci);
+                mantenimientoAlumno.AltaDatosAlumno(nombre, apellido, ci, Tuple.Create(1.0, 2.0));
                 cargarListaAlumno();
             }
         }

@@ -15,6 +15,9 @@ namespace GestionCamioneta
         public object Menu { get; set; }
         public IList Acciones { get; set; }
         private List<Camioneta> camionetas = new List<Camioneta>();
+        private static Boolean datosGenerados = false;
+        public List<Camioneta> camionetasPrueba = new List<Camioneta>();
+
         public List<Camioneta> ObtenerCamionetas()
         {
             return camionetas;
@@ -60,6 +63,24 @@ namespace GestionCamioneta
             catch (Exception e)
             {
                 Console.WriteLine("Excepcion al filtrar materia > " + e.ToString());
+            }
+        }
+        public Camioneta ObtenerCamionetaPorMatricula(string matricula)
+        {
+            Camioneta camionetaARetornar = camionetas.Single(camioneta => camioneta.Matricula == matricula);
+            return camionetaARetornar;
+        }
+        public void GenerarDatos()
+        {
+            if (!datosGenerados)
+            {
+                camionetasPrueba.Add(AltaDatosCamioneta("SAF3685", 40, "Disponible", new List<string>()));
+                camionetasPrueba.Add(AltaDatosCamioneta("SAF3688", 30, "NoDisponible", new List<string>()));
+                camionetasPrueba.Add(AltaDatosCamioneta("SAA3600", 20, "Disponible", new List<string>()));
+                camionetas = ObtenerCamionetas();
+                camionetas = AsignacionCamioneta.AsignarAlumnoACamioneta(camionetas, "50001002", "SAF3685");
+                camionetas = AsignacionCamioneta.AsignarAlumnoACamioneta(camionetas, "49912233", "SAF3688");
+                datosGenerados = true;
             }
         }
     }

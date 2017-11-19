@@ -55,7 +55,7 @@
             this.tituloMantenimientoMateria.Size = new System.Drawing.Size(299, 26);
             this.tituloMantenimientoMateria.TabIndex = 23;
             this.tituloMantenimientoMateria.Text = "Mantenimiento de Materias";
-            this.tituloMantenimientoMateria.Click += new System.EventHandler(this.tituloMantenimientoAlumnos_Click);
+//          this.tituloMantenimientoMateria.Click += new System.EventHandler(this.tituloMantenimientoAlumnos_Click);
             // 
             // botonSalir
             // 

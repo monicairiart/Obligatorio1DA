@@ -12,13 +12,10 @@ namespace PruebasUnitarias
         public MantenimientoDocente mantenimientoDocente { get; set; }
         public List<Docente> docentes { get; set; }
         public List<Docente> misDocentes { get; set; }
-        public void PruebasDocentes()
-        {
-            GenerarDatos();
-        }
         public PruebasDocente()
         {
             mantenimientoDocente = new MantenimientoDocente();
+            GenerarDatos();
         }
 
         [TestMethod]
@@ -39,14 +36,25 @@ namespace PruebasUnitarias
             Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "35466661");
             Assert.IsInstanceOfType(docente, typeof(Docente));
         }
-
+        [TestMethod]
+        public void ProbarAltaDocente()
+        {
+            Docente docente = mantenimientoDocente.AltaDatosDocente("Miguel", "Sosa", "111");
+            Assert.IsInstanceOfType(docente, typeof(Docente));
+            Assert.AreEqual("Miguel", docente.Nombre);
+            Assert.AreEqual("Sosa", docente.Apellido);
+            Assert.AreEqual("111", docente.Ci);
+            mantenimientoDocente.BajarDocente("111");
+        }
         [TestMethod]
         public void ProbarDatosAltaDocenteNombre()
         {
             Docente docente = mantenimientoDocente.AltaDatosDocente("Nombre del Docente", "Apellido del Docente", "35466661");
+            Console.WriteLine("nombre docente " + docente.Nombre);
             Assert.IsInstanceOfType(docente.Nombre, typeof(string));
             Assert.AreNotEqual("Nombre cualquiera", docente.Nombre);
             Assert.AreEqual("Nombre del Docente", docente.Nombre);
+            mantenimientoDocente.BajarDocente("35466661");
         }
         [TestMethod]
         public void ProbarDatosAltaDocenteApellido()
@@ -168,7 +176,6 @@ namespace PruebasUnitarias
         [TestMethod]
         public void GenerarDatos()
         {
-            mantenimientoDocente = new GestionDocente.MantenimientoDocente();
             misDocentes = new List<Docente>();
             misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Juan Pablo", "Perez", "38667442"));
             misDocentes.Add(mantenimientoDocente.AltaDatosDocente("Pedro", "Malan", "51112145"));

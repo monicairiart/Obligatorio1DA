@@ -173,8 +173,8 @@ namespace PruebasUnitarias
              */
             Assert.AreEqual(mantenimientoMateria.ObtenerMateriasPorAlumno(ciAlumno), ciAlumno);
         }
-        [TestMethod]
-        public void ProbarGenerarDatos()
+
+        public void GenerarDatos()
         {
             List<Materia> misMaterias = new List<Materia>();
             misMaterias.Add(mantenimientoMateria.AltaDatosMateria("111", "Matematicas", new List<string>(), new List<string>()));

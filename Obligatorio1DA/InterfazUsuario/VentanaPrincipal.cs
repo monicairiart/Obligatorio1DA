@@ -1,4 +1,5 @@
 ﻿using GestionAlumno;
+using GestionCamioneta;
 using GestionDocente;
 using GestionMateria;
 using System;
@@ -18,7 +19,7 @@ namespace InterfazUsuario
         MantenimientoDocente mantenimientoDocente = new MantenimientoDocente();
         MantenimientoAlumno mantenimientoAlumno = new MantenimientoAlumno();
         MantenimientoMateria mantenimientoMateria = new MantenimientoMateria();
- //       MantenimientoCamioneta mantenimientoCamioneta = new MantenimientoCamioneta();
+        MantenimientoCamioneta mantenimientoCamioneta = new MantenimientoCamioneta();
         public VentanaPrincipal()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace InterfazUsuario
             mantenimientoDocente.GenerarDatos();
             mantenimientoAlumno.GenerarDatos();
             mantenimientoMateria.GenerarDatos();
-//            mantenimientoCamioneta.GenerarDatos();
+            mantenimientoCamioneta.GenerarDatos();
 
         }
 

@@ -111,6 +111,19 @@ namespace PruebasUnitarias
             CollectionAssert.AreEqual(misCamionetas, mantenimientoCamioneta.ObtenerCamionetas());
             mantenimientoCamioneta.BajarCamioneta("SAF3685");
             CollectionAssert.AreNotEqual(misCamionetas, mantenimientoCamioneta.ObtenerCamionetas());
+            mantenimientoCamioneta.BajarCamioneta("SAF3333");
+        }
+        [TestMethod]
+        public void ProbarDatosBajaCamionetaNoExiste()
+        {
+            MantenimientoCamioneta mantenimientoCamioneta = new GestionCamioneta.MantenimientoCamioneta();
+            List<Camioneta> misCamionetas = new List<Camioneta>();
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>()));
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "NoDisponible",new List<string>()));
+            CollectionAssert.AreEqual(misCamionetas, mantenimientoCamioneta.ObtenerCamionetas());
+            mantenimientoCamioneta.BajarCamioneta("999");
+            CollectionAssert.AreEqual(misCamionetas, mantenimientoCamioneta.ObtenerCamionetas());
+            mantenimientoCamioneta.BajarCamioneta("");
 
         }
         //[TestMethod]
