@@ -133,7 +133,7 @@ namespace PruebasUnitarias
             string ciAlumno = "50001002";
             string matricula = "SAF3685";
             Console.WriteLine("entra a asignar alumno camioneta ");
-            camionetas = AsignacionCamioneta.AsignarAlumnosACamioneta(camionetas, ciAlumno, matricula);
+            camionetas = AsignacionCamioneta.AsignarAlumnoACamioneta(camionetas, ciAlumno, matricula);
             Console.WriteLine("cant camionetas " + camionetas.Count);
             Camioneta camioneta = mantenimientoCamioneta.ObtenerCamionetaPorMatricula(matricula);
             string ciAlumnoEncontrado = camioneta.Alumnos.Find(ci => ci == ciAlumno);
