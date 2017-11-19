@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Interfaces;
+using GestionActividad;
 
 namespace PruebasUnitarias
 {
@@ -9,15 +10,15 @@ namespace PruebasUnitarias
     {
         public MantenimientoActividad  mantenimientoActividad { get; set; }
 
-        public void PruebasActividad()
+        public PruebasActividad()
         {
             mantenimientoActividad = new MantenimientoActividad();
 //            mantenimientoActividad.GenerarDatos();
         }
         [TestMethod]
-        public void ProbarTipoModuloGestionMateria()
+        public void ProbarTipoModuloGestionActividad()
         {
-            Assert.IsInstanceOfType(mantenimientoMateria, typeof(IModuloGestion));
+            Assert.IsInstanceOfType(mantenimientoActividad, typeof(IModuloGestion));
         }
     }
 }
