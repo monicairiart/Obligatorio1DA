@@ -14,7 +14,7 @@ namespace GestionCamioneta
         public string Descripcion { get; set; }
         public object Menu { get; set; }
         public IList Acciones { get; set; }
-        private List<Camioneta> camionetas = new List<Camioneta>();
+        private static List<Camioneta> camionetas = new List<Camioneta>();
         private static Boolean datosGenerados = false;
         public List<Camioneta> camionetasPrueba = new List<Camioneta>();
 
@@ -27,13 +27,15 @@ namespace GestionCamioneta
             Console.WriteLine();
             Nombre = "Gestion Camioneta";
             Descripcion = "Alta, Baja y Modificación de Camionetas";
+            GenerarDatos();
         }
-        public Camioneta AltaDatosCamioneta(string matriculaCamioneta, int capacidadCamioneta, string estadoCamioneta, List<string> viajes)
+        public Camioneta AltaDatosCamioneta(string matriculaCamioneta, int capacidadCamioneta, string estadoCamioneta, List<string> alumnos)
         {
             Camioneta camioneta = new Camioneta();
             camioneta.Matricula = matriculaCamioneta;
             camioneta.Capacidad = capacidadCamioneta;
             camioneta.Estado = estadoCamioneta;
+            camioneta.Alumnos = alumnos;
             camionetas.Add(camioneta);
             return camioneta;
         }
@@ -46,7 +48,7 @@ namespace GestionCamioneta
                 camionetas[indiceDelaCamionetaAModificar].Matricula = nuevosValores.Matricula != "" ? nuevosValores.Matricula : camionetaAModificar.Matricula;
                 camionetas[indiceDelaCamionetaAModificar].Capacidad = nuevosValores.Capacidad != 0 ? nuevosValores.Capacidad : camionetaAModificar.Capacidad;
                 camionetas[indiceDelaCamionetaAModificar].Estado = nuevosValores.Estado != "" ? nuevosValores.Estado : camionetaAModificar.Estado;
-                camionetas[indiceDelaCamionetaAModificar].Viajes = nuevosValores.Viajes[0] != "" ? nuevosValores.Viajes : camionetaAModificar.Viajes;
+                camionetas[indiceDelaCamionetaAModificar].Alumnos = nuevosValores.Alumnos[0] != "" ? nuevosValores.Alumnos : camionetaAModificar.Alumnos;
             }
             catch (Exception e)
             {

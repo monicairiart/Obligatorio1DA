@@ -71,11 +71,41 @@ namespace InterfazUsuario
 
         }
 
-        private void botonAltaMateria_Click(object sender, EventArgs e)
+        private void botonAltaCamioneta_Click(object sender, EventArgs e)
         {
+            int capacidad = Int32.Parse(entradaCapacidad.Text);
+            string matricula = entradaMatricula.Text;
+            string estado = entradaEstado.Text;
+            Camioneta nuevosValoresCamioneta = new Camioneta();
+            nuevosValoresCamioneta.Matricula = matricula;
+            nuevosValoresCamioneta.Capacidad = capacidad;
+            nuevosValoresCamioneta.Estado = estado;
+            if (ValidarDatos(matricula, nuevosValoresCamioneta, true))
+            {
+                mantenimientoCamioneta.AltaDatosCamioneta(matricula, capacidad, estado, new List<string>());
+                cargarListaCamioneta();
+            }
+        }
+        private Boolean ValidarDatos(string matricula, Camioneta nuevosValores, Boolean comprobarDuplicado)
+        {
+            if ((matricula.Length == 0) || (nuevosValores.Capacidad == 0 ) || (nuevosValores.Estado.Length == 0))
+            {
+                MessageBox.Show("Error: Los datos ingresados no son correctos");
+                return (false);
+            }
+            if ((matricula.Trim().Length == 0) || (nuevosValores.Capacidad == 0) || (nuevosValores.Estado.Length == 0))
+            {
+                MessageBox.Show("Error: Los datos ingresados no son correctos");
+                return (false);
+            }
+            if (mantenimientoCamioneta.CamionetaExistente(matricula) && comprobarDuplicado)
+            {
+                MessageBox.Show("Error: La camioneta ya existe");
+                return (false);
+            }
+            return (true);
 
         }
-
         private void listaCamionetas_SelectedIndexChanged(object sender, EventArgs e)
         {
  //           List<string> docentesDeMateria = new List<string>();
@@ -85,6 +115,7 @@ namespace InterfazUsuario
             {
                 entradaMatricula.Text = camionetaSeleccionada[0].SubItems[0].Text;
                 entradaCapacidad.Text = camionetaSeleccionada[0].SubItems[1].Text;
+                entradaEstado.Text = camionetaSeleccionada[0].SubItems[2].Text;
                 matriculaCamionetaSeleccionada = camionetaSeleccionada[0].SubItems[0].Text;
                 //    docentesDeMateria = mantenimientoMateria.ObtenerMateriaPorCodigo(codigoMateriaSeleccionada).Docentes;
 

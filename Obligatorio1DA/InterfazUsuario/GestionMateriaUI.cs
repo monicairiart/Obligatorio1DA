@@ -89,7 +89,6 @@ namespace InterfazUsuario
                 }
             }
         }
-
         private void botonAltaMateria_Click(object sender, EventArgs e)
         {
             string nombre = entradaNombreMateria.Text;
@@ -102,8 +101,6 @@ namespace InterfazUsuario
                 mantenimientoMateria.AltaDatosMateria(codigoMateria, nombre, new List<string>(), new List<string>());
                 cargarListaMateria();
             }
-
-
         }
         private void botonModificarMateria_Click(object sender, EventArgs e)
         {

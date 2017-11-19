@@ -9,11 +9,9 @@ namespace GestionCamioneta
 {
     public class Camioneta
     {
-        public List<string> Alumnos;
-
         public string Matricula { get; set; }
         public int Capacidad { get; set; }
         public string Estado { get; set; }
-        public List<string> Viajes { get; set; }
+        public List<string> Alumnos { get; set; }
     }
 }

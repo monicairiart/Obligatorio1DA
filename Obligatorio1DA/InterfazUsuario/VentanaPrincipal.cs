@@ -40,21 +40,24 @@ namespace InterfazUsuario
         {
             Form nuevaVentana = new GestionAlumnoUI();
             nuevaVentana.Show();
-           // Console.ReadKey();
         }
 
         private void botonGestionMaterias_Click(object sender, EventArgs e)
         {
             Form nuevaVentana = new GestionMateriaUI();
             nuevaVentana.Show();
-            //Console.ReadKey();
         }
 
         private void botonGestionDocentes_Click(object sender, EventArgs e)
         {
             Form nuevaVentana = new GestionDocenteUI();
             nuevaVentana.Show();
-            //Console.ReadKey();
+        }
+
+        private void botonGestionCamionetas_Click(object sender, EventArgs e)
+        {
+            Form nuevaVentana = new GestionCamionetaUI();
+            nuevaVentana.Show();
         }
     }
 }

@@ -74,6 +74,7 @@
             this.botonGestionCamionetas.TabIndex = 3;
             this.botonGestionCamionetas.Text = "Gestion de Camionetas";
             this.botonGestionCamionetas.UseVisualStyleBackColor = true;
+            this.botonGestionCamionetas.Click += new System.EventHandler(this.botonGestionCamionetas_Click);
             // 
             // botonCargarDatos
             // 
