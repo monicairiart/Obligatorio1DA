@@ -24,7 +24,12 @@ namespace GestionActividad
         public Actividad AltaDatosActividad(string codigoActividad, string nombreActividad, DateTime fechaActividad, int costoActividad, List<string> alumnos)
         {
             Actividad actividad = new Actividad();
-
+            actividad.CodigoActividad = codigoActividad;
+            actividad.Nombre = nombreActividad;
+            actividad.Fecha = fechaActividad;
+            actividad.Costo = costoActividad;
+            actividad.Alumnos = alumnos;
+            actividades.Add(actividad);
             return actividad;
         }
     }

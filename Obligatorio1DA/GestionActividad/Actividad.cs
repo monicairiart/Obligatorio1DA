@@ -8,5 +8,11 @@ namespace GestionActividad
 {
     public class Actividad
     {
+        public string CodigoActividad {get; set;}
+        public string Nombre { get; set; }
+        public DateTime Fecha { get; set; }
+        public int Costo { get; set; }
+        public List<string> Alumnos { get; set; }
+
     }
 }
