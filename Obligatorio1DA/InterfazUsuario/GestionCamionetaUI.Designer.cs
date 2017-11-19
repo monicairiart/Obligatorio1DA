@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panelVentanaCamioneta = new System.Windows.Forms.Panel();
-            this.entradaEstado = new System.Windows.Forms.TextBox();
             this.tituloEstado = new System.Windows.Forms.Label();
             this.tituloListaAlumnosCamioneta = new System.Windows.Forms.Label();
             this.listaAlumnos = new System.Windows.Forms.ListView();
@@ -43,12 +42,14 @@
             this.botonModificarCamioneta = new System.Windows.Forms.Button();
             this.botonBajaCamioneta = new System.Windows.Forms.Button();
             this.botonAltaCamioneta = new System.Windows.Forms.Button();
+            this.comboBoxEstado = new System.Windows.Forms.ComboBox();
+            this.botonDisponibilidadCamionetas = new System.Windows.Forms.Button();
             this.panelVentanaCamioneta.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelVentanaCamioneta
             // 
-            this.panelVentanaCamioneta.Controls.Add(this.entradaEstado);
+            this.panelVentanaCamioneta.Controls.Add(this.comboBoxEstado);
             this.panelVentanaCamioneta.Controls.Add(this.tituloEstado);
             this.panelVentanaCamioneta.Controls.Add(this.tituloListaAlumnosCamioneta);
             this.panelVentanaCamioneta.Controls.Add(this.listaAlumnos);
@@ -59,15 +60,8 @@
             this.panelVentanaCamioneta.Controls.Add(this.listaCamionetas);
             this.panelVentanaCamioneta.Location = new System.Drawing.Point(12, 58);
             this.panelVentanaCamioneta.Name = "panelVentanaCamioneta";
-            this.panelVentanaCamioneta.Size = new System.Drawing.Size(694, 313);
+            this.panelVentanaCamioneta.Size = new System.Drawing.Size(572, 313);
             this.panelVentanaCamioneta.TabIndex = 36;
-            // 
-            // entradaEstado
-            // 
-            this.entradaEstado.Location = new System.Drawing.Point(276, 56);
-            this.entradaEstado.Name = "entradaEstado";
-            this.entradaEstado.Size = new System.Drawing.Size(100, 20);
-            this.entradaEstado.TabIndex = 35;
             // 
             // tituloEstado
             // 
@@ -149,7 +143,7 @@
             // 
             // botonSalir
             // 
-            this.botonSalir.Location = new System.Drawing.Point(712, 217);
+            this.botonSalir.Location = new System.Drawing.Point(645, 240);
             this.botonSalir.Name = "botonSalir";
             this.botonSalir.Size = new System.Drawing.Size(75, 23);
             this.botonSalir.TabIndex = 34;
@@ -159,33 +153,54 @@
             // 
             // botonModificarCamioneta
             // 
-            this.botonModificarCamioneta.Location = new System.Drawing.Point(712, 154);
+            this.botonModificarCamioneta.Location = new System.Drawing.Point(645, 177);
             this.botonModificarCamioneta.Name = "botonModificarCamioneta";
             this.botonModificarCamioneta.Size = new System.Drawing.Size(75, 23);
             this.botonModificarCamioneta.TabIndex = 33;
             this.botonModificarCamioneta.Text = "Modificar";
             this.botonModificarCamioneta.UseVisualStyleBackColor = true;
-            this.botonModificarCamioneta.Click += new System.EventHandler(this.botonModificarMateria_Click);
+            this.botonModificarCamioneta.Click += new System.EventHandler(this.botonModificarCamioneta_Click);
             // 
             // botonBajaCamioneta
             // 
-            this.botonBajaCamioneta.Location = new System.Drawing.Point(712, 114);
+            this.botonBajaCamioneta.Location = new System.Drawing.Point(645, 137);
             this.botonBajaCamioneta.Name = "botonBajaCamioneta";
             this.botonBajaCamioneta.Size = new System.Drawing.Size(75, 23);
             this.botonBajaCamioneta.TabIndex = 32;
             this.botonBajaCamioneta.Text = "Bajar";
             this.botonBajaCamioneta.UseVisualStyleBackColor = true;
-            this.botonBajaCamioneta.Click += new System.EventHandler(this.botonBajaMateria_Click);
+            this.botonBajaCamioneta.Click += new System.EventHandler(this.botonBajaCamioneta_Click);
             // 
             // botonAltaCamioneta
             // 
-            this.botonAltaCamioneta.Location = new System.Drawing.Point(712, 74);
+            this.botonAltaCamioneta.Location = new System.Drawing.Point(645, 97);
             this.botonAltaCamioneta.Name = "botonAltaCamioneta";
             this.botonAltaCamioneta.Size = new System.Drawing.Size(75, 23);
             this.botonAltaCamioneta.TabIndex = 31;
             this.botonAltaCamioneta.Text = "Agregar";
             this.botonAltaCamioneta.UseVisualStyleBackColor = true;
-            this.botonAltaCamioneta.Click += new System.EventHandler(this.botonAltaMateria_Click);
+            this.botonAltaCamioneta.Click += new System.EventHandler(this.botonAltaCamioneta_Click_1);
+            // 
+            // comboBoxEstado
+            // 
+            this.comboBoxEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxEstado.FormattingEnabled = true;
+            this.comboBoxEstado.Items.AddRange(new object[] {
+            "Disponible",
+            "No Disponible"});
+            this.comboBoxEstado.Location = new System.Drawing.Point(267, 55);
+            this.comboBoxEstado.Name = "comboBoxEstado";
+            this.comboBoxEstado.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxEstado.TabIndex = 36;
+            // 
+            // botonDisponibilidadCamionetas
+            // 
+            this.botonDisponibilidadCamionetas.Location = new System.Drawing.Point(645, 211);
+            this.botonDisponibilidadCamionetas.Name = "botonDisponibilidadCamionetas";
+            this.botonDisponibilidadCamionetas.Size = new System.Drawing.Size(75, 23);
+            this.botonDisponibilidadCamionetas.TabIndex = 37;
+            this.botonDisponibilidadCamionetas.Text = "Camionetas Disponibles";
+            this.botonDisponibilidadCamionetas.UseVisualStyleBackColor = true;
             // 
             // GestionCamionetaUI
             // 
@@ -193,6 +208,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClientSize = new System.Drawing.Size(806, 305);
+            this.Controls.Add(this.botonDisponibilidadCamionetas);
             this.Controls.Add(this.panelVentanaCamioneta);
             this.Controls.Add(this.tituloMantenimientoMateria);
             this.Controls.Add(this.botonSalir);
@@ -224,7 +240,8 @@
         private System.Windows.Forms.Button botonModificarCamioneta;
         private System.Windows.Forms.Button botonBajaCamioneta;
         private System.Windows.Forms.Button botonAltaCamioneta;
-        private System.Windows.Forms.TextBox entradaEstado;
         private System.Windows.Forms.Label tituloEstado;
+        private System.Windows.Forms.ComboBox comboBoxEstado;
+        private System.Windows.Forms.Button botonDisponibilidadCamionetas;
     }
 }

@@ -137,18 +137,16 @@ namespace InterfazUsuario
             foreach (Docente docente in docentesARetonar)
             {
                 ListViewItem itemDocente = new ListViewItem(docente.Ci);
-                // itemDocente.SubItems.Add(docente.Ci)
                 itemDocente.SubItems.Add(docente.Nombre);
-                // itemDocente.SubItems.Add(docente.Apellido);
                 listaMateriasDocente.Items.Add(itemDocente);
             }
         }
         // hacer validar datos, ver para mostrar docentes y alumnos??
         // hacer existenregistros repetidos para materias
-        public static void LimpiarCodigoMateriaSeleccionada()
+        /*public static void LimpiarCodigoMateriaSeleccionada()
         {
             codigoMateriaSeleccionada = null;
-        }
+        }*/
         private Boolean ValidarDatos(string codigoMateria, Materia nuevosValores, Boolean comprobarDuplicado)
         {
             if ((codigoMateria.Length == 0) || (nuevosValores.Nombre.Length == 0))
@@ -172,8 +170,5 @@ namespace InterfazUsuario
         {
             Close();
         }
-
-
-
     }
 }

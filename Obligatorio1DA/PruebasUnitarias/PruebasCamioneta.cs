@@ -68,7 +68,7 @@ namespace PruebasUnitarias
         {
             List<Camioneta> misCamionetas = new List<Camioneta>();
             misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>()));
-            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "NoDisponible", new List<string>()));
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "No Disponible", new List<string>()));
             Camioneta nuevosValoresCamioneta = new Camioneta();
             nuevosValoresCamioneta.Matricula = "SAF1111";
             mantenimientoCamioneta.ModificarCamioneta("SAF3685", nuevosValoresCamioneta);
@@ -80,7 +80,7 @@ namespace PruebasUnitarias
         {
             List<Camioneta> misCamionetas = new List<Camioneta>();
             misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>()));
-            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "NoDisponible", new List<string>()));
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "No Disponible", new List<string>()));
             Camioneta nuevosValoresCamioneta = new Camioneta();
             nuevosValoresCamioneta.Capacidad = 51;
             mantenimientoCamioneta.ModificarCamioneta("SAF3685", nuevosValoresCamioneta);
@@ -93,11 +93,11 @@ namespace PruebasUnitarias
         {
             List<Camioneta> misCamionetas = new List<Camioneta>();
             misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>()));
-            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "NoDisponible", new List<string>()));
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "No Disponible", new List<string>()));
             Camioneta nuevosValoresCamioneta = new Camioneta();
-            nuevosValoresCamioneta.Estado = "NoDisponible";
+            nuevosValoresCamioneta.Estado = "No Disponible";
             mantenimientoCamioneta.ModificarCamioneta("SAF3685", nuevosValoresCamioneta);
-            Assert.AreEqual("NoDisponible", misCamionetas[0].Estado);
+            Assert.AreEqual("No Disponible", misCamionetas[0].Estado);
             Console.WriteLine("nvos valor estado " + misCamionetas[0].Estado);
         }
         [TestMethod]
@@ -106,7 +106,7 @@ namespace PruebasUnitarias
             MantenimientoCamioneta mantenimientoCamioneta = new GestionCamioneta.MantenimientoCamioneta();
             List<Camioneta> misCamionetas = new List<Camioneta>();
             misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>()));
-            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "NoDisponible", new List<string>()));
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "No Disponible", new List<string>()));
             Console.WriteLine("count de obtener camionetas " + mantenimientoCamioneta.ObtenerCamionetas().Count);
             CollectionAssert.AreEqual(misCamionetas, mantenimientoCamioneta.ObtenerCamionetas());
             mantenimientoCamioneta.BajarCamioneta("SAF3685");
@@ -119,7 +119,7 @@ namespace PruebasUnitarias
             MantenimientoCamioneta mantenimientoCamioneta = new GestionCamioneta.MantenimientoCamioneta();
             List<Camioneta> misCamionetas = new List<Camioneta>();
             misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3685", 50, "Disponible", new List<string>()));
-            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "NoDisponible",new List<string>()));
+            misCamionetas.Add(mantenimientoCamioneta.AltaDatosCamioneta("SAF3333", 30, "No Disponible",new List<string>()));
             CollectionAssert.AreEqual(misCamionetas, mantenimientoCamioneta.ObtenerCamionetas());
             mantenimientoCamioneta.BajarCamioneta("999");
             CollectionAssert.AreEqual(misCamionetas, mantenimientoCamioneta.ObtenerCamionetas());

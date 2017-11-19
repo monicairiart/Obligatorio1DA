@@ -67,17 +67,23 @@ namespace GestionCamioneta
                 Console.WriteLine("Excepcion al filtrar materia > " + e.ToString());
             }
         }
+
         public Camioneta ObtenerCamionetaPorMatricula(string matricula)
         {
             Camioneta camionetaARetornar = camionetas.Single(camioneta => camioneta.Matricula == matricula);
             return camionetaARetornar;
+        }
+        public Boolean CamionetaExistente(string matricula)
+        {
+            Boolean camionetaExistente = camionetas.Exists(camionetaEncontrada => camionetaEncontrada.Matricula == matricula);
+            return camionetaExistente;
         }
         public void GenerarDatos()
         {
             if (!datosGenerados)
             {
                 camionetasPrueba.Add(AltaDatosCamioneta("SAF3685", 40, "Disponible", new List<string>()));
-                camionetasPrueba.Add(AltaDatosCamioneta("SAF3688", 30, "NoDisponible", new List<string>()));
+                camionetasPrueba.Add(AltaDatosCamioneta("SAF3688", 30, "No Disponible", new List<string>()));
                 camionetasPrueba.Add(AltaDatosCamioneta("SAA3600", 20, "Disponible", new List<string>()));
                 camionetas = ObtenerCamionetas();
                 camionetas = AsignacionCamioneta.AsignarAlumnoACamioneta(camionetas, "50001002", "SAF3685");

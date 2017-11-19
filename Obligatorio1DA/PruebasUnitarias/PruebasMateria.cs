@@ -157,6 +157,11 @@ namespace PruebasUnitarias
             Assert.AreEqual(ciAlumno, ciAlumnoEncontrado);
         }
         [TestMethod]
+        public void ProbarMateriaExistente()
+        {
+            Assert.IsTrue(mantenimientoMateria.MateriaExistente("111"));
+        }
+        [TestMethod]
         public void ProbarObtenerMateriasPorAlumno()
         {
             materias = mantenimientoMateria.ObtenerMaterias();
