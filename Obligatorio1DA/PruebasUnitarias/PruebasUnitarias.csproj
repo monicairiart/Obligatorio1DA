@@ -57,6 +57,7 @@
     <Compile Include="PruebasAlumno.cs" />
     <Compile Include="PruebasMateria.cs" />
     <Compile Include="PruebasCamioneta.cs" />
+    <Compile Include="PruebasActividad.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GestionAlumno\GestionAlumno.csproj">

@@ -30,7 +30,8 @@ namespace InterfazUsuario
             listaAlumnos.Columns.Add("CI");
             listaAlumnos.Columns.Add("Nombre");
             listaAlumnos.Columns.Add("Apellido");
-            listaAlumnos.Columns.Add("Ubicación");
+            listaAlumnos.Columns.Add("Ubicación X");
+            listaAlumnos.Columns.Add("Ubicación Y");
             cargarListaCamioneta();
         }
         private void cargarListaCamioneta()

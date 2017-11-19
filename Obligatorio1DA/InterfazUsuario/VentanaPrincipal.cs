@@ -59,5 +59,11 @@ namespace InterfazUsuario
             Form nuevaVentana = new GestionCamionetaUI();
             nuevaVentana.Show();
         }
+
+        private void botonGestionActividades_Click(object sender, EventArgs e)
+        {
+            Form nuevaVentana = new GestionActividadUI();
+            nuevaVentana.Show();
+        }
     }
 }

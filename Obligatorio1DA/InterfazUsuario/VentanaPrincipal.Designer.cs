@@ -33,6 +33,7 @@
             this.botonGestionMaterias = new System.Windows.Forms.Button();
             this.botonGestionCamionetas = new System.Windows.Forms.Button();
             this.botonCargarDatos = new System.Windows.Forms.Button();
+            this.botonGestionActividades = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // botonGestionAlumnos
@@ -68,7 +69,7 @@
             // 
             // botonGestionCamionetas
             // 
-            this.botonGestionCamionetas.Location = new System.Drawing.Point(49, 168);
+            this.botonGestionCamionetas.Location = new System.Drawing.Point(49, 162);
             this.botonGestionCamionetas.Name = "botonGestionCamionetas";
             this.botonGestionCamionetas.Size = new System.Drawing.Size(125, 24);
             this.botonGestionCamionetas.TabIndex = 3;
@@ -78,12 +79,22 @@
             // 
             // botonCargarDatos
             // 
-            this.botonCargarDatos.Location = new System.Drawing.Point(49, 213);
+            this.botonCargarDatos.Location = new System.Drawing.Point(49, 285);
             this.botonCargarDatos.Name = "botonCargarDatos";
             this.botonCargarDatos.Size = new System.Drawing.Size(125, 25);
             this.botonCargarDatos.TabIndex = 4;
             this.botonCargarDatos.Text = "Cargar Datos";
             this.botonCargarDatos.UseVisualStyleBackColor = true;
+            // 
+            // botonGestionActividades
+            // 
+            this.botonGestionActividades.Location = new System.Drawing.Point(49, 204);
+            this.botonGestionActividades.Name = "botonGestionActividades";
+            this.botonGestionActividades.Size = new System.Drawing.Size(125, 23);
+            this.botonGestionActividades.TabIndex = 5;
+            this.botonGestionActividades.Text = "Gestion de Actividades";
+            this.botonGestionActividades.UseVisualStyleBackColor = true;
+            this.botonGestionActividades.Click += new System.EventHandler(this.botonGestionActividades_Click);
             // 
             // VentanaPrincipal
             // 
@@ -93,7 +104,8 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImage = global::InterfazUsuario.Properties.Resources.fondo_ventana;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(384, 245);
+            this.ClientSize = new System.Drawing.Size(636, 344);
+            this.Controls.Add(this.botonGestionActividades);
             this.Controls.Add(this.botonCargarDatos);
             this.Controls.Add(this.botonGestionCamionetas);
             this.Controls.Add(this.botonGestionMaterias);
@@ -115,6 +127,7 @@
         private System.Windows.Forms.Button botonGestionMaterias;
         private System.Windows.Forms.Button botonGestionCamionetas;
         private System.Windows.Forms.Button botonCargarDatos;
+        private System.Windows.Forms.Button botonGestionActividades;
     }
 }
 
