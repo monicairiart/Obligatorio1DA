@@ -23,6 +23,7 @@ namespace PruebasUnitarias
         {
             Assert.IsInstanceOfType(mantenimientoMateria, typeof(IModuloGestion));
         }
+        [TestMethod]
         public void ProbarDatosTipoModuloGestionMateria()
         {
             Assert.AreEqual("Gestion Materia", mantenimientoMateria.Nombre);

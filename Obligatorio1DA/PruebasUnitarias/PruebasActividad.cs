@@ -20,5 +20,19 @@ namespace PruebasUnitarias
         {
             Assert.IsInstanceOfType(mantenimientoActividad, typeof(IModuloGestion));
         }
+        [TestMethod]
+        public void ProbarDatosTipoModuloGestionActividad()
+        {
+            Assert.AreEqual("Gestion Actividad", mantenimientoActividad.Nombre);
+            Assert.AreEqual("Alta, Baja y Modificación de Actividades", mantenimientoActividad.Descripcion);
+        }
+        [TestMethod]
+        public void ProbarTipoModuloAltaActividad()
+        {
+            MantenimientoActividad Actividad = new GestionActividad.MantenimientoActividad();
+            List<string> alumnos = new List<string>();
+            Camioneta camioneta = mantenimientoCamioneta.AltaDatosActividad("1", "Nombre de la Actividad", "22/01/2017", 100, alumnos);
+            Assert.IsInstanceOfType(camioneta, typeof(Camioneta));
+        }
     }
 }

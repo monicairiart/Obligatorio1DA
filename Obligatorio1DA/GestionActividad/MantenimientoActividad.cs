@@ -14,5 +14,10 @@ namespace GestionActividad
         public string Descripcion { get; set; }
         public object Menu { get; set; }
         public IList Acciones { get; set; }
+        public MantenimientoActividad()
+        {
+            Nombre = "Gestion Actividad";
+            Descripcion = "Alta, Baja y Modificación de Actividades";
+        }
     }
 }
