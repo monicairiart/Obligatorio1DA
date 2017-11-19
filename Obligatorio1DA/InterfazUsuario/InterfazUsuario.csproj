@@ -52,6 +52,12 @@
     <Compile Include="AsignarMateriaUI.Designer.cs">
       <DependentUpon>AsignarMateriaUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="CamionetasDisponiblesUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CamionetasDisponiblesUI.Designer.cs">
+      <DependentUpon>CamionetasDisponiblesUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestionAlumnoUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CamionetasDisponiblesUI.resx">
+      <DependentUpon>CamionetasDisponiblesUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GestionAlumnoUI.resx">
       <DependentUpon>GestionAlumnoUI.cs</DependentUpon>
     </EmbeddedResource>

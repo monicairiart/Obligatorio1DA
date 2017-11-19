@@ -164,5 +164,12 @@ namespace InterfazUsuario
         {
 
         }
+
+        private void botonDisponibilidadCamionetas_Click(object sender, EventArgs e)
+        {
+          //  CamionetasDisponiblesUI     .ciDocenteSeleccionado = ciDocenteSeleccionado;
+            Form nuevaVentana = new CamionetasDisponiblesUI();
+            nuevaVentana.Show();
+        }
     }
 }

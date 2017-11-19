@@ -195,12 +195,13 @@
             // 
             // botonDisponibilidadCamionetas
             // 
-            this.botonDisponibilidadCamionetas.Location = new System.Drawing.Point(645, 211);
+            this.botonDisponibilidadCamionetas.Location = new System.Drawing.Point(614, 211);
             this.botonDisponibilidadCamionetas.Name = "botonDisponibilidadCamionetas";
-            this.botonDisponibilidadCamionetas.Size = new System.Drawing.Size(75, 23);
+            this.botonDisponibilidadCamionetas.Size = new System.Drawing.Size(132, 23);
             this.botonDisponibilidadCamionetas.TabIndex = 37;
             this.botonDisponibilidadCamionetas.Text = "Camionetas Disponibles";
             this.botonDisponibilidadCamionetas.UseVisualStyleBackColor = true;
+            this.botonDisponibilidadCamionetas.Click += new System.EventHandler(this.botonDisponibilidadCamionetas_Click);
             // 
             // GestionCamionetaUI
             // 
