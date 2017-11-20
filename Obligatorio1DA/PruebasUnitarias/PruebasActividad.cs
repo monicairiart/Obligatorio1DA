@@ -66,5 +66,19 @@ namespace PruebasUnitarias
             Assert.AreNotEqual(alumnosDiferentes, actividad.Alumnos);
             Assert.AreEqual(alumnos, actividad.Alumnos);
         }
+        public void ProbarDatosBajaActividad()
+        {
+            MantenimientoActividad mantenimientoActividad = new GestionActividad.MantenimientoActividad();
+            List<Actividad> misActividades = new List<Actividad>();
+            misActividades.Add(mantenimientoActividad.AltaDatosActividad("1","Cine", new DateTime(2017, 01, 22), 100, new List<string>()));
+            /*misMaterias.Add(mantenimientoMateria.AltaDatosMateria("222","Lógica", new List<string>(), new List<string>()));
+            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("333","Etica", new List<string>(), new List<string>()));
+            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("444", "Algebra", new List<string>(), new List<string>()));
+            */
+            Console.WriteLine("count de obtener actividades " + mantenimientoActividad.ObtenerActividades().Count);
+            CollectionAssert.AreEqual(misActividades, mantenimientoActividad.ObtenerActividades());
+            mantenimientoActividad.BajarActividad("1");
+            CollectionAssert.AreNotEqual(misActividades, mantenimientoActividad.ObtenerActividades());
+        }
     }
 }
