@@ -23,6 +23,7 @@ namespace GestionActividad
         }
         public Actividad AltaDatosActividad(string codigoActividad, string nombreActividad, DateTime fechaActividad, int costoActividad, List<string> alumnos)
         {
+            Console.WriteLine("entra a altadatosActividad ");
             Actividad actividad = new Actividad();
             actividad.CodigoActividad = codigoActividad;
             actividad.Nombre = nombreActividad;
@@ -30,6 +31,7 @@ namespace GestionActividad
             actividad.Costo = costoActividad;
             actividad.Alumnos = alumnos;
             actividades.Add(actividad);
+            Console.WriteLine("actividad.codigoActividad " + actividad.CodigoActividad);
             return actividad;
         }
     }
