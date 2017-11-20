@@ -15,7 +15,10 @@ namespace GestionActividad
         public object Menu { get; set; }
         public IList Acciones { get; set; }
         private static List<Actividad> actividades = new List<Actividad>();
-
+        public List<Actividad> ObtenerActividades()
+        {
+            return actividades;
+        }
         public MantenimientoActividad()
         {
             Nombre = "Gestion Actividad";
@@ -23,7 +26,6 @@ namespace GestionActividad
         }
         public Actividad AltaDatosActividad(string codigoActividad, string nombreActividad, DateTime fechaActividad, int costoActividad, List<string> alumnos)
         {
-            Console.WriteLine("entra a altadatosActividad ");
             Actividad actividad = new Actividad();
             actividad.CodigoActividad = codigoActividad;
             actividad.Nombre = nombreActividad;
@@ -31,8 +33,31 @@ namespace GestionActividad
             actividad.Costo = costoActividad;
             actividad.Alumnos = alumnos;
             actividades.Add(actividad);
-            Console.WriteLine("actividad.codigoActividad " + actividad.CodigoActividad);
             return actividad;
+        }
+        public void BajarActividad(string codigoActividad)
+        {
+            Console.WriteLine("entra a bajar actividad");
+            try
+            {
+                Actividad actividadAEliminar = actividades.Single(actividad => actividad.CodigoActividad == codigoActividad);
+                actividades.Remove(actividadAEliminar);
+                Console.WriteLine("actividad a eliminar " + actividadAEliminar.CodigoActividad);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Excepcion al filtrar actividad > " + e.ToString());
+            }
+        }
+        public void GenerarDatos()
+        {
+            AltaDatosActividad("1", "Cine", new DateTime(2017, 01, 22), 100, new List<string>());
+            AltaDatosActividad("2", "Teatro", new DateTime(2017, 10, 21), 150, new List<string>());
+            AltaDatosActividad("3", "Campus", new DateTime(2017, 11, 10), 200, new List<string>());
+            AltaDatosActividad("4", "Ajedrez", new DateTime(2017, 05, 23), 300, new List<string>());
+            /*            actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "50001002", "1");
+                        actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "49912233", "2");
+                        actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "50001002", "3"); */
         }
     }
 }
