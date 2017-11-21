@@ -27,9 +27,11 @@ namespace GestionDocente
         }
         public Docente AltaDatosDocente(string nombreDocente, string apellidoDocente, string ciDocente)
         {
+            Console.WriteLine("entra altadatosdocente ci " + ciDocente);
             Docente docente = new Docente();
             if (!DocenteExistente(ciDocente))
             {
+                Console.WriteLine("entra as docente no existente");
                 docente.Nombre = nombreDocente;
                 docente.Apellido = apellidoDocente;
                 docente.Ci = ciDocente;
@@ -81,11 +83,11 @@ namespace GestionDocente
         }
         public void GenerarDatos()
         {
-            docentesPrueba.Add(AltaDatosDocente("Juan Pablo", "Perez", "38667442"));
-            docentesPrueba.Add(AltaDatosDocente("Pedro", "Malan", "51112145"));
-            docentesPrueba.Add(AltaDatosDocente("Horacio", "Gabriel", "35466661"));
-            docentesPrueba.Add(AltaDatosDocente("Alejandro", "Gonzalez", "42227230"));
-            docentes = ObtenerDocentes();
+            AltaDatosDocente("Juan Pablo", "Perez", "38667442");
+            AltaDatosDocente("Pedro", "Malan", "51112145");
+            AltaDatosDocente("Horacio", "Gabriel", "35466661");
+            AltaDatosDocente("Alejandro", "Gonzalez", "42227230");
+            //docentes = ObtenerDocentes();
         }
     }
 }

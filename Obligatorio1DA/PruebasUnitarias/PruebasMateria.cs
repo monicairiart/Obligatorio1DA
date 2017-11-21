@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GestionMateria;
 using Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PruebasUnitarias
 {
@@ -16,7 +17,7 @@ namespace PruebasUnitarias
         public PruebasMateria()
         {
             mantenimientoMateria = new MantenimientoMateria();
-            mantenimientoMateria.GenerarDatos();
+            GenerarDatos();
         }
         [TestMethod]
         public void ProbarTipoModuloGestionMateria()
@@ -32,31 +33,33 @@ namespace PruebasUnitarias
         [TestMethod]
         public void ProbarTipoModuloAltaMateria()
         {
-            MantenimientoMateria Materia = new GestionMateria.MantenimientoMateria();
             List<string> docentes = new List<string>();
             List<string> alumnos = new List<string>();
             Materia materia = mantenimientoMateria.AltaDatosMateria("111", "Nombre de la Materia", docentes, alumnos);
             Assert.IsInstanceOfType(materia, typeof(Materia));
+            mantenimientoMateria.BajarMateria("111");
         }
         [TestMethod]
         public void ProbarDatosAltaMateriaNombre()
         {
             List<string> docentes = new List<string>();
             List<string> alumnos = new List<string>();
-            Materia materia = mantenimientoMateria.AltaDatosMateria("111", "Nombre de la Materia", docentes, alumnos);
+            Materia materia = mantenimientoMateria.AltaDatosMateria("1112", "Nombre de la Materia", docentes, alumnos);
             Assert.IsInstanceOfType(materia.Nombre, typeof(string));
             Assert.AreNotEqual("Nombre cualquiera", materia.Nombre);
             Assert.AreEqual("Nombre de la Materia", materia.Nombre);
+            mantenimientoMateria.BajarMateria("1112");
         }
         [TestMethod]
         public void ProbarDatosAltaMateriaCodigo()
         {
             List<string> docentes = new List<string>();
             List<string> alumnos = new List<string>();
-            Materia materia = mantenimientoMateria.AltaDatosMateria("111", "Nombre de la Materia", docentes, alumnos);
+            Materia materia = mantenimientoMateria.AltaDatosMateria("1113", "Nombre de la Materia", docentes, alumnos);
             Assert.IsInstanceOfType(materia.Nombre, typeof(string));
             Assert.AreNotEqual("222", materia.CodigoMateria);
-            Assert.AreEqual("111", materia.CodigoMateria);
+            Assert.AreEqual("1113", materia.CodigoMateria);
+            mantenimientoMateria.BajarMateria("1113");
         }
         [TestMethod]
         public void ProbarDatosAltaMateriaDocentes()
@@ -64,7 +67,7 @@ namespace PruebasUnitarias
             List<string> docentes = new List<string>();
             List<string> docentesDiferentes = new List<string>();
             List<string> alumnos = new List<string>();
-            Materia materia = mantenimientoMateria.AltaDatosMateria("111","Nombre de la Materia", docentes, alumnos);
+            Materia materia = mantenimientoMateria.AltaDatosMateria("1114","Nombre de la Materia", docentes, alumnos);
             docentes.Add("38667442");
             docentes.Add("51112145");
             docentesDiferentes.Add("35466661");
@@ -73,6 +76,7 @@ namespace PruebasUnitarias
             Assert.IsInstanceOfType(materia.Docentes, typeof(List<string>));
             Assert.AreNotEqual(docentesDiferentes, materia.Docentes);
             Assert.AreEqual(docentes, materia.Docentes);
+            mantenimientoMateria.BajarMateria("1114");
         }
         [TestMethod]
         public void ProbarDatosAltaMateriaAlumnos()
@@ -80,7 +84,7 @@ namespace PruebasUnitarias
             List<string> docentes = new List<string>();
             List<string> alumnosDiferentes = new List<string>();
             List<string> alumnos = new List<string>();
-            Materia materia = mantenimientoMateria.AltaDatosMateria("111", "Nombre de la Materia", docentes, alumnos);
+            Materia materia = mantenimientoMateria.AltaDatosMateria("1115", "Nombre de la Materia", docentes, alumnos);
             docentes.Add("38667442");
             docentes.Add("51112145");
             alumnos.Add("50001002");
@@ -89,59 +93,48 @@ namespace PruebasUnitarias
             Assert.IsInstanceOfType(materia.Alumnos, typeof(List<string>));
             Assert.AreNotEqual(alumnosDiferentes, materia.Alumnos);
             Assert.AreEqual(alumnos, materia.Alumnos);
+            mantenimientoMateria.BajarMateria("1115");
         }
         [TestMethod]
         public void ProbarDatosBajaMateria()
         {
-            MantenimientoMateria mantenimientoMateria = new GestionMateria.MantenimientoMateria();
-            /*List<Materia> misMaterias = new List<Materia>();
-            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("111","Matematicas", new List<string>(), new List<string>()));
-            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("222","Lógica", new List<string>(), new List<string>()));
-            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("333","Etica", new List<string>(), new List<string>()));
-            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("444", "Algebra", new List<string>(), new List<string>()));
-            */
-            Console.WriteLine("count de obtener materias " + mantenimientoMateria.ObtenerMaterias().Count);
-            CollectionAssert.AreEqual(misMaterias, mantenimientoMateria.ObtenerMaterias());
-            mantenimientoMateria.BajarMateria("111");
-            CollectionAssert.AreNotEqual(misMaterias, mantenimientoMateria.ObtenerMaterias());
-        }
+            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("1111", "Musica", new List<string>(), new List<string>()));
+            CollectionAssert.AreNotEqual(misMaterias, materias);
+            mantenimientoMateria.BajarMateria("1111");
+            misMaterias.OrderBy((m) => m);
+            CollectionAssert.AreEqual(mantenimientoMateria.ObtenerMaterias(), materias);
+       }
         [TestMethod]
         public void ProbarDatosBajaMateriaNoExiste()
         {
-            MantenimientoMateria mantenimientoMateria = new GestionMateria.MantenimientoMateria();
-            /*List<Materia> misMaterias = new List<Materia>();
-            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("111", "Matematicas", new List<string>(), new List<string>()));
-            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("222", "Lógica", new List<string>(), new List<string>()));
-            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("333", "Etica", new List<string>(), new List<string>()));
-            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("444", "Algebra", new List<string>(), new List<string>()));
-            */
-            Console.WriteLine("count mismaterias " + mantenimientoMateria.ObtenerMaterias().Count);
-            CollectionAssert.AreEqual(misMaterias, mantenimientoMateria.ObtenerMaterias());
-            mantenimientoMateria.BajarMateria("999");
-            CollectionAssert.AreNotEqual(misMaterias, mantenimientoMateria.ObtenerMaterias());
-
+            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("1111", "Musica", new List<string>(), new List<string>()));
+            CollectionAssert.AreNotEqual(misMaterias, materias);
+            mantenimientoMateria.BajarMateria("111122");
+            CollectionAssert.AreEqual(mantenimientoMateria.ObtenerMaterias(), materias);
         }
         [TestMethod]
         public void ProbarModificacionMateriaNombre()
         {
-            // Creamos una lista de docentes para realizar las validaciones
-            List<Materia> misMaterias = mantenimientoMateria.ObtenerMaterias();
+            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("1114", "Arte", new List<string>(), new List<string>()));
             Materia nuevosValoresMateria = new Materia();
             nuevosValoresMateria.Nombre = "Geografía";
-            mantenimientoMateria.ModificarMateria("111", nuevosValoresMateria);
-            Assert.AreEqual("Geografía", misMaterias[0].Nombre);
-            Console.WriteLine("nvos valor nombre " + misMaterias[0].Nombre);
+            nuevosValoresMateria.CodigoMateria = "1114";
+            mantenimientoMateria.ModificarMateria("1114", nuevosValoresMateria);
+            Assert.AreEqual("Geografía", mantenimientoMateria.ObtenerMateriaPorCodigo("1114").Nombre);
+            mantenimientoMateria.BajarMateria("1114");
         }
         [TestMethod]
         public void ProbarAsignarDocenteAMateria()
         {
+            mantenimientoMateria.AltaDatosMateria("555", "Arte", new List<string>(), new List<string>());
             materias = mantenimientoMateria.ObtenerMaterias();
             string ciDocente = "38667442";
-            string codigoMateria = "111";
+            string codigoMateria = "555";
             materias = AsignacionMateria.AsignarDocenteAMateria(materias, ciDocente, codigoMateria);
             Materia materia = mantenimientoMateria.ObtenerMateriaPorCodigo(codigoMateria);
             string ciDocenteEncontrado = materia.Docentes.Find(ci => ci == ciDocente);
             Assert.AreEqual(ciDocente, ciDocenteEncontrado);
+            mantenimientoMateria.BajarMateria("555");
         }
         [TestMethod]
         public void ProbarAsignarAlumnoAMateria()
@@ -149,12 +142,9 @@ namespace PruebasUnitarias
             materias = mantenimientoMateria.ObtenerMaterias();
             string ciAlumno = "50001002";
             string codigoMateria = "111";
-            Console.WriteLine("entra a asignar alumno materia ");
             materias = AsignacionMateria.AsignarAlumnoAMateria(materias, ciAlumno, codigoMateria);
-            Console.WriteLine("cant materias " + materias.Count);
             Materia materia = mantenimientoMateria.ObtenerMateriaPorCodigo(codigoMateria);
             string ciAlumnoEncontrado = materia.Alumnos.Find(ci => ci == ciAlumno);
-            Console.WriteLine("alumno de la materia " + materia.Alumnos.ToString());
             Assert.AreEqual(ciAlumno, ciAlumnoEncontrado);
         }
         [TestMethod]
@@ -167,38 +157,29 @@ namespace PruebasUnitarias
         {
             materias = mantenimientoMateria.ObtenerMaterias();
             string ciAlumno = "50001002";
-            string codigoMateria = "111";
+            string codigoMateria = "444";
             materias = AsignacionMateria.AsignarAlumnoAMateria(materias, ciAlumno, codigoMateria);
-            Console.WriteLine("cant materias materiasxalumno " + materias.Count);
-
             Materia materia = mantenimientoMateria.ObtenerMateriaPorCodigo(codigoMateria);
-            /*
-             string ciAlumnoEncontrado = materia.Alumnos.Find(ci => ci == ciAlumno);
-             Console.WriteLine("alumno de la materia " + materia.Alumnos.ToString());
-             Assert.AreEqual(ciAlumno, ciAlumnoEncontrado);
-             */
-            Assert.AreEqual(mantenimientoMateria.ObtenerMateriasPorAlumno(ciAlumno), ciAlumno);
+            Assert.AreEqual(mantenimientoMateria.ObtenerMateriasPorAlumno(ciAlumno)[0].CodigoMateria, codigoMateria);
         }
 
         public void GenerarDatos()
         {
-            List<Materia> misMaterias = new List<Materia>();
-            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("111", "Matematicas", new List<string>(), new List<string>()));
-            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("222", "Lógica", new List<string>(), new List<string>()));
-            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("333", "Etica", new List<string>(), new List<string>()));
-            misMaterias.Add(mantenimientoMateria.AltaDatosMateria("444", "Algebra", new List<string>(), new List<string>()));
-            CollectionAssert.AreEqual(misMaterias, mantenimientoMateria.ObtenerMaterias());
+            misMaterias = new List<Materia>();
+            Materia materia;
+            materia = new Materia() { CodigoMateria = "111", Nombre = "Matematicas", Alumnos = new List<string>(), Docentes = new List<string>() };
+            misMaterias.Add(materia);
+            mantenimientoMateria.AltaDatosMateria(materia.CodigoMateria, materia.Nombre, materia.Alumnos, materia.Docentes);
+            materia = new Materia() { CodigoMateria = "444", Nombre = "Algebra", Alumnos = new List<string>(), Docentes = new List<string>() };
+            misMaterias.Add(materia);
+            mantenimientoMateria.AltaDatosMateria(materia.CodigoMateria, materia.Nombre, materia.Alumnos, materia.Docentes);
+            materia = new Materia() { CodigoMateria = "333", Nombre = "Etica", Alumnos = new List<string>(), Docentes = new List<string>() };
+            misMaterias.Add(materia);
+            mantenimientoMateria.AltaDatosMateria(materia.CodigoMateria, materia.Nombre, materia.Alumnos, materia.Docentes);
+            materia = new Materia() { CodigoMateria = "222", Nombre = "Logica", Alumnos = new List<string>(), Docentes = new List<string>() };
+            misMaterias.Add(materia);
+            mantenimientoMateria.AltaDatosMateria(materia.CodigoMateria, materia.Nombre, materia.Alumnos, materia.Docentes);
             materias = mantenimientoMateria.ObtenerMaterias();
-            materias = AsignacionMateria.AsignarDocenteAMateria(materias, "38667442", "111");
-            materias = AsignacionMateria.AsignarDocenteAMateria(materias, "51112145", "333");
-            materias = AsignacionMateria.AsignarAlumnoAMateria(materias, "50001002", "111");
-            materias = AsignacionMateria.AsignarAlumnoAMateria(materias, "49912233", "444");
-
         }
-        /*public void GenerarDatos()
-        {
-
-        }*/
-
     }
 }

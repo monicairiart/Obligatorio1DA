@@ -11,14 +11,11 @@ namespace PruebasUnitarias
     {
         public MantenimientoActividad  mantenimientoActividad { get; set; }
         public List<Actividad> actividades { get; set; }
-
         public List<Actividad> misActividades { get; set; }
-
         public PruebasActividad()
         {
             mantenimientoActividad = new MantenimientoActividad();
             GenerarDatos();
-//            mantenimientoActividad.GenerarDatos();
         }
         [TestMethod]
         public void ProbarTipoModuloGestionActividad()
@@ -34,7 +31,6 @@ namespace PruebasUnitarias
         [TestMethod]
         public void ProbarTipoModuloAltaActividad()
         {
- //           MantenimientoActividad Actividad = new GestionActividad.MantenimientoActividad();
             List<string> alumnos = new List<string>();
             Actividad actividad = mantenimientoActividad.AltaDatosActividad("1", "Nombre de la Actividad", new DateTime(2017, 01, 22), 100, alumnos);
             Assert.IsInstanceOfType(actividad, typeof(Actividad));
@@ -69,6 +65,7 @@ namespace PruebasUnitarias
             Assert.IsInstanceOfType(actividad.Alumnos, typeof(List<string>));
             Assert.AreNotEqual(alumnosDiferentes, actividad.Alumnos);
             Assert.AreEqual(alumnos, actividad.Alumnos);
+
         }
         [TestMethod]
         public void ProbarDatosBajaActividad()
@@ -77,8 +74,16 @@ namespace PruebasUnitarias
             CollectionAssert.AreNotEqual(misActividades, actividades);
             mantenimientoActividad.BajarActividad("14");
             CollectionAssert.AreEqual(mantenimientoActividad.ObtenerActividades(), actividades);
-            
-       }
+        }
+        [TestMethod]
+        public void ProbarDatosBajaActividadNoExiste()
+        {
+            misActividades.Add(mantenimientoActividad.AltaDatosActividad("14", "Cine", new DateTime(2017, 01, 22), 100, new List<string>()));
+            CollectionAssert.AreNotEqual(misActividades, actividades);
+            mantenimientoActividad.BajarActividad("15");
+            CollectionAssert.AreNotEqual(misActividades, actividades);
+        }
+
         public void GenerarDatos()
         {
             misActividades = new List<Actividad>();

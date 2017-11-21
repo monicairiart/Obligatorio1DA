@@ -27,16 +27,19 @@ namespace GestionCamioneta
             Console.WriteLine();
             Nombre = "Gestion Camioneta";
             Descripcion = "Alta, Baja y Modificación de Camionetas";
-            GenerarDatos();
+            //GenerarDatos();
         }
         public Camioneta AltaDatosCamioneta(string matriculaCamioneta, int capacidadCamioneta, string estadoCamioneta, List<string> alumnos)
         {
             Camioneta camioneta = new Camioneta();
-            camioneta.Matricula = matriculaCamioneta;
-            camioneta.Capacidad = capacidadCamioneta;
-            camioneta.Estado = estadoCamioneta;
-            camioneta.Alumnos = alumnos;
-            camionetas.Add(camioneta);
+            if (!CamionetaExistente(matriculaCamioneta))
+            {
+                camioneta.Matricula = matriculaCamioneta;
+                camioneta.Capacidad = capacidadCamioneta;
+                camioneta.Estado = estadoCamioneta;
+                camioneta.Alumnos = alumnos;
+                camionetas.Add(camioneta);
+            }
             return camioneta;
         }
         public void ModificarCamioneta(string matricula, Camioneta nuevosValores)

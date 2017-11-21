@@ -32,30 +32,24 @@ namespace PruebasUnitarias
         public void ProbarTipoModuloAltaAlumno()
         {
             MantenimientoAlumno Alumno = new GestionAlumno.MantenimientoAlumno();
-            Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Docente", "Apellido del Docente", "35466661", Tuple.Create(1.0, 2.0));
+            Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "111", Tuple.Create(1.0, 2.0));
             Assert.IsInstanceOfType(alumno, typeof(Alumno));
+            mantenimientoAlumno.BajarAlumno("111");
         }
         [TestMethod]
         public void ProbarAltaAlumno()
         {
-            // En esta clase crear un alumno, comparar nombre, apellido y ci
-            // y despues de realizadas las pruebas, eliminar el alumno recien creado
-            // para mantener los datos estables
-
             Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Miguel", "Sosa", "111", Tuple.Create(1.0, 2.0));
             Assert.IsInstanceOfType(alumno, typeof(Alumno));
             Assert.AreEqual("Miguel", alumno.Nombre);
             Assert.AreEqual("Sosa", alumno.Apellido);
             Assert.AreEqual("111", alumno.Ci);
             mantenimientoAlumno.BajarAlumno("111");
-            //Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "50001002");
-            //Assert.IsInstanceOfType(alumno, typeof(Alumno));
         }
         [TestMethod]
         public void ProbarDatosAltaAlumnoNombre()
         {
             Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "50001003", Tuple.Create(1.0, 2.0));
-            Console.WriteLine("alumno nombre " + alumno.Nombre);
             Assert.IsInstanceOfType(alumno.Nombre, typeof(string));
             Assert.AreNotEqual("Nombre cualquiera", alumno.Nombre);
             Assert.AreEqual("Nombre del Alumno", alumno.Nombre);
@@ -85,140 +79,84 @@ namespace PruebasUnitarias
         {
             Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "50001006", Tuple.Create(1.0, 2.0));
             Assert.IsInstanceOfType(alumno.Ubicacion, typeof(Tuple<double, double>));
-            Console.WriteLine("ubicacion " + alumno.Ubicacion);
             Assert.AreEqual(Tuple.Create(1.0, 2.0), alumno.Ubicacion);
             mantenimientoAlumno.BajarAlumno("50001006");
         }
         [TestMethod]
         public void ProbarDatosBajaAlumno()
         {
-                       alumnos = mantenimientoAlumno.ObtenerAlumnos();
-
-            //           Alumno alumno = mantenimientoAlumno.AltaDatosAlumno("Nombre del Alumno", "Apellido del Alumno", "50001007", Tuple.Create(1.0, 2.0));
-            List<Alumno> misAlumnos = new List<Alumno>();
-            misAlumnos = mantenimientoAlumno.ObtenerAlumnos();
-            Console.WriteLine("mis alumnos count " + misAlumnos.Count);
-            Console.WriteLine("mantenimiento count " + mantenimientoAlumno.ObtenerAlumnos().Count);
-            foreach (Alumno a in misAlumnos)
-            {
-                Console.WriteLine("Alumno: " + a.Nombre + " " + a.Apellido + " " + a.Ci);
-            }
-            foreach (Alumno a in mantenimientoAlumno.ObtenerAlumnos())
-            {
-                Console.WriteLine("Alumno: " + a.Nombre + " " + a.Apellido + " " + a.Ci);
-            }
-            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.ObtenerAlumnos());
-            mantenimientoAlumno.BajarAlumno("50001002");
-            CollectionAssert.AreNotEqual(misAlumnos, mantenimientoAlumno.ObtenerAlumnos());
-
-            /*MantenimientoAlumno mantenimientoAlumno = new GestionAlumno.MantenimientoAlumno();
-            
-            List<Alumno> misAlumnos = new List<Alumno>();
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002", Tuple.Create(1.0, 2.0)));
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "49912233", Tuple.Create(1.0, 3.0)));
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "38824456", Tuple.Create(1.0, 4.0)));
-            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "39937650", Tuple.Create(1.0, 5.0)));
-            
-            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.ObtenerAlumnos());
-            mantenimientoAlumno.BajarAlumno("50001002");
-            CollectionAssert.AreNotEqual(misAlumnos, mantenimientoAlumno.ObtenerAlumnos());
-            */
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Miguel", "Sosa", "111", Tuple.Create(1.0, 2.0)));
+            CollectionAssert.AreNotEqual(misAlumnos, alumnos);
+            mantenimientoAlumno.BajarAlumno("111");
+            CollectionAssert.AreEqual(mantenimientoAlumno.ObtenerAlumnos(), alumnos);
         }
         [TestMethod]
         public void ProbarDatosBajaAlumnoNoExiste()
         {
-            //MantenimientoAlumno mantenimientoAlumno = new GestionAlumno.MantenimientoAlumno();
-            //List<Alumno> misAlumnos = new List<Alumno>();
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002"));
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "49912233"));
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "38824456"));
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "39937650"));
-            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.ObtenerAlumnos());
-            mantenimientoAlumno.BajarAlumno("55550005");
-            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.ObtenerAlumnos());
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Miguel", "Sosa", "111", Tuple.Create(1.0, 2.0)));
+            CollectionAssert.AreNotEqual(misAlumnos, alumnos);
+            mantenimientoAlumno.BajarAlumno("11111");
+            CollectionAssert.AreEqual(mantenimientoAlumno.ObtenerAlumnos(), alumnos);
         }
         [TestMethod]
         public void ProbarModificacionAlumnoNombre()
         {
-            //List<Alumno> misAlumnos = new List<Alumno>();
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002"));
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "49912233"));
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "38824456"));
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "39937650"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Miguel", "Sosa", "111", Tuple.Create(1.0, 2.0)));
             Alumno nuevosValoresAlumno = new Alumno();
-            nuevosValoresAlumno.Nombre = "Juanita";
-            mantenimientoAlumno.ModificarAlumno("50001002", nuevosValoresAlumno);
-            Assert.AreEqual("Juanita", misAlumnos[0].Nombre);
-            Console.WriteLine("nvos valor nombre " + misAlumnos[0].Nombre);
+            nuevosValoresAlumno.Nombre = "Juan Daniel";
+            nuevosValoresAlumno.Apellido = "Sosa";
+            nuevosValoresAlumno.Ci = "111";
+            nuevosValoresAlumno.Ubicacion = Tuple.Create(1.0, 2.0);
+            mantenimientoAlumno.ModificarAlumno("111", nuevosValoresAlumno);
+            Assert.AreEqual("Juan Daniel", mantenimientoAlumno.ObtenerAlumnoPorCi("111").Nombre);
+            mantenimientoAlumno.BajarAlumno("111");
         }
         [TestMethod]
         public void ProbarModificacionAlumnoApellido()
         {
-            //List<Alumno> misAlumnos = new List<Alumno>();
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002"));
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "49912233"));
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "38824456"));
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "39937650"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Miguel", "Sosa", "111", Tuple.Create(1.0, 2.0)));
             Alumno nuevosValoresAlumno = new Alumno();
-            nuevosValoresAlumno.Apellido = "Sosar";
-            mantenimientoAlumno.ModificarAlumno("50001002", nuevosValoresAlumno);
-            Assert.AreEqual("Sosar", misAlumnos[0].Nombre);
-            Console.WriteLine("nvos valor apellido " + misAlumnos[0].Apellido);
+            nuevosValoresAlumno.Nombre = "Miguel";
+            nuevosValoresAlumno.Apellido = "Gutierrez";
+            nuevosValoresAlumno.Ci = "111";
+            nuevosValoresAlumno.Ubicacion = Tuple.Create(1.0, 2.0);
+            mantenimientoAlumno.ModificarAlumno("111", nuevosValoresAlumno);
+            Assert.AreEqual("Gutierrez", mantenimientoAlumno.ObtenerAlumnoPorCi("111").Apellido);
+            mantenimientoAlumno.BajarAlumno("111");
         }
         [TestMethod]
         public void ProbarModificacionAlumnoCi()
         {
-            //List<Alumno> misAlumnos = new List<Alumno>();
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002"));
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "49912233"));
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "38824456"));
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "39937650"));
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Miguel", "Sosa", "111", Tuple.Create(1.0, 2.0)));
             Alumno nuevosValoresAlumno = new Alumno();
-            nuevosValoresAlumno.Ci = "11111111";
-            mantenimientoAlumno.ModificarAlumno("11111111", nuevosValoresAlumno);
-            Assert.AreEqual("11111111", misAlumnos[0].Ci);
-            Console.WriteLine("nvos valor ci " + misAlumnos[0].Ci);
-        }
+            nuevosValoresAlumno.Nombre = "Miguel";
+            nuevosValoresAlumno.Apellido = "Sosa";
+            nuevosValoresAlumno.Ci = "11122223";
+            nuevosValoresAlumno.Ubicacion = Tuple.Create(1.0, 2.0);
+            mantenimientoAlumno.ModificarAlumno("111", nuevosValoresAlumno);
+            Assert.AreEqual("11122223", mantenimientoAlumno.ObtenerAlumnoPorCi("11122223").Ci);
+            mantenimientoAlumno.BajarAlumno("11122223");
+            }
         [TestMethod]
         public void ProbarAlumnoExistente()
         {
-            //MantenimientoAlumno mantenimientoAlumno = new GestionAlumno.MantenimientoAlumno();
-            //List<Alumno> misAlumnos = new List<Alumno>();
-            //misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002"));
-            Assert.IsTrue(mantenimientoAlumno.AlumnoExistente("50001002"));
+           Assert.IsTrue(mantenimientoAlumno.AlumnoExistente("50001002"));
         }
         [TestMethod]
         public void ProbarObtenerAlumno()
         {
-            /*            List<Alumno> misAlumnos = new List<Alumno>();
-                        misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002"));
-                        misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "49912233"));
-                        misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "38824456"));
-                        misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "39937650"));
-             */
-            Console.WriteLine("Mis alumnos " + misAlumnos.Count);
-            foreach (Alumno a in misAlumnos) {
-                Console.WriteLine("Alumno: " + a.Nombre + " " + a.Apellido + " " + a.Ci);
-            }
-            Console.WriteLine("Mantenimiento alumnos " + mantenimientoAlumno.ObtenerAlumnos().Count);
-            foreach (Alumno am in mantenimientoAlumno.ObtenerAlumnos()) {
-                Console.WriteLine("Alumno: " + am.Nombre + " " + am.Apellido + " " + am.Ci);
-            }
-            CollectionAssert.AreEqual(misAlumnos, mantenimientoAlumno.ObtenerAlumnos());
+            misAlumnos.Add(mantenimientoAlumno.AltaDatosAlumno("Miguel", "Sosa", "111", Tuple.Create(1.0, 2.0)));
+            Assert.AreEqual("111", mantenimientoAlumno.ObtenerAlumnoPorCi("111").Ci);
+            mantenimientoAlumno.BajarAlumno("111");
         }
- /*       [TestMethod]
+        [TestMethod]
         public void ProbarGenerarDatos()
-        {
+       {
             List<Alumno> alumnosPrueba = new List<Alumno>();
-            MantenimientoAlumno mantenimientoAlumno = new GestionAlumno.MantenimientoAlumno();
-            alumnosPrueba.Add(mantenimientoAlumno.AltaDatosAlumno("Juana", "Sosa", "50001002"));
-            alumnosPrueba.Add(mantenimientoAlumno.AltaDatosAlumno("Paola", "Bianco", "49912233"));
-            alumnosPrueba.Add(mantenimientoAlumno.AltaDatosAlumno("Hugo", "Cabral", "38824456"));
-            alumnosPrueba.Add(mantenimientoAlumno.AltaDatosAlumno("Alejandra", "Suarez", "39937650"));
-            mantenimientoAlumno.GenerarDatos(); 
+            alumnosPrueba = mantenimientoAlumno.ObtenerAlumnos();
+            mantenimientoAlumno.GenerarDatos();
             CollectionAssert.AreEqual(alumnosPrueba, mantenimientoAlumno.ObtenerAlumnos());
-        }*/
-
+        }
         public void GenerarDatos()
         {
             misAlumnos = new List<Alumno>();
@@ -230,4 +168,3 @@ namespace PruebasUnitarias
         }
     }
 }
-
