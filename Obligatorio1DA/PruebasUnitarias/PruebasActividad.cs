@@ -83,7 +83,17 @@ namespace PruebasUnitarias
             mantenimientoActividad.BajarActividad("15");
             CollectionAssert.AreNotEqual(misActividades, actividades);
         }
-
+        [TestMethod]
+        public void ProbarModificacionActividadNombre()
+        {
+            misActividades.Add(mantenimientoActividad.AltaDatosActividad("14", "Cine", new DateTime(2017, 01, 22), 100, new List<string>()));
+            Actividad nuevosValoresActividad = new Actividad();
+            nuevosValoresActividad.Nombre = "Manualidades";
+            nuevosValoresActividad.CodigoActividad = "14";
+            mantenimientoActividad.ModificarActividad("14", nuevosValoresActividad);
+            Assert.AreEqual("Manualidades", mantenimientoActividad.ObtenerActividadPorCodigo("1114").Nombre);
+            mantenimientoActividad.BajarActividad("14");
+        }
         public void GenerarDatos()
         {
             misActividades = new List<Actividad>();
