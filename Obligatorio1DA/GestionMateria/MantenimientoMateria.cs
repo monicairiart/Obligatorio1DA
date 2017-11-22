@@ -67,7 +67,7 @@ namespace GestionMateria
                 int indiceDelaMateriaAModificar = materias.IndexOf(materiaAModificar);
                 materias[indiceDelaMateriaAModificar].Nombre = nuevosValores.Nombre != "" ? nuevosValores.Nombre : materiaAModificar.Nombre;
                 materias[indiceDelaMateriaAModificar].Docentes = nuevosValores.Docentes[0] != "" ? nuevosValores.Docentes : materiaAModificar.Docentes;
-                materias[indiceDelaMateriaAModificar].Alumnos = nuevosValores.Alumnos[0] != "" ? nuevosValores.Alumnos : materiaAModificar.Docentes;
+                materias[indiceDelaMateriaAModificar].Alumnos = nuevosValores.Alumnos[0] != "" ? nuevosValores.Alumnos : materiaAModificar.Alumnos;
             }
             catch (Exception e)
             {

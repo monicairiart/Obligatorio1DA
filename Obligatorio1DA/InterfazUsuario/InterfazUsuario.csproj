@@ -144,6 +144,10 @@
     <None Include="Resources\fondo ventana.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GestionActividad\GestionActividad.csproj">
+      <Project>{9133484e-5ee1-4fe9-b129-8061bac4d731}</Project>
+      <Name>GestionActividad</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GestionAlumno\GestionAlumno.csproj">
       <Project>{FE17B301-31C3-47E8-9576-60F23264A7F6}</Project>
       <Name>GestionAlumno</Name>

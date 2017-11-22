@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actividad.cs" />
+    <Compile Include="AsignacionActividad.cs" />
     <Compile Include="MantenimientoActividad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

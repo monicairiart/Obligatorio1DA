@@ -65,12 +65,13 @@ namespace PruebasUnitarias
             Assert.IsInstanceOfType(actividad.Alumnos, typeof(List<string>));
             Assert.AreNotEqual(alumnosDiferentes, actividad.Alumnos);
             Assert.AreEqual(alumnos, actividad.Alumnos);
+            mantenimientoActividad.BajarActividad("13");
 
         }
         [TestMethod]
         public void ProbarDatosBajaActividad()
         {
-            misActividades.Add(mantenimientoActividad.AltaDatosActividad("14","Cine", new DateTime(2017, 01, 22), 100, new List<string>()));
+            misActividades.Add(mantenimientoActividad.AltaDatosActividad("14","Cine1", new DateTime(2017, 01, 22), 100, new List<string>()));
             CollectionAssert.AreNotEqual(misActividades, actividades);
             mantenimientoActividad.BajarActividad("14");
             CollectionAssert.AreEqual(mantenimientoActividad.ObtenerActividades(), actividades);
@@ -78,10 +79,11 @@ namespace PruebasUnitarias
         [TestMethod]
         public void ProbarDatosBajaActividadNoExiste()
         {
-            misActividades.Add(mantenimientoActividad.AltaDatosActividad("14", "Cine", new DateTime(2017, 01, 22), 100, new List<string>()));
+            misActividades.Add(mantenimientoActividad.AltaDatosActividad("15", "Cine2", new DateTime(2017, 01, 22), 100, new List<string>()));
+            CollectionAssert.AreNotEqual(misActividades, actividades);
+            mantenimientoActividad.BajarActividad("16");
             CollectionAssert.AreNotEqual(misActividades, actividades);
             mantenimientoActividad.BajarActividad("15");
-            CollectionAssert.AreNotEqual(misActividades, actividades);
         }
         [TestMethod]
         public void ProbarModificacionActividadNombre()
@@ -91,10 +93,22 @@ namespace PruebasUnitarias
             nuevosValoresActividad.Nombre = "Manualidades";
             nuevosValoresActividad.CodigoActividad = "14";
             mantenimientoActividad.ModificarActividad("14", nuevosValoresActividad);
-            Assert.AreEqual("Manualidades", mantenimientoActividad.ObtenerActividadPorCodigo("1114").Nombre);
+            Assert.AreEqual("Manualidades", mantenimientoActividad.ObtenerActividadPorCodigo("14").Nombre);
             mantenimientoActividad.BajarActividad("14");
         }
-        public void GenerarDatos()
+        [TestMethod]
+        public void ProbarAsignarAlumnoAActividad()
+        {
+            actividades = mantenimientoActividad.ObtenerActividades();
+            string ciAlumno = "39937650";
+            string codigoActividad = "4";
+            actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, ciAlumno, codigoActividad);
+            Actividad actividad = mantenimientoActividad.ObtenerActividadPorCodigo(codigoActividad);
+            string ciAlumnoEncontrado = actividad.Alumnos.Find(ci => ci == ciAlumno);
+            Assert.AreEqual(ciAlumno, ciAlumnoEncontrado);
+        }
+
+        /*public void GenerarDatos()
         {
             misActividades = new List<Actividad>();
             misActividades.Add(mantenimientoActividad.AltaDatosActividad("1", "Cine", new DateTime(2017, 01, 22), 100, new List<string>()));
@@ -102,9 +116,30 @@ namespace PruebasUnitarias
             misActividades.Add(mantenimientoActividad.AltaDatosActividad("3", "Campus", new DateTime(2017, 11,10), 200, new List<string>()));
             misActividades.Add(mantenimientoActividad.AltaDatosActividad("4", "Ajedrez", new DateTime(2017, 05, 23), 300, new List<string>()));
             actividades = mantenimientoActividad.ObtenerActividades();
-/*            actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "50001002", "1");
+//           actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "50001002", "1");
             actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "49912233", "2");
-            actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "50001002", "3"); */
+            actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "50001002", "3"); //  /
+        }
+    */
+
+        public void GenerarDatos()
+        {
+            misActividades = new List<Actividad>();
+            Actividad actividad;
+            actividad = new Actividad() { CodigoActividad = "1", Nombre = "Cine", Fecha = new DateTime(2017, 01, 02), Costo = 100, Alumnos = new List<string>() };
+            misActividades.Add(actividad);
+            mantenimientoActividad.AltaDatosActividad(actividad.CodigoActividad, actividad.Nombre, actividad.Fecha, actividad.Costo, actividad.Alumnos);
+            actividad = new Actividad() { CodigoActividad = "2", Nombre = "Teatro", Fecha = new DateTime(2017, 10, 21), Costo = 150, Alumnos = new List<string>() };
+            misActividades.Add(actividad);
+            mantenimientoActividad.AltaDatosActividad(actividad.CodigoActividad, actividad.Nombre, actividad.Fecha, actividad.Costo, actividad.Alumnos);
+            actividad = new Actividad() { CodigoActividad = "3", Nombre = "Campus", Fecha = new DateTime(2017, 11, 10), Costo = 200, Alumnos = new List<string>() };
+            misActividades.Add(actividad);
+            mantenimientoActividad.AltaDatosActividad(actividad.CodigoActividad, actividad.Nombre, actividad.Fecha, actividad.Costo, actividad.Alumnos);
+            actividad = new Actividad() { CodigoActividad = "3", Nombre = "Ajedrez", Fecha = new DateTime(2017, 05, 23), Costo = 300, Alumnos = new List<string>() };
+            misActividades.Add(actividad);
+            mantenimientoActividad.AltaDatosActividad(actividad.CodigoActividad, actividad.Nombre, actividad.Fecha, actividad.Costo, actividad.Alumnos);
+
+            actividades = mantenimientoActividad.ObtenerActividades();
         }
     }
 }
