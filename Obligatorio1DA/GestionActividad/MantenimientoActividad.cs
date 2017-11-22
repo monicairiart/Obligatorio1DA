@@ -83,7 +83,7 @@ namespace GestionActividad
                 AltaDatosActividad("2", "Teatro", new DateTime(2017, 10, 21), 150, new List<string>());
                 AltaDatosActividad("3", "Campus", new DateTime(2017, 11, 10), 200, new List<string>());
                 AltaDatosActividad("4", "Ajedrez", new DateTime(2017, 05, 23), 300, new List<string>());
-//                actividades = ObtenerActividades();
+                actividades = ObtenerActividades();
                 actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "50001002", "1");
                 actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "49912233", "2");
                 actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "50001002", "3");

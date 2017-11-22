@@ -66,7 +66,6 @@ namespace PruebasUnitarias
             Assert.AreNotEqual(alumnosDiferentes, actividad.Alumnos);
             Assert.AreEqual(alumnos, actividad.Alumnos);
             mantenimientoActividad.BajarActividad("13");
-
         }
         [TestMethod]
         public void ProbarDatosBajaActividad()
@@ -107,21 +106,6 @@ namespace PruebasUnitarias
             string ciAlumnoEncontrado = actividad.Alumnos.Find(ci => ci == ciAlumno);
             Assert.AreEqual(ciAlumno, ciAlumnoEncontrado);
         }
-
-        /*public void GenerarDatos()
-        {
-            misActividades = new List<Actividad>();
-            misActividades.Add(mantenimientoActividad.AltaDatosActividad("1", "Cine", new DateTime(2017, 01, 22), 100, new List<string>()));
-            misActividades.Add(mantenimientoActividad.AltaDatosActividad("2", "Teatro", new DateTime (2017, 10, 21), 150, new List<string>()));
-            misActividades.Add(mantenimientoActividad.AltaDatosActividad("3", "Campus", new DateTime(2017, 11,10), 200, new List<string>()));
-            misActividades.Add(mantenimientoActividad.AltaDatosActividad("4", "Ajedrez", new DateTime(2017, 05, 23), 300, new List<string>()));
-            actividades = mantenimientoActividad.ObtenerActividades();
-//           actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "50001002", "1");
-            actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "49912233", "2");
-            actividades = AsignacionActividad.AsignarAlumnoAActividad(actividades, "50001002", "3"); //  /
-        }
-    */
-
         public void GenerarDatos()
         {
             misActividades = new List<Actividad>();
