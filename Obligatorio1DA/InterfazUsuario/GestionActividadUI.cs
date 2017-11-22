@@ -85,11 +85,55 @@ namespace InterfazUsuario
             if (ValidarDatos(codigoActividad, nuevosValoresActividad, true))
             {
                 mantenimientoActividad.AltaDatosActividad(codigoActividad, nombre, new DateTime(), costo, new List<string>());
-
-
                 cargarListaActividad();
             }
         }
+        private void botonModificarActividad_Click(object sender, EventArgs e)
+        {
+            Actividad actividadModificada = new Actividad();
+            actividadModificada.Nombre = entradaNombreActividad.Text;
+            actividadModificada.CodigoActividad = entradaCodigoActividad.Text;
+            mantenimientoActividad.ModificarActividad(codigoActividadSeleccionada, actividadModificada);
+            limpiarValoresViejos();
+            cargarListaActividad();
+        }
+
+        private void botonBajaActividad_Click(object sender, EventArgs e)
+        {
+            mantenimientoActividad.BajarActividad(codigoActividadSeleccionada);
+            limpiarValoresViejos();
+            cargarListaActividad();
+        }
+        private void limpiarValoresViejos()
+        {
+            entradaCodigoActividad.Clear();
+            entradaNombreActividad.Clear();
+            entradaCosto.Clear();
+        }
+
+        public void actualizarListaAlumnoActividad()
+        {
+            cargarListaAlumnoActividad(mantenimientoAlumno.ObtenerAlumnos());
+
+        }
+
+        private void cargarListaAlumnoActividad(List<Alumno> alumnosARetonar)
+        {
+            listaAlumnosInscriptos.Items.Clear();
+            listaAlumnosInscriptos.View = View.Details;
+            foreach (Alumno alumno in alumnosARetonar)
+            {
+                ListViewItem itemAlumno = new ListViewItem(alumno.Ci);
+                itemAlumno.SubItems.Add(alumno.Nombre);
+                listaAlumnosInscriptos.Items.Add(itemAlumno);
+            }
+        }
+        // hacer validar datos, ver para mostrar alumnos??
+        // hacer existenregistros repetidos para actividades
+        /*public static void LimpiarCodigoActividadSeleccionada()
+        {
+            codigoActividadSeleccionada = null;
+        }*/
         private Boolean ValidarDatos(string codigoActividad, Actividad nuevosValores, Boolean comprobarDuplicado)
         {
             if ((codigoActividad.Length == 0) || (nuevosValores.Nombre.Length == 0))
@@ -108,6 +152,10 @@ namespace InterfazUsuario
                 return (false);
             }
             return (true);
+        }
+        private void botonSalir_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

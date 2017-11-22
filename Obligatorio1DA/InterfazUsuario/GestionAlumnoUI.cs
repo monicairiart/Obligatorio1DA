@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
 namespace InterfazUsuario
 {
@@ -28,7 +29,8 @@ namespace InterfazUsuario
             listaAlumnos.Columns.Add("CI");
             listaAlumnos.Columns.Add("Nombre");
             listaAlumnos.Columns.Add("Apellido");
-            listaAlumnos.Columns.Add("Ubicación");
+            listaAlumnos.Columns.Add("Ubic. X");
+            listaAlumnos.Columns.Add("Ubic. Y");
             listaMaterias.Columns.Add("Código");
             listaMaterias.Columns.Add("Materia");
             cargarListaAlumno();
@@ -42,6 +44,8 @@ namespace InterfazUsuario
                 ListViewItem itemAlumno = new ListViewItem(alumno.Ci);
                 itemAlumno.SubItems.Add(alumno.Nombre);
                 itemAlumno.SubItems.Add(alumno.Apellido);
+                itemAlumno.SubItems.Add(alumno.Ubicacion.Item1.ToString());
+                itemAlumno.SubItems.Add(alumno.Ubicacion.Item2.ToString());
                 listaAlumnos.Items.Add(itemAlumno);
             }
         }
@@ -54,6 +58,8 @@ namespace InterfazUsuario
                 entradaCIAlumno.Text = alumnoSeleccionado[0].SubItems[0].Text;
                 entradaNombreAlumno.Text = alumnoSeleccionado[0].SubItems[1].Text;
                 entradaApellidoAlumno.Text = alumnoSeleccionado[0].SubItems[2].Text;
+                entradaUbicacionX.Text = alumnoSeleccionado[0].SubItems[3].Text;
+                entradaUbicacionY.Text = alumnoSeleccionado[0].SubItems[4].Text;
                 ciAlumnoSeleccionado = alumnoSeleccionado[0].SubItems[0].Text;
                 materiasDelAlumno = mantenimientoMateria.ObtenerMateriasPorAlumno(ciAlumnoSeleccionado);
                 cargarListaMateriaAlumno(materiasDelAlumno);
@@ -65,12 +71,16 @@ namespace InterfazUsuario
             string nombre = entradaNombreAlumno.Text;
             string apellido = entradaApellidoAlumno.Text;
             string ci = entradaCIAlumno.Text;
+            /////Tuple ubicacion = Tuple.Create(entradaUbicacionX.Text, entradaUbicacionY.Text);
+           // Tuple<double, double> ubicacion = entradaUbicacionX.Text;
+           //     ubicacion.Item1, ubicacion.//
             Alumno nuevosValoresAlumno = new Alumno();
             nuevosValoresAlumno.Ci = ci;
             nuevosValoresAlumno.Nombre = nombre;
             nuevosValoresAlumno.Apellido = apellido;
             if (ValidarDatos(ci, nuevosValoresAlumno, true))
             {
+                /////////tuple
                 mantenimientoAlumno.AltaDatosAlumno(nombre, apellido, ci, Tuple.Create(1.0, 2.0));
                 cargarListaAlumno();
             }
@@ -102,6 +112,8 @@ namespace InterfazUsuario
             entradaNombreAlumno.Clear();
             entradaApellidoAlumno.Clear();
             entradaCIAlumno.Clear();
+            entradaUbicacionX.Clear();
+            entradaUbicacionY.Clear();
         }
         public void actualizarListaMateriaAlumno()
         {
@@ -146,6 +158,16 @@ namespace InterfazUsuario
         private void botonSalir_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void listaMaterias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

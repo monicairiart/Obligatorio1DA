@@ -108,8 +108,7 @@ namespace InterfazUsuario
             materiaModificada.Nombre = entradaNombreMateria.Text;
             materiaModificada.CodigoMateria = entradaCodigoMateria.Text;
             mantenimientoMateria.ModificarMateria(codigoMateriaSeleccionada, materiaModificada);
-            entradaCodigoMateria.Clear();
-            entradaNombreMateria.Clear();
+            limpiarValoresViejos();
             cargarListaMateria();
         }
         private void botonBajaMateria_Click(object sender, EventArgs e)

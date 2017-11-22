@@ -42,12 +42,13 @@ namespace InterfazUsuario
             this.entradaCIAlumno = new System.Windows.Forms.TextBox();
             this.entradaNombreAlumno = new System.Windows.Forms.TextBox();
             this.entradaApellidoAlumno = new System.Windows.Forms.TextBox();
-            this.entradaUbicacion = new System.Windows.Forms.TextBox();
+            this.entradaUbicacionX = new System.Windows.Forms.TextBox();
             this.tituloMateria = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.listaAlumnos = new System.Windows.Forms.ListView();
             this.listaMaterias = new System.Windows.Forms.ListView();
             this.botonAsignarMateriaAAlumno = new System.Windows.Forms.Button();
+            this.entradaUbicacionY = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -158,12 +159,12 @@ namespace InterfazUsuario
             this.entradaApellidoAlumno.Size = new System.Drawing.Size(100, 20);
             this.entradaApellidoAlumno.TabIndex = 11;
             // 
-            // entradaUbicacion
+            // entradaUbicacionX
             // 
-            this.entradaUbicacion.Location = new System.Drawing.Point(324, 19);
-            this.entradaUbicacion.Name = "entradaUbicacion";
-            this.entradaUbicacion.Size = new System.Drawing.Size(94, 20);
-            this.entradaUbicacion.TabIndex = 12;
+            this.entradaUbicacionX.Location = new System.Drawing.Point(325, 19);
+            this.entradaUbicacionX.Name = "entradaUbicacionX";
+            this.entradaUbicacionX.Size = new System.Drawing.Size(42, 20);
+            this.entradaUbicacionX.TabIndex = 12;
             // 
             // tituloMateria
             // 
@@ -176,19 +177,21 @@ namespace InterfazUsuario
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.entradaUbicacionY);
             this.panel1.Controls.Add(this.listaAlumnos);
             this.panel1.Controls.Add(this.tituloCIAlumno);
             this.panel1.Controls.Add(this.entradaCIAlumno);
             this.panel1.Controls.Add(this.tituloNombreAlumno);
-            this.panel1.Controls.Add(this.entradaUbicacion);
+            this.panel1.Controls.Add(this.entradaUbicacionX);
             this.panel1.Controls.Add(this.tituloUbicacionAlumno);
             this.panel1.Controls.Add(this.entradaNombreAlumno);
             this.panel1.Controls.Add(this.entradaApellidoAlumno);
             this.panel1.Controls.Add(this.tituloApellidoAlumno);
             this.panel1.Location = new System.Drawing.Point(12, 67);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(421, 275);
+            this.panel1.Size = new System.Drawing.Size(427, 275);
             this.panel1.TabIndex = 15;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // listaAlumnos
             // 
@@ -206,6 +209,7 @@ namespace InterfazUsuario
             this.listaMaterias.Size = new System.Drawing.Size(120, 220);
             this.listaMaterias.TabIndex = 16;
             this.listaMaterias.UseCompatibleStateImageBehavior = false;
+            this.listaMaterias.SelectedIndexChanged += new System.EventHandler(this.listaMaterias_SelectedIndexChanged);
             // 
             // botonAsignarMateriaAAlumno
             // 
@@ -216,6 +220,13 @@ namespace InterfazUsuario
             this.botonAsignarMateriaAAlumno.Text = "Asignar";
             this.botonAsignarMateriaAAlumno.UseVisualStyleBackColor = true;
             this.botonAsignarMateriaAAlumno.Click += new System.EventHandler(this.botonAsignarMateriaAAlumno_Click);
+            // 
+            // entradaUbicacionY
+            // 
+            this.entradaUbicacionY.Location = new System.Drawing.Point(373, 19);
+            this.entradaUbicacionY.Name = "entradaUbicacionY";
+            this.entradaUbicacionY.Size = new System.Drawing.Size(48, 20);
+            this.entradaUbicacionY.TabIndex = 14;
             // 
             // GestionAlumnoUI
             // 
@@ -257,11 +268,12 @@ namespace InterfazUsuario
         private System.Windows.Forms.TextBox entradaCIAlumno;
         private System.Windows.Forms.TextBox entradaNombreAlumno;
         private System.Windows.Forms.TextBox entradaApellidoAlumno;
-        private System.Windows.Forms.TextBox entradaUbicacion;
+        private System.Windows.Forms.TextBox entradaUbicacionX;
         private System.Windows.Forms.Label tituloMateria;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ListView listaAlumnos;
         private System.Windows.Forms.ListView listaMaterias;
         private System.Windows.Forms.Button botonAsignarMateriaAAlumno;
+        private System.Windows.Forms.TextBox entradaUbicacionY;
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelVentanaMateria = new System.Windows.Forms.Panel();
+            this.entradaPickerFecha = new System.Windows.Forms.DateTimePicker();
             this.entradaCosto = new System.Windows.Forms.TextBox();
             this.tituloCosto = new System.Windows.Forms.Label();
             this.tituloFecha = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.botonModificarActividad = new System.Windows.Forms.Button();
             this.botonBajaActividad = new System.Windows.Forms.Button();
             this.botonAltaActividad = new System.Windows.Forms.Button();
-            this.entradaPickerFecha = new System.Windows.Forms.DateTimePicker();
             this.panelVentanaMateria.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +65,14 @@
             this.panelVentanaMateria.Name = "panelVentanaMateria";
             this.panelVentanaMateria.Size = new System.Drawing.Size(661, 313);
             this.panelVentanaMateria.TabIndex = 36;
+            // 
+            // entradaPickerFecha
+            // 
+            this.entradaPickerFecha.Location = new System.Drawing.Point(227, 57);
+            this.entradaPickerFecha.Name = "entradaPickerFecha";
+            this.entradaPickerFecha.Size = new System.Drawing.Size(200, 20);
+            this.entradaPickerFecha.TabIndex = 40;
+            this.entradaPickerFecha.Value = new System.DateTime(2017, 11, 21, 0, 0, 0, 0);
             // 
             // entradaCosto
             // 
@@ -167,24 +175,27 @@
             this.botonSalir.TabIndex = 34;
             this.botonSalir.Text = "Salir";
             this.botonSalir.UseVisualStyleBackColor = true;
+            this.botonSalir.Click += new System.EventHandler(this.botonSalir_Click);
             // 
             // botonModificarActividad
             // 
-            this.botonModificarActividad.Location = new System.Drawing.Point(689, 147);
+            this.botonModificarActividad.Location = new System.Drawing.Point(689, 105);
             this.botonModificarActividad.Name = "botonModificarActividad";
             this.botonModificarActividad.Size = new System.Drawing.Size(75, 23);
             this.botonModificarActividad.TabIndex = 33;
             this.botonModificarActividad.Text = "Modificación";
             this.botonModificarActividad.UseVisualStyleBackColor = true;
+            this.botonModificarActividad.Click += new System.EventHandler(this.botonModificarActividad_Click);
             // 
             // botonBajaActividad
             // 
-            this.botonBajaActividad.Location = new System.Drawing.Point(689, 107);
+            this.botonBajaActividad.Location = new System.Drawing.Point(689, 142);
             this.botonBajaActividad.Name = "botonBajaActividad";
             this.botonBajaActividad.Size = new System.Drawing.Size(75, 23);
             this.botonBajaActividad.TabIndex = 32;
             this.botonBajaActividad.Text = "Bajar";
             this.botonBajaActividad.UseVisualStyleBackColor = true;
+            this.botonBajaActividad.Click += new System.EventHandler(this.botonBajaActividad_Click);
             // 
             // botonAltaActividad
             // 
@@ -195,14 +206,6 @@
             this.botonAltaActividad.Text = "Agregar";
             this.botonAltaActividad.UseVisualStyleBackColor = true;
             this.botonAltaActividad.Click += new System.EventHandler(this.botonAltaActividad_Click);
-            // 
-            // entradaPickerFecha
-            // 
-            this.entradaPickerFecha.Location = new System.Drawing.Point(227, 57);
-            this.entradaPickerFecha.Name = "entradaPickerFecha";
-            this.entradaPickerFecha.Size = new System.Drawing.Size(200, 20);
-            this.entradaPickerFecha.TabIndex = 40;
-            this.entradaPickerFecha.Value = new System.DateTime(2017, 11, 21, 0, 0, 0, 0);
             // 
             // GestionActividadUI
             // 
