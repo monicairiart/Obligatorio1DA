@@ -1,6 +1,8 @@
 ﻿using GestionAlumno;
 using GestionDocente;
 using GestionMateria;
+using RelacionAlumnoMateria;
+using RelacionDocenteMateria;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,5 +17,8 @@ namespace Persistencia
         public DbSet<Alumno> Alumnos { get; set; }
         public DbSet<Docente> Docentes { get; set; }
         public DbSet<Materia> Materias { get; set; }
+        public DbSet<DocenteMateria> DocentesMaterias { get; set; }
+        public DbSet<AlumnoMateria> AlumnosMaterias { get; set; }
+
     }
 }

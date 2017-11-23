@@ -1,5 +1,9 @@
-﻿using GestionMateria;
+﻿using GestionAlumno;
+using GestionDocente;
+using GestionMateria;
 using Persistencia;
+using RelacionAlumnoMateria;
+using RelacionDocenteMateria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,12 +19,11 @@ namespace InterfazUsuario
     public partial class AsignarMateriaUI : Form
     {
         MantenimientoMateria mantenimientoMateria = new MantenimientoMateria();
-        string codigoMateriaSeleccionada;
-        public static string ciDocenteSeleccionado;
-        public static string ciAlumnoSeleccionado;
+        string idMateriaSeleccionada;
+        public static string idDocenteSeleccionado;
+        public static string idAlumnoSeleccionado;
         public static Form ventanaOrigen;
         private ContextoDb contextoDb = new ContextoDb();
-        //private ContextoDb contextoDb = new ContextoDb();
         public AsignarMateriaUI()
         {
             InitializeComponent();
@@ -29,18 +32,9 @@ namespace InterfazUsuario
         private void AsignarMateriaUI_Load(object sender, EventArgs e)
         {
 
-            mantenimientoMateria.GenerarDatos();
-            //Console.WriteLine("count alumnos " + mantenimientoAlumno.GetAlumnos().Count());
             listaMaterias.Columns.Add("Id");
             listaMaterias.Columns.Add("Código Materia");
             listaMaterias.Columns.Add("Nombre");
-
-            ListViewItem itemMateria = new ListViewItem();
-            //itemAlumno.SubItems.Add("Matematicas");
-            //itemAlumno.SubItems.Add("1MA");
-
-            listaMaterias.View = View.Details;
-            listaMaterias.Items.Add(itemMateria);
             cargarListaMateria();
         }
         private void cargarListaMateria()
@@ -57,16 +51,8 @@ namespace InterfazUsuario
             }
             listaMaterias.Items.Clear();
             listaMaterias.View = View.Details;
-            /*foreach (GestionMateria.Materia materia in mantenimientoMateria.ObtenerMaterias())
-            {
-                ListViewItem itemMateria = new ListViewItem(materia.CodigoMateria);
-                itemMateria.SubItems.Add(materia.Nombre);
-
-                listaMaterias.Items.Add(itemMateria);
-            }*/
             foreach (Materia materia in registroMaterias)
             {
-                //7 ListViewItem itemDocente = new ListViewItem(docente.Ci);
                 ListViewItem itemMateria = new ListViewItem(materia.Id.ToString()); //7 agregñue tostring
                 itemMateria.SubItems.Add(materia.CodigoMateria);                    //7 agregue
                 itemMateria.SubItems.Add(materia.Nombre);
@@ -78,39 +64,55 @@ namespace InterfazUsuario
             ListView.SelectedListViewItemCollection materiaSeleccionada = listaMaterias.SelectedItems;
             if (materiaSeleccionada.Count > 0)
             {
-                codigoMateriaSeleccionada = materiaSeleccionada[0].SubItems[0].Text;
+                idMateriaSeleccionada = materiaSeleccionada[0].SubItems[0].Text;
             }
         }
 
         private void botonAltaMateria_Click(object sender, EventArgs e)
         {
             List<Materia> materias = mantenimientoMateria.ObtenerMaterias();
-            if (ciDocenteSeleccionado != null)
+            Boolean volverVentanaDocente = false;
+            if (idDocenteSeleccionado != null)
             {
-                AsignacionMateria.AsignarDocenteAMateria(materias, ciDocenteSeleccionado, codigoMateriaSeleccionada);
-                //                List<Docente> docentesDb=contextoDb.Docentes.SqlQuery("Select * from Docentes where ci='"+ciDocenteSeleccionado+"'").ToList();
-                /*List<Materia> materiasDb = contextoDb.Materias.SqlQuery("Select * from Materias where codigoMateria='" + codigoMateriaSeleccionada + "'").ToList();
+                //AsignacionMateria.AsignarDocenteAMateria(materias, idDocenteSeleccionado, codigoMateriaSeleccionada);
+                List<Docente> docentesDb=contextoDb.Docentes.SqlQuery("Select * from Docentes where ci='"+idDocenteSeleccionado+"'").ToList();
+                List<Materia> materiasDb = contextoDb.Materias.SqlQuery("Select * from Materias where id='" + idMateriaSeleccionada + "'").ToList();
                 DocenteMateria docenteMateriaDb = new DocenteMateria();
                 docenteMateriaDb.MateriaId = materiasDb[0].Id;
                 docenteMateriaDb.DocenteId = Int32.Parse(idDocenteSeleccionado);
                 contextoDb.DocentesMaterias.Add(docenteMateriaDb);
-                contextoDb.SaveChanges();*/
-
-
+                contextoDb.SaveChanges();
+                volverVentanaDocente = true;
+                idDocenteSeleccionado = null;
+            }
+            else if(idAlumnoSeleccionado != null)
+            {
+                //                AsignacionMateria.AsignarAlumnoAMateria(materias, idAlumnoSeleccionado, idMateriaSeleccionada);
                 //VentanaPrincipal.ventanaGestionDocenteUI.actualizarListaMateriaDocente();
-                ciDocenteSeleccionado = null;
+                List<Alumno> alumnosDb = contextoDb.Alumnos.SqlQuery("Select * from Alumnoes where ci='" + idAlumnoSeleccionado + "'").ToList();
+                List<Materia> materiasDb = contextoDb.Materias.SqlQuery("Select * from Materias where id='" + idMateriaSeleccionada + "'").ToList();
+                AlumnoMateria alumnoMateriaDb = new AlumnoMateria();
+                alumnoMateriaDb.MateriaId = materiasDb[0].Id;
+                alumnoMateriaDb.AlumnoId = Int32.Parse(idAlumnoSeleccionado);
+                contextoDb.AlumnosMaterias.Add(alumnoMateriaDb);
+                contextoDb.SaveChanges();
+                volverVentanaDocente = false;
+                idAlumnoSeleccionado = null;
             }
             else
             {
-                AsignacionMateria.AsignarAlumnoAMateria(materias, ciAlumnoSeleccionado, codigoMateriaSeleccionada);
-                //VentanaPrincipal.ventanaGestionDocenteUI.actualizarListaMateriaDocente();
-                ciAlumnoSeleccionado = null;
+                MessageBox.Show("No se realizo una selección para asignar.");
             }
-            /*
             ventanaOrigen.Close();
-            ventanaOrigen = new GestionDocenteUI();
+            if (volverVentanaDocente)
+            {
+                ventanaOrigen = new GestionDocenteUI();
+            }
+            else
+            {
+                ventanaOrigen = new GestionAlumnoUI();
+            }
             ventanaOrigen.Show();
-*/
             Close();
         }
         private void botonSalir_Click(object sender, EventArgs e)

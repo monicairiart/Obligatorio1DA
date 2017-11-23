@@ -2,6 +2,8 @@
 using GestionDocente;
 using GestionMateria;
 using Persistencia;
+using RelacionAlumnoMateria;
+using RelacionDocenteMateria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +23,7 @@ namespace InterfazUsuario
         MantenimientoDocente mantenimientoDocente = new MantenimientoDocente();
         MantenimientoAlumno mantenimientoAlumno = new MantenimientoAlumno();
         private ContextoDb contextoDb = new ContextoDb();
-	Materia materiaDbSeleccionada;
+	    Materia materiaDbSeleccionada;
 
         public GestionMateriaUI()
         {
@@ -88,32 +90,59 @@ namespace InterfazUsuario
                 idMateriaSeleccionada = materiaSeleccionada[0].SubItems[0].Text;
                 int idMateria = Int32.Parse(idMateriaSeleccionada);
                 materiaDbSeleccionada = contextoDb.Materias.Where(materia => materia.Id == idMateria).ToList()[0];
-                List<Materia> materiasDb = contextoDb.Materias.ToList();
+                //////List<Materia> materiasDb = contextoDb.Materias.ToList();
 
-//                docentesDeMateria = mantenimientoMateria.ObtenerMateriaPorCodigo(idMateriaSeleccionada).Docentes;
- /*               alumnosDeMateria = mantenimientoMateria.ObtenerMateriaPorCodigo(idMateriaSeleccionada).Alumnos;
-                listaMateriasDocente.Items.Clear();
-                listaMateriasDocente.View = View.Details;
-                listaAlumnosInscriptos.Items.Clear();
-                listaAlumnosInscriptos.View = View.Details;
+                List<Docente> docentesDb = contextoDb.Docentes.ToList();
+                List<Docente> docentesDelaMateriaDb = docentesDb.FindAll(buscarDocentesDb);
+                cargarListaDocenteMateria(docentesDelaMateriaDb);
 
-                foreach (string ci in docentesDeMateria)
-                {
-                    Docente docente = mantenimientoDocente.ObtenerDocentePorCi(ci);
-                    ListViewItem itemDocente = new ListViewItem(docente.Ci);
-                    itemDocente.SubItems.Add(docente.Nombre);
-                    itemDocente.SubItems.Add(docente.Apellido);
-                    listaMateriasDocente.Items.Add(itemDocente);
-                }
-                foreach (string ci in alumnosDeMateria)
-                {
-                    Alumno alumno = mantenimientoAlumno.ObtenerAlumnoPorCi(ci);
-                    ListViewItem itemAlumno = new ListViewItem(alumno.Ci);
-                    itemAlumno.SubItems.Add(alumno.Nombre);
-                    itemAlumno.SubItems.Add(alumno.Apellido);
-                    listaAlumnosInscriptos.Items.Add(itemAlumno);
-                }*/
+                List<Alumno> alumnosDb = contextoDb.Alumnos.ToList();
+                List<Alumno> alumnosDelaMateriaDb = alumnosDb.FindAll(buscarAlumnosDb);
+                cargarListaAlumnoMateria(alumnosDelaMateriaDb);
+
+
+                //                docentesDeMateria = mantenimientoMateria.ObtenerMateriaPorCodigo(idMateriaSeleccionada).Docentes;
+                /*               alumnosDeMateria = mantenimientoMateria.ObtenerMateriaPorCodigo(idMateriaSeleccionada).Alumnos;
+                               listaMateriasDocente.Items.Clear();
+                               listaMateriasDocente.View = View.Details;
+                               listaAlumnosInscriptos.Items.Clear();
+                               listaAlumnosInscriptos.View = View.Details;
+
+                               foreach (string ci in docentesDeMateria)
+                               {
+                                   Docente docente = mantenimientoDocente.ObtenerDocentePorCi(ci);
+                                   ListViewItem itemDocente = new ListViewItem(docente.Ci);
+                                   itemDocente.SubItems.Add(docente.Nombre);
+                                   itemDocente.SubItems.Add(docente.Apellido);
+                                   listaMateriasDocente.Items.Add(itemDocente);
+                               }
+                               foreach (string ci in alumnosDeMateria)
+                               {
+                                   Alumno alumno = mantenimientoAlumno.ObtenerAlumnoPorCi(ci);
+                                   ListViewItem itemAlumno = new ListViewItem(alumno.Ci);
+                                   itemAlumno.SubItems.Add(alumno.Nombre);
+                                   itemAlumno.SubItems.Add(alumno.Apellido);
+                                   listaAlumnosInscriptos.Items.Add(itemAlumno);
+                               }*/
             }
+        }
+        private bool existeDocenteRelacionado(DocenteMateria docenteMateria, Docente docente)
+        {
+            return (docenteMateria.DocenteId == docente.Id);
+        }
+
+        private bool buscarDocentesDb(Docente docente)
+        {
+            return materiaDbSeleccionada.DocentesMaterias.ToList().Exists(materiaDocente => existeDocenteRelacionado(materiaDocente, docente));
+        }
+        private bool existeAlumnoRelacionado(AlumnoMateria alumnoMateria, Alumno alumno)
+        {
+            return (alumnoMateria.AlumnoId == alumno.Id);
+        }
+
+        private bool buscarAlumnosDb(Alumno alumno)
+        {
+            return materiaDbSeleccionada.AlumnosMaterias.ToList().Exists(materiaAlumno => existeAlumnoRelacionado(materiaAlumno, alumno));
         }
         private void botonAltaMateria_Click(object sender, EventArgs e)
         {
@@ -173,6 +202,9 @@ namespace InterfazUsuario
             } //7 fin
             limpiarValoresViejos();
             cargarListaMateria();
+            listaAlumnosInscriptos.Clear();
+            listaMateriasDocente.Clear();
+
         }
         private void limpiarValoresViejos()
         {
@@ -195,6 +227,17 @@ namespace InterfazUsuario
                 ListViewItem itemDocente = new ListViewItem(docente.Ci);
                 itemDocente.SubItems.Add(docente.Nombre);
                 listaMateriasDocente.Items.Add(itemDocente);
+            }
+        }
+        private void cargarListaAlumnoMateria(List<Alumno> alumnosARetonar)
+        {
+            listaAlumnosInscriptos.Items.Clear();
+            listaAlumnosInscriptos.View = View.Details;
+            foreach (Alumno alumno in alumnosARetonar)
+            {
+                ListViewItem itemAlumno = new ListViewItem(alumno.Ci);
+                itemAlumno.SubItems.Add(alumno.Nombre);
+                listaAlumnosInscriptos.Items.Add(itemAlumno);
             }
         }
         // hacer validar datos, ver para mostrar docentes y alumnos??

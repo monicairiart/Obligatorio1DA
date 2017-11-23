@@ -181,6 +181,14 @@
       <Project>{A42F9471-968B-45F1-81F6-C37B6CB3F7FF}</Project>
       <Name>Persistencia</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RelacionAlumnoMateria\RelacionAlumnoMateria.csproj">
+      <Project>{1e97a452-52c9-4d64-99df-2c0dd2ed08f9}</Project>
+      <Name>RelacionAlumnoMateria</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RelacionDocenteMateria\RelacionDocenteMateria.csproj">
+      <Project>{edfc714f-e6db-4a22-a6e7-1bb10ba75051}</Project>
+      <Name>RelacionDocenteMateria</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

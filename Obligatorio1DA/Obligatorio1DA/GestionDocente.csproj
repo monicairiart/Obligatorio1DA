@@ -58,6 +58,10 @@
       <Project>{1a27e14a-3f49-476a-bad9-e118b4a628d1}</Project>
       <Name>Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RelacionDocenteMateria\RelacionDocenteMateria.csproj">
+      <Project>{EDFC714F-E6DB-4A22-A6E7-1BB10BA75051}</Project>
+      <Name>RelacionDocenteMateria</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

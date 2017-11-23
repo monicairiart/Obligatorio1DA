@@ -1,6 +1,7 @@
 ﻿using GestionAlumno;
 using GestionMateria;
 using Persistencia;
+using RelacionAlumnoMateria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -92,7 +93,19 @@ namespace InterfazUsuario
                 int idAlumno = Int32.Parse(idAlumnoSeleccionado);
                 alumnoDbSeleccionado = contextoDb.Alumnos.Where(alumno => alumno.Id == idAlumno).ToList()[0];
                 List<Materia> materiasDb = contextoDb.Materias.ToList();
+                List<Materia> materiasDelAlumnoDb = materiasDb.FindAll(buscarMateriasDb);
+                cargarListaMateriaAlumno(materiasDelAlumnoDb);
+
             }
+        }
+        private bool existeMateriaRelacionada(AlumnoMateria alumnoMateria, Materia materia)
+        {
+            return (alumnoMateria.MateriaId == materia.Id);
+        }
+
+        private bool buscarMateriasDb(Materia materia)
+        {
+            return alumnoDbSeleccionado.AlumnosMaterias.ToList().Exists(alumnoMateria => existeMateriaRelacionada(alumnoMateria, materia));
         }
         private void botonAltaAlumno_Click(object sender, EventArgs e)
         {
@@ -188,7 +201,8 @@ namespace InterfazUsuario
         }
         private void botonAsignarMateriaAAlumno_Click(object sender, EventArgs e)
         {
-            AsignarMateriaUI.ciAlumnoSeleccionado = idAlumnoSeleccionado;
+            AsignarMateriaUI.idAlumnoSeleccionado = idAlumnoSeleccionado;
+            AsignarMateriaUI.ventanaOrigen = this;
             Form nuevaVentana = new AsignarMateriaUI();
             nuevaVentana.Show();
         }

@@ -1,6 +1,7 @@
 ﻿using GestionDocente;
 using GestionMateria;
 using Persistencia;
+using RelacionDocenteMateria;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -93,11 +94,19 @@ namespace InterfazUsuario
                 int idDocente = Int32.Parse(idDocenteSeleccionado);
                 docenteDbSeleccionado = contextoDb.Docentes.Where(docente => docente.Id == idDocente).ToList()[0];
                 List<Materia> materiasDb = contextoDb.Materias.ToList();
-                ///////// va c relac List<Materia> materiasDelDocenteDb = materiasDb.FindAll(buscarMateriasDb);
-                /////////cargarListaMateriaDocente(materiasDelDocenteDb);
+                List<Materia> materiasDelDocenteDb = materiasDb.FindAll(buscarMateriasDb);
+                cargarListaMateriaDocente(materiasDelDocenteDb);
             }
         }
+        private bool existeMateriaRelacionada(DocenteMateria docenteMateria, Materia materia)
+        {
+            return (docenteMateria.MateriaId == materia.Id);
+        }
 
+        private bool buscarMateriasDb(Materia materia)
+        {
+            return docenteDbSeleccionado.DocentesMaterias.ToList().Exists(docenteMateria => existeMateriaRelacionada(docenteMateria, materia));
+        }
         private void botonAltaDocente_Click(object sender, EventArgs e)
         {
             /*string nombre = entradaNombreDocente.Text;
@@ -211,10 +220,10 @@ namespace InterfazUsuario
         }
         private void botonAsignarMateriaADocente_Click(object sender, EventArgs e)
         {
-            /*  AsignarMateriaUI.idDocenteSeleccionado = idDocenteSeleccionado; //7 ci x id
+            AsignarMateriaUI.idDocenteSeleccionado = idDocenteSeleccionado; //7 ci x id
             AsignarMateriaUI.ventanaOrigen = this;
             Form nuevaVentana = new AsignarMateriaUI();
-            nuevaVentana.Show();  va*/
+            nuevaVentana.Show();
         }
         private Boolean ValidarDatos(string ci, Docente nuevosValores, Boolean comprobarDuplicado)
         {

@@ -1,4 +1,5 @@
 ﻿using Interfaces;
+using RelacionAlumnoMateria;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace GestionAlumno
         public string Ci { get; set; }
         //public Tuple<double, double> Ubicacion { get; set; }
         public double Ubicacion { get; set; }
+        public virtual ICollection<AlumnoMateria> AlumnosMaterias { get; set; }
+
 
     }
 }

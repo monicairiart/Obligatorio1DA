@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Interfaces;
+using RelacionDocenteMateria;
+using RelacionAlumnoMateria;
 
 namespace GestionMateria
 {
@@ -14,6 +16,9 @@ namespace GestionMateria
         public string Nombre { get; set; }
         public List<string> Docentes { get; set; }
         public List<string> Alumnos { get; set; }
+        public virtual ICollection<DocenteMateria> DocentesMaterias { get; set; }
+        public virtual ICollection<AlumnoMateria> AlumnosMaterias { get; set; }
+
         public Boolean GetCiDocente(string ciDocente)
         {
             Boolean existe = Docentes.ToList().Contains(ciDocente);

@@ -60,6 +60,14 @@
       <Project>{1a27e14a-3f49-476a-bad9-e118b4a628d1}</Project>
       <Name>Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RelacionAlumnoMateria\RelacionAlumnoMateria.csproj">
+      <Project>{1E97A452-52C9-4D64-99DF-2C0DD2ED08F9}</Project>
+      <Name>RelacionAlumnoMateria</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RelacionDocenteMateria\RelacionDocenteMateria.csproj">
+      <Project>{edfc714f-e6db-4a22-a6e7-1bb10ba75051}</Project>
+      <Name>RelacionDocenteMateria</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
