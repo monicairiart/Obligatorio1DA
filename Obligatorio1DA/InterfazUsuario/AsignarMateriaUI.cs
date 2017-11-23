@@ -1,4 +1,5 @@
 ﻿using GestionMateria;
+using Persistencia;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace InterfazUsuario
         public static string ciDocenteSeleccionado;
         public static string ciAlumnoSeleccionado;
         public static Form ventanaOrigen;
+        private ContextoDb contextoDb = new ContextoDb();
         //private ContextoDb contextoDb = new ContextoDb();
         public AsignarMateriaUI()
         {
@@ -29,6 +31,7 @@ namespace InterfazUsuario
 
             mantenimientoMateria.GenerarDatos();
             //Console.WriteLine("count alumnos " + mantenimientoAlumno.GetAlumnos().Count());
+            listaMaterias.Columns.Add("Id");
             listaMaterias.Columns.Add("Código Materia");
             listaMaterias.Columns.Add("Nombre");
 
@@ -42,13 +45,31 @@ namespace InterfazUsuario
         }
         private void cargarListaMateria()
         {
+            List<Materia> registroMaterias = new List<Materia>(); // contextoDb.Docentes.SqlQuery("Select * from Docentes").ToList(); //07
+
+            try
+            {
+                registroMaterias = contextoDb.Materias.SqlQuery("Select * from Materias").ToList(); //07
+            }
+            catch
+            {
+                MessageBox.Show("Hubo un error al listar los docentes.");
+            }
             listaMaterias.Items.Clear();
             listaMaterias.View = View.Details;
-            foreach (GestionMateria.Materia materia in mantenimientoMateria.ObtenerMaterias())
+            /*foreach (GestionMateria.Materia materia in mantenimientoMateria.ObtenerMaterias())
             {
                 ListViewItem itemMateria = new ListViewItem(materia.CodigoMateria);
                 itemMateria.SubItems.Add(materia.Nombre);
 
+                listaMaterias.Items.Add(itemMateria);
+            }*/
+            foreach (Materia materia in registroMaterias)
+            {
+                //7 ListViewItem itemDocente = new ListViewItem(docente.Ci);
+                ListViewItem itemMateria = new ListViewItem(materia.Id.ToString()); //7 agregñue tostring
+                itemMateria.SubItems.Add(materia.CodigoMateria);                    //7 agregue
+                itemMateria.SubItems.Add(materia.Nombre);
                 listaMaterias.Items.Add(itemMateria);
             }
         }

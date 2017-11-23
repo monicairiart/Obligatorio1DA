@@ -1,6 +1,7 @@
 ﻿using GestionAlumno;
 using GestionDocente;
 using GestionMateria;
+using Persistencia;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,9 +17,11 @@ namespace InterfazUsuario
     public partial class GestionMateriaUI : Form
     {
         MantenimientoMateria mantenimientoMateria = new MantenimientoMateria();
-        public static string codigoMateriaSeleccionada;
+        public static string idMateriaSeleccionada { get; set; }
         MantenimientoDocente mantenimientoDocente = new MantenimientoDocente();
         MantenimientoAlumno mantenimientoAlumno = new MantenimientoAlumno();
+        private ContextoDb contextoDb = new ContextoDb();
+	Materia materiaDbSeleccionada;
 
         public GestionMateriaUI()
         {
@@ -32,6 +35,7 @@ namespace InterfazUsuario
 */
         private void GestionMateriaUI_Load(object sender, EventArgs e)
         {
+            listaMaterias.Columns.Add("Id");
             listaMaterias.Columns.Add("Código Materia");
             listaMaterias.Columns.Add("Nombre");
             listaMateriasDocente.Columns.Add("CI");
@@ -44,13 +48,31 @@ namespace InterfazUsuario
         }
         private void cargarListaMateria()
         {
+            List<Materia> registroMaterias = new List<Materia>(); // 
+            //contextoDb.Materias.SqlQuery("Select * from Materias").ToList(); //07
+            try
+            {
+                registroMaterias = contextoDb.Materias.SqlQuery("Select * from Materias").ToList(); //07
+            }
+            catch
+            {
+                MessageBox.Show("Hubo un error al listar las materias.");
+            }
             listaMaterias.Items.Clear();
             listaMaterias.View = View.Details;
-            foreach (GestionMateria.Materia materia in mantenimientoMateria.ObtenerMaterias())
+            /*foreach (GestionMateria.Materia materia in mantenimientoMateria.ObtenerMaterias())
             {
                 ListViewItem itemMateria = new ListViewItem(materia.CodigoMateria);
                 itemMateria.SubItems.Add(materia.Nombre);
 
+                listaMaterias.Items.Add(itemMateria);
+            }*/
+            foreach (Materia materia in registroMaterias)
+            {
+                //7 ListViewItem itemMateria = new ListViewItem(materia.CodigoMateria);
+                ListViewItem itemMateria = new ListViewItem(materia.Id.ToString()); //7 agregñue tostring
+                itemMateria.SubItems.Add(materia.CodigoMateria);                    //7 agregue
+                itemMateria.SubItems.Add(materia.Nombre);
                 listaMaterias.Items.Add(itemMateria);
             }
         }
@@ -61,11 +83,15 @@ namespace InterfazUsuario
             ListView.SelectedListViewItemCollection materiaSeleccionada = listaMaterias.SelectedItems;
             if (materiaSeleccionada.Count > 0)
             {
-                entradaCodigoMateria.Text = materiaSeleccionada[0].SubItems[0].Text;
-                entradaNombreMateria.Text = materiaSeleccionada[0].SubItems[1].Text;
-                codigoMateriaSeleccionada = materiaSeleccionada[0].SubItems[0].Text;
-                docentesDeMateria = mantenimientoMateria.ObtenerMateriaPorCodigo(codigoMateriaSeleccionada).Docentes;
-                alumnosDeMateria = mantenimientoMateria.ObtenerMateriaPorCodigo(codigoMateriaSeleccionada).Alumnos;
+                entradaCodigoMateria.Text = materiaSeleccionada[0].SubItems[1].Text;
+                entradaNombreMateria.Text = materiaSeleccionada[0].SubItems[2].Text;
+                idMateriaSeleccionada = materiaSeleccionada[0].SubItems[0].Text;
+                int idMateria = Int32.Parse(idMateriaSeleccionada);
+                materiaDbSeleccionada = contextoDb.Materias.Where(materia => materia.Id == idMateria).ToList()[0];
+                List<Materia> materiasDb = contextoDb.Materias.ToList();
+
+//                docentesDeMateria = mantenimientoMateria.ObtenerMateriaPorCodigo(idMateriaSeleccionada).Docentes;
+ /*               alumnosDeMateria = mantenimientoMateria.ObtenerMateriaPorCodigo(idMateriaSeleccionada).Alumnos;
                 listaMateriasDocente.Items.Clear();
                 listaMateriasDocente.View = View.Details;
                 listaAlumnosInscriptos.Items.Clear();
@@ -86,7 +112,7 @@ namespace InterfazUsuario
                     itemAlumno.SubItems.Add(alumno.Nombre);
                     itemAlumno.SubItems.Add(alumno.Apellido);
                     listaAlumnosInscriptos.Items.Add(itemAlumno);
-                }
+                }*/
             }
         }
         private void botonAltaMateria_Click(object sender, EventArgs e)
@@ -94,26 +120,57 @@ namespace InterfazUsuario
             string nombre = entradaNombreMateria.Text;
             string codigoMateria = entradaCodigoMateria.Text;
             Materia nuevosValoresMateria = new Materia();
+
             nuevosValoresMateria.CodigoMateria = codigoMateria;
             nuevosValoresMateria.Nombre = nombre;
             if (ValidarDatos(codigoMateria, nuevosValoresMateria, true))
             {
                 mantenimientoMateria.AltaDatosMateria(codigoMateria, nombre, new List<string>(), new List<string>());
+                contextoDb.Materias.Add(nuevosValoresMateria);
+                contextoDb.SaveChanges();
                 cargarListaMateria();
             }
         }
         private void botonModificarMateria_Click(object sender, EventArgs e)
         {
-            Materia materiaModificada = new Materia();
+            /*Materia materiaModificada = new Materia();
             materiaModificada.Nombre = entradaNombreMateria.Text;
             materiaModificada.CodigoMateria = entradaCodigoMateria.Text;
-            mantenimientoMateria.ModificarMateria(codigoMateriaSeleccionada, materiaModificada);
+            mantenimientoMateria.ModificarMateria(idMateriaSeleccionada, materiaModificada);
             limpiarValoresViejos();
-            cargarListaMateria();
+            cargarListaMateria();*/
+            Materia materiaModificado = new Materia();
+            materiaModificado.Nombre = entradaNombreMateria.Text;
+            materiaModificado.CodigoMateria = entradaCodigoMateria.Text;
+            materiaModificado.Id = int.Parse(idMateriaSeleccionada); //7 agregue
+            if (ValidarDatos(materiaModificado.CodigoMateria, materiaModificado, false))
+            {
+                //mantenimientoDocente.ModificarDocente(idDocenteSeleccionado, docenteModificado); //7 ci x id
+                entradaCodigoMateria.Clear();
+                entradaNombreMateria.Clear();
+                //7 agrefe inio
+                Materia materiaBaseDatos = contextoDb.Materias.Find(materiaModificado.Id);
+                if (materiaBaseDatos != null)
+                {
+                    contextoDb.Entry(materiaBaseDatos).CurrentValues.SetValues(materiaModificado);
+                    contextoDb.SaveChanges();
+                } //7 fin            
+                cargarListaMateria();
+            }
         }
         private void botonBajaMateria_Click(object sender, EventArgs e)
         {
-            mantenimientoMateria.BajarMateria(codigoMateriaSeleccionada);
+            /*mantenimientoMateria.BajarMateria(idMateriaSeleccionada);
+            limpiarValoresViejos();
+            cargarListaMateria();*/
+            mantenimientoMateria.BajarMateria(idMateriaSeleccionada); //7 ci x id
+            //7 agrego inicio
+            Materia materiaBaseDatos = contextoDb.Materias.Find(int.Parse(idMateriaSeleccionada));
+            if (materiaBaseDatos != null)
+            {
+                contextoDb.Materias.Remove(materiaBaseDatos);
+                contextoDb.SaveChanges();
+            } //7 fin
             limpiarValoresViejos();
             cargarListaMateria();
         }
@@ -148,6 +205,7 @@ namespace InterfazUsuario
         }*/
         private Boolean ValidarDatos(string codigoMateria, Materia nuevosValores, Boolean comprobarDuplicado)
         {
+
             if ((codigoMateria.Length == 0) || (nuevosValores.Nombre.Length == 0))
             {
                 MessageBox.Show("Error: Los datos ingresados no son correctos");
@@ -158,10 +216,18 @@ namespace InterfazUsuario
                 MessageBox.Show("Error: Los datos ingresados no son correctos");
                 return (false);
             }
-            if (mantenimientoMateria.MateriaExistente(codigoMateria) && comprobarDuplicado)
+            try
             {
-                MessageBox.Show("Error: La materia ya existe");
-                return (false);
+                materiaDbSeleccionada = contextoDb.Materias.Where(materia => materia.CodigoMateria == codigoMateria).ToList()[0];
+
+                if (comprobarDuplicado)
+                {
+                    MessageBox.Show("Error: La materia ya existe");
+                    return (false);
+                }
+            }
+            catch
+            {
             }
             return (true);
         }

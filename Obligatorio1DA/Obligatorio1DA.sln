@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionActividad", "Gestion
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistencia", "Persistencia\Persistencia.csproj", "{A42F9471-968B-45F1-81F6-C37B6CB3F7FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelacionAlumnoMateria", "RelacionAlumnoMateria\RelacionAlumnoMateria.csproj", "{1E97A452-52C9-4D64-99DF-2C0DD2ED08F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{A42F9471-968B-45F1-81F6-C37B6CB3F7FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A42F9471-968B-45F1-81F6-C37B6CB3F7FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A42F9471-968B-45F1-81F6-C37B6CB3F7FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E97A452-52C9-4D64-99DF-2C0DD2ED08F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E97A452-52C9-4D64-99DF-2C0DD2ED08F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E97A452-52C9-4D64-99DF-2C0DD2ED08F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E97A452-52C9-4D64-99DF-2C0DD2ED08F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

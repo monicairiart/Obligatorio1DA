@@ -76,7 +76,7 @@ namespace GestionMateria
         }
         public Materia ObtenerMateriaPorCodigo(string codigoMateria)
         {
-            Materia materiaARetornar = materias.Single(materia => materia.CodigoMateria == codigoMateria);
+            Materia materiaARetornar = materias.Find(materia => materia.CodigoMateria == codigoMateria);
             return materiaARetornar;
         }
         public List<Materia> ObtenerMateriasPorDocente(string ciDocente)
