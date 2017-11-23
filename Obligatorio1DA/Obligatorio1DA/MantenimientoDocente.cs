@@ -16,6 +16,7 @@ namespace GestionDocente
         public IList Acciones { get; set; }
         private static List<Docente> docentes = new List<Docente>();
         public List<Docente> docentesPrueba = new List<Docente>();
+        /////public ContextoDb contextoDb { get; set; }
         public List<Docente> ObtenerDocentes()
         {
             return docentes;
@@ -89,5 +90,12 @@ namespace GestionDocente
             AltaDatosDocente("Alejandro", "Gonzalez", "42227230");
             //docentes = ObtenerDocentes();
         }
+        /*public Docente ObtenerDocenteDb(int id)
+        {
+            Docente docente = contextoDb.Docentes.FirstOrDefault(st => st.Id == id);
+            if (docente == null)
+                throw new ArgumentException("La entidad no existe");
+            return docente;
+        }*/
     }
 }

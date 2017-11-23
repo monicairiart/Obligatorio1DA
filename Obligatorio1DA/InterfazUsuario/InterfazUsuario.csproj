@@ -177,6 +177,10 @@
       <Project>{99B99CDE-B8E9-4FE3-8FF5-E3F908092C11}</Project>
       <Name>GestionDocente</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Persistencia\Persistencia.csproj">
+      <Project>{A42F9471-968B-45F1-81F6-C37B6CB3F7FF}</Project>
+      <Name>Persistencia</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

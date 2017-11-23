@@ -9,6 +9,7 @@ namespace GestionMateria
 {
     public class Materia
     {
+        public int Id { get; set; }
         public string CodigoMateria { get; set; }
         public string Nombre { get; set; }
         public List<string> Docentes { get; set; }

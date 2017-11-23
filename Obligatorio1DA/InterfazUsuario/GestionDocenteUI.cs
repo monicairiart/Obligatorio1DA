@@ -1,5 +1,6 @@
 ﻿using GestionDocente;
 using GestionMateria;
+using Persistencia;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +16,11 @@ namespace InterfazUsuario
     public partial class GestionDocenteUI : Form
     {
         MantenimientoDocente mantenimientoDocente = new MantenimientoDocente();
-        public static string ciDocenteSeleccionado { get; set; }
+        public static string idDocenteSeleccionado { get; set; }
         MantenimientoMateria mantenimientoMateria = new MantenimientoMateria();
+        private ContextoDb contextoDb = new ContextoDb();
+        Docente docenteDbSeleccionado;
+
         public GestionDocenteUI()
         {
             InitializeComponent();
@@ -24,8 +28,7 @@ namespace InterfazUsuario
 
         private void GestionDocenteUI_Load(object sender, EventArgs e)
         {
- //           mantenimientoDocente.GenerarDatos();
- //          mantenimientoMateria.GenerarDatos();
+            listaDocentes.Columns.Add("Id");
             listaDocentes.Columns.Add("CI");
             listaDocentes.Columns.Add("Nombre");
             listaDocentes.Columns.Add("Apellido");
@@ -36,7 +39,7 @@ namespace InterfazUsuario
 
         private void cargarListaDocente()
         {
-            listaDocentes.Items.Clear();
+            /*listaDocentes.Items.Clear();
             listaDocentes.View = View.Details;
             foreach (Docente docente in mantenimientoDocente.ObtenerDocentes())
             {
@@ -44,11 +47,31 @@ namespace InterfazUsuario
                 itemDocente.SubItems.Add(docente.Nombre);
                 itemDocente.SubItems.Add(docente.Apellido);
                 listaDocentes.Items.Add(itemDocente);
+            }  */
+            List<Docente> registroDocentes = new List<Docente>();
+            try
+            {
+                registroDocentes = contextoDb.Docentes.ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Hubo un error al listar los docentes.");
+            }
+            listaDocentes.Items.Clear();
+            listaDocentes.View = View.Details;
+            Console.WriteLine("count reg db docentes" + registroDocentes.Count());
+            foreach (Docente docente in registroDocentes)
+            {
+                ListViewItem itemDocente = new ListViewItem(docente.Id.ToString()); //7 agregñue tostring
+                itemDocente.SubItems.Add(docente.Ci);                    //7 agregue
+                itemDocente.SubItems.Add(docente.Nombre);
+                itemDocente.SubItems.Add(docente.Apellido);
+                listaDocentes.Items.Add(itemDocente);
             }
         }
         private void listaDocentes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Materia> materiasDelDocente = new List<Materia>();
+            /*List<Materia> materiasDelDocente = new List<Materia>();
             ListView.SelectedListViewItemCollection docenteSeleccionado = listaDocentes.SelectedItems;
             if (docenteSeleccionado.Count > 0)
             {
@@ -58,12 +81,26 @@ namespace InterfazUsuario
                 ciDocenteSeleccionado = docenteSeleccionado[0].SubItems[0].Text;
                 materiasDelDocente = mantenimientoMateria.ObtenerMateriasPorDocente(ciDocenteSeleccionado); 
                 cargarListaMateriaDocente(materiasDelDocente);
+            }*/
+            List<Materia> materiasDelDocente = new List<Materia>();
+            ListView.SelectedListViewItemCollection docenteSeleccionado = listaDocentes.SelectedItems;
+            if (docenteSeleccionado.Count > 0)
+            {
+                entradaCIDocente.Text = docenteSeleccionado[0].SubItems[1].Text; //7 cambio todos los indices agrego +1
+                entradaNombreDocente.Text = docenteSeleccionado[0].SubItems[2].Text;
+                entradaApellidoDocente.Text = docenteSeleccionado[0].SubItems[3].Text;
+                idDocenteSeleccionado = docenteSeleccionado[0].SubItems[0].Text;
+                int idDocente = Int32.Parse(idDocenteSeleccionado);
+                docenteDbSeleccionado = contextoDb.Docentes.Where(docente => docente.Id == idDocente).ToList()[0];
+                List<Materia> materiasDb = contextoDb.Materias.ToList();
+                ///////// va c relac List<Materia> materiasDelDocenteDb = materiasDb.FindAll(buscarMateriasDb);
+                /////////cargarListaMateriaDocente(materiasDelDocenteDb);
             }
         }
 
         private void botonAltaDocente_Click(object sender, EventArgs e)
         {
-            string nombre = entradaNombreDocente.Text;
+            /*string nombre = entradaNombreDocente.Text;
             string apellido = entradaApellidoDocente.Text;
             string ci = entradaCIDocente.Text;
             Docente nuevosValoresDocente = new Docente();
@@ -74,11 +111,33 @@ namespace InterfazUsuario
             {
                 mantenimientoDocente.AltaDatosDocente(nombre, apellido, ci);
                 cargarListaDocente();
+            }*/
+            string nombre = entradaNombreDocente.Text;
+            string apellido = entradaApellidoDocente.Text;
+            string ci = entradaCIDocente.Text;
+            Docente nuevosValoresDocente = new Docente();
+            nuevosValoresDocente.Ci = ci;
+            nuevosValoresDocente.Nombre = nombre;
+            nuevosValoresDocente.Apellido = apellido;
+            if (ValidarDatos(ci, nuevosValoresDocente, true))
+            {
+                mantenimientoDocente.AltaDatosDocente(nombre, apellido, ci);
+                try
+                {
+                    contextoDb.Docentes.Add(nuevosValoresDocente);
+                    contextoDb.SaveChanges();
+                    cargarListaDocente();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    Console.WriteLine("error: " + ex.ToString());
+                    MessageBox.Show("Hubo un error al agregar un docente.");
+                }
             }
         }
         private void botonModificarDocente_Click(object sender, EventArgs e)
         {
-            Docente docenteModificado = new Docente();
+            /*Docente docenteModificado = new Docente();
             docenteModificado.Nombre = entradaNombreDocente.Text;
             docenteModificado.Apellido = entradaApellidoDocente.Text;
             docenteModificado.Ci = entradaCIDocente.Text;
@@ -89,11 +148,41 @@ namespace InterfazUsuario
                 entradaApellidoDocente.Clear();
                 entradaNombreDocente.Clear();
                 cargarListaDocente();
+            }*/
+            Docente docenteModificado = new Docente();
+            docenteModificado.Nombre = entradaNombreDocente.Text;
+            docenteModificado.Apellido = entradaApellidoDocente.Text;
+            docenteModificado.Ci = entradaCIDocente.Text;
+            docenteModificado.Id = int.Parse(idDocenteSeleccionado); //7 agregue
+            if (ValidarDatos(docenteModificado.Ci, docenteModificado, false))
+            {
+                mantenimientoDocente.ModificarDocente(idDocenteSeleccionado, docenteModificado); //7 ci x id
+                entradaCIDocente.Clear();
+                entradaApellidoDocente.Clear();
+                entradaNombreDocente.Clear();
+                //7 agrefe inio
+                Docente docenteBaseDatos = contextoDb.Docentes.Find(docenteModificado.Id);
+                if (docenteBaseDatos != null)
+                {
+                    contextoDb.Entry(docenteBaseDatos).CurrentValues.SetValues(docenteModificado);
+                    contextoDb.SaveChanges();
+                } //7 fin            
+                cargarListaDocente();
             }
         }
         private void botonBajarDocente_Click_1(object sender, EventArgs e)
         {
-            mantenimientoDocente.BajarDocente(ciDocenteSeleccionado); 
+            /*mantenimientoDocente.BajarDocente(ciDocenteSeleccionado); 
+            limpiarValoresViejos();
+            cargarListaDocente();*/
+            mantenimientoDocente.BajarDocente(idDocenteSeleccionado); //7 ci x id
+            //7 agrego inicio
+            Docente docenteBaseDatos = contextoDb.Docentes.Find(int.Parse(idDocenteSeleccionado));
+            if (docenteBaseDatos != null)
+            {
+                contextoDb.Docentes.Remove(docenteBaseDatos);
+                contextoDb.SaveChanges();
+            } //7 fin
             limpiarValoresViejos();
             cargarListaDocente();
         }
@@ -122,9 +211,10 @@ namespace InterfazUsuario
         }
         private void botonAsignarMateriaADocente_Click(object sender, EventArgs e)
         {
-            AsignarMateriaUI.ciDocenteSeleccionado = ciDocenteSeleccionado; 
+            /*  AsignarMateriaUI.idDocenteSeleccionado = idDocenteSeleccionado; //7 ci x id
+            AsignarMateriaUI.ventanaOrigen = this;
             Form nuevaVentana = new AsignarMateriaUI();
-            nuevaVentana.Show();
+            nuevaVentana.Show();  va*/
         }
         private Boolean ValidarDatos(string ci, Docente nuevosValores, Boolean comprobarDuplicado)
         {

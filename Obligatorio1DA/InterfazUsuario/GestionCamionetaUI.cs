@@ -66,8 +66,7 @@ namespace InterfazUsuario
                     ListViewItem itemAlumno = new ListViewItem(alumno.Ci);
                     itemAlumno.SubItems.Add(alumno.Nombre);
                     itemAlumno.SubItems.Add(alumno.Apellido);
-                    itemAlumno.SubItems.Add(alumno.Ubicacion.Item1.ToString());
-                    itemAlumno.SubItems.Add(alumno.Ubicacion.Item2.ToString());
+                    itemAlumno.SubItems.Add(alumno.Ubicacion.ToString());
                     listaAlumnos.Items.Add(itemAlumno);
                 }
             }

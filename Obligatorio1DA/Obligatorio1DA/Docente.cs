@@ -9,6 +9,7 @@ namespace GestionDocente
 {
     public class Docente:IPersona
     {
+        public int Id { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Ci { get; set; }

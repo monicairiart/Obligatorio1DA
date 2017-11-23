@@ -1,5 +1,6 @@
 ﻿using GestionAlumno;
 using GestionMateria;
+using Persistencia;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,61 +17,89 @@ namespace InterfazUsuario
     public partial class GestionAlumnoUI : Form
     {
         MantenimientoAlumno mantenimientoAlumno = new MantenimientoAlumno();
-        public static string ciAlumnoSeleccionado { get; set; }
+        public static string idAlumnoSeleccionado { get; set; }
         MantenimientoMateria mantenimientoMateria = new MantenimientoMateria();
+        private ContextoDb contextoDb = new ContextoDb();
+        Alumno alumnoDbSeleccionado;
         public GestionAlumnoUI()
         {
             InitializeComponent();
         }
         private void GestionAlumnoUI_Load(object sender, EventArgs e)
         {
-//            mantenimientoAlumno.GenerarDatos();
-//            mantenimientoMateria.GenerarDatos();
+            //            mantenimientoAlumno.GenerarDatos();
+            //            mantenimientoMateria.GenerarDatos();
+            listaAlumnos.Columns.Add("Id");
             listaAlumnos.Columns.Add("CI");
             listaAlumnos.Columns.Add("Nombre");
             listaAlumnos.Columns.Add("Apellido");
-            listaAlumnos.Columns.Add("Ubic. X");
-            listaAlumnos.Columns.Add("Ubic. Y");
+            listaAlumnos.Columns.Add("Ubicacion x,y");
             listaMaterias.Columns.Add("Código");
             listaMaterias.Columns.Add("Materia");
             cargarListaAlumno();
         }
         private void cargarListaAlumno()
         {
+            List<Alumno> registroAlumnos = new List<Alumno>();
+            try
+            {
+                registroAlumnos = contextoDb.Alumnos.ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Hubo un error al listar los alumnos.");
+            }
             listaAlumnos.Items.Clear();
             listaAlumnos.View = View.Details;
-            foreach (Alumno alumno in mantenimientoAlumno.ObtenerAlumnos())
+            foreach (Alumno alumno in registroAlumnos)
             {
-                ListViewItem itemAlumno = new ListViewItem(alumno.Ci);
+                ListViewItem itemAlumno = new ListViewItem(alumno.Id.ToString());
+                itemAlumno.SubItems.Add(alumno.Ci);
                 itemAlumno.SubItems.Add(alumno.Nombre);
                 itemAlumno.SubItems.Add(alumno.Apellido);
-                itemAlumno.SubItems.Add(alumno.Ubicacion.Item1.ToString());
-                itemAlumno.SubItems.Add(alumno.Ubicacion.Item2.ToString());
+                itemAlumno.SubItems.Add(alumno.Ubicacion.ToString());
                 listaAlumnos.Items.Add(itemAlumno);
             }
         }
         private void listaAlumnos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            /*List<Materia> materiasDelAlumno = new List<Materia>();
+            ListView.SelectedListViewItemCollection alumnoSeleccionado = listaAlumnos.SelectedItems;
+            if (alumnoSeleccionado.Count > 0)
+            {
+                entradaCIAlumno.Text = alumnoSeleccionado[0].SubItems[1].Text;
+                entradaNombreAlumno.Text = alumnoSeleccionado[0].SubItems[2].Text;
+                entradaApellidoAlumno.Text = alumnoSeleccionado[0].SubItems[3].Text;
+                entradaUbicacionX.Text = alumnoSeleccionado[0].SubItems[4].Text;
+                entradaUbicacionY.Text = alumnoSeleccionado[0].SubItems[5].Text;
+                idAlumnoSeleccionado = alumnoSeleccionado[0].SubItems[0].Text;
+                int idAlumno = Int32.Parse(idAlumnoSeleccionado);
+                alumnoDbSeleccionado = contextoDb.Alumnos.Where(alumno => alumno.Id == idAlumno).ToList()[0];
+                List<Materia> materiasDb = contextoDb.Materias.ToList();
+                
+                //materiasDelAlumno = mantenimientoMateria.ObtenerMateriasPorAlumno(idAlumnoSeleccionado);
+                //cargarListaMateriaAlumno(materiasDelAlumno);
+            }*/
             List<Materia> materiasDelAlumno = new List<Materia>();
             ListView.SelectedListViewItemCollection alumnoSeleccionado = listaAlumnos.SelectedItems;
             if (alumnoSeleccionado.Count > 0)
             {
-                entradaCIAlumno.Text = alumnoSeleccionado[0].SubItems[0].Text;
-                entradaNombreAlumno.Text = alumnoSeleccionado[0].SubItems[1].Text;
-                entradaApellidoAlumno.Text = alumnoSeleccionado[0].SubItems[2].Text;
-                entradaUbicacionX.Text = alumnoSeleccionado[0].SubItems[3].Text;
-                entradaUbicacionY.Text = alumnoSeleccionado[0].SubItems[4].Text;
-                ciAlumnoSeleccionado = alumnoSeleccionado[0].SubItems[0].Text;
-                materiasDelAlumno = mantenimientoMateria.ObtenerMateriasPorAlumno(ciAlumnoSeleccionado);
-                cargarListaMateriaAlumno(materiasDelAlumno);
+                entradaCIAlumno.Text = alumnoSeleccionado[0].SubItems[1].Text;
+                entradaNombreAlumno.Text = alumnoSeleccionado[0].SubItems[2].Text;
+                entradaApellidoAlumno.Text = alumnoSeleccionado[0].SubItems[3].Text;
+                entradaUbicacion.Text = alumnoSeleccionado[0].SubItems[4].ToString();
+                idAlumnoSeleccionado = alumnoSeleccionado[0].SubItems[0].Text;
+                int idAlumno = Int32.Parse(idAlumnoSeleccionado);
+                alumnoDbSeleccionado = contextoDb.Alumnos.Where(alumno => alumno.Id == idAlumno).ToList()[0];
+                List<Materia> materiasDb = contextoDb.Materias.ToList();
             }
         }
-
         private void botonAltaAlumno_Click(object sender, EventArgs e)
         {
             string nombre = entradaNombreAlumno.Text;
             string apellido = entradaApellidoAlumno.Text;
             string ci = entradaCIAlumno.Text;
+            double ubicacion = 1.2;    //Double.Parse.ToString(entradaUbicacion);
             /////Tuple ubicacion = Tuple.Create(entradaUbicacionX.Text, entradaUbicacionY.Text);
            // Tuple<double, double> ubicacion = entradaUbicacionX.Text;
            //     ubicacion.Item1, ubicacion.//
@@ -80,9 +109,20 @@ namespace InterfazUsuario
             nuevosValoresAlumno.Apellido = apellido;
             if (ValidarDatos(ci, nuevosValoresAlumno, true))
             {
-                /////////tuple
-                mantenimientoAlumno.AltaDatosAlumno(nombre, apellido, ci, Tuple.Create(1.0, 2.0));
-                cargarListaAlumno();
+                mantenimientoAlumno.AltaDatosAlumno(nombre, apellido, ci, ubicacion);
+                try
+                {
+                    contextoDb.Alumnos.Add(nuevosValoresAlumno);
+                    contextoDb.SaveChanges();
+                    /////////tuple
+                    //mantenimientoAlumno.AltaDatosAlumno(nombre, apellido, ci, Tuple.Create(1.0, 2.0));
+                    cargarListaAlumno();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    Console.WriteLine("error: " + ex.ToString());
+                    MessageBox.Show("Hubo un error al agregar un alumno.");
+                }
             }
         }
         private void botonModificarAlumno_Click(object sender, EventArgs e)
@@ -92,18 +132,35 @@ namespace InterfazUsuario
             alumnoModificado.Nombre = entradaNombreAlumno.Text;
             alumnoModificado.Apellido = entradaApellidoAlumno.Text;
             alumnoModificado.Ci = entradaCIAlumno.Text;
+            alumnoModificado.Id = int.Parse(idAlumnoSeleccionado);
             if (ValidarDatos(alumnoModificado.Ci, alumnoModificado, false))
             {
-                mantenimientoAlumno.ModificarAlumno(ciAlumnoSeleccionado, alumnoModificado);
+                mantenimientoAlumno.ModificarAlumno(idAlumnoSeleccionado, alumnoModificado);
                 entradaCIAlumno.Clear();
                 entradaApellidoAlumno.Clear();
                 entradaNombreAlumno.Clear();
+                Alumno alumnoBaseDatos = contextoDb.Alumnos.Find(alumnoModificado.Id);
+                if (alumnoBaseDatos != null)
+                {
+                    contextoDb.Entry(alumnoBaseDatos).CurrentValues.SetValues(alumnoModificado);
+                    contextoDb.SaveChanges();
+                }
                 cargarListaAlumno();
             }
         }
         private void botonBajarAlumno_Click_1(object sender, EventArgs e)
         {
-            mantenimientoAlumno.BajarAlumno(ciAlumnoSeleccionado);
+            /*mantenimientoAlumno.BajarAlumno(idAlumnoSeleccionado);
+            limpiarValoresViejos();
+            cargarListaAlumno();*/
+            mantenimientoAlumno.BajarAlumno(idAlumnoSeleccionado); //7 ci x id
+            //7 agrego inicio
+            Alumno alumnoBaseDatos = contextoDb.Alumnos.Find(int.Parse(idAlumnoSeleccionado));
+            if (alumnoBaseDatos != null)
+            {
+                contextoDb.Alumnos.Remove(alumnoBaseDatos);
+                contextoDb.SaveChanges();
+            } //7 fin
             limpiarValoresViejos();
             cargarListaAlumno();
         }
@@ -112,8 +169,7 @@ namespace InterfazUsuario
             entradaNombreAlumno.Clear();
             entradaApellidoAlumno.Clear();
             entradaCIAlumno.Clear();
-            entradaUbicacionX.Clear();
-            entradaUbicacionY.Clear();
+            entradaUbicacion.Clear();
         }
         public void actualizarListaMateriaAlumno()
         {
@@ -132,7 +188,7 @@ namespace InterfazUsuario
         }
         private void botonAsignarMateriaAAlumno_Click(object sender, EventArgs e)
         {
-            AsignarMateriaUI.ciAlumnoSeleccionado = ciAlumnoSeleccionado;
+            AsignarMateriaUI.ciAlumnoSeleccionado = idAlumnoSeleccionado;
             Form nuevaVentana = new AsignarMateriaUI();
             nuevaVentana.Show();
         }
