@@ -19,6 +19,5 @@ namespace Persistencia
         public DbSet<Materia> Materias { get; set; }
         public DbSet<DocenteMateria> DocentesMaterias { get; set; }
         public DbSet<AlumnoMateria> AlumnosMaterias { get; set; }
-
     }
 }

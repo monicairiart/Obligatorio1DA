@@ -127,7 +127,6 @@ namespace PruebasUnitarias
             Assert.AreEqual("1212", mantenimientoDocente.ObtenerDocentePorCi("1212").Ci);
             Console.WriteLine("nvos valor ci " + misDocentes[0].Ci);
             mantenimientoDocente.BajarDocente("1212");
-
         }
         [TestMethod]
         public void ProbarDocenteExistente()

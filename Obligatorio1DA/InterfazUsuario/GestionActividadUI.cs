@@ -21,7 +21,6 @@ namespace InterfazUsuario
         {
             InitializeComponent();
         }
-
         private void GestionActividadUI_Load(object sender, EventArgs e)
         {
             listaActividades.Columns.Add("Código Actividad");
@@ -45,7 +44,6 @@ namespace InterfazUsuario
                 listaActividades.Items.Add(itemActividad);
             }
         }
-
         private void listaActividades_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<string> alumnosDeActividad = new List<string>();
@@ -54,7 +52,7 @@ namespace InterfazUsuario
             {
                 entradaCodigoActividad.Text = actividadSeleccionada[0].SubItems[0].Text;
                 entradaNombreActividad.Text = actividadSeleccionada[0].SubItems[1].Text;
-                entradaPickerFecha.Text = actividadSeleccionada[0].SubItems[2].Text;
+                //entradaPickerFecha.Text = actividadSeleccionada[0].SubItems[2].Text;
                 entradaCosto.Text = actividadSeleccionada[0].SubItems[3].Text;
                 codigoActividadSeleccionada = actividadSeleccionada[0].SubItems[0].Text;
                 alumnosDeActividad = mantenimientoActividad.ObtenerActividadPorCodigo(codigoActividadSeleccionada).Alumnos;
@@ -70,14 +68,11 @@ namespace InterfazUsuario
                 }
             }
         }
-
         private void botonAltaActividad_Click(object sender, EventArgs e)
         {
             string nombre = entradaNombreActividad.Text;
             string codigoActividad = entradaCodigoActividad.Text;
-            // DateTime fecha = Int32.Parse(entradaFecha.TextBox());
-            //DateTime fecha = ToString.(entradaPickerFecha.Text);
-
+            DateTime fecha = Convert.ToDateTime(entradaPickerFecha.Text);
             int costo = Int32.Parse(entradaCosto.Text);
             Actividad nuevosValoresActividad = new Actividad();
             nuevosValoresActividad.CodigoActividad = codigoActividad;
@@ -97,7 +92,6 @@ namespace InterfazUsuario
             limpiarValoresViejos();
             cargarListaActividad();
         }
-
         private void botonBajaActividad_Click(object sender, EventArgs e)
         {
             mantenimientoActividad.BajarActividad(codigoActividadSeleccionada);
@@ -110,13 +104,11 @@ namespace InterfazUsuario
             entradaNombreActividad.Clear();
             entradaCosto.Clear();
         }
-
         public void actualizarListaAlumnoActividad()
         {
             cargarListaAlumnoActividad(mantenimientoAlumno.ObtenerAlumnos());
 
         }
-
         private void cargarListaAlumnoActividad(List<Alumno> alumnosARetonar)
         {
             listaAlumnosInscriptos.Items.Clear();
@@ -128,12 +120,6 @@ namespace InterfazUsuario
                 listaAlumnosInscriptos.Items.Add(itemAlumno);
             }
         }
-        // hacer validar datos, ver para mostrar alumnos??
-        // hacer existenregistros repetidos para actividades
-        /*public static void LimpiarCodigoActividadSeleccionada()
-        {
-            codigoActividadSeleccionada = null;
-        }*/
         private Boolean ValidarDatos(string codigoActividad, Actividad nuevosValores, Boolean comprobarDuplicado)
         {
             if ((codigoActividad.Length == 0) || (nuevosValores.Nombre.Length == 0))

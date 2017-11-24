@@ -122,7 +122,6 @@ namespace PruebasUnitarias
             actividad = new Actividad() { CodigoActividad = "3", Nombre = "Ajedrez", Fecha = new DateTime(2017, 05, 23), Costo = 300, Alumnos = new List<string>() };
             misActividades.Add(actividad);
             mantenimientoActividad.AltaDatosActividad(actividad.CodigoActividad, actividad.Nombre, actividad.Fecha, actividad.Costo, actividad.Alumnos);
-
             actividades = mantenimientoActividad.ObtenerActividades();
         }
     }

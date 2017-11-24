@@ -25,7 +25,7 @@ namespace GestionAlumno
             Nombre = "Gestion Alumno";
             Descripcion = "Alta, Baja y Modificación de Alumnos";
         }
-        public Alumno AltaDatosAlumno(string nombreAlumno, string apellidoAlumno, string ciAlumno, double ubicacion)
+        public Alumno AltaDatosAlumno(string nombreAlumno, string apellidoAlumno, string ciAlumno, double ubicacionX, double ubicacionY)
         {
             Console.WriteLine("entra a alta datos alumno");
             Alumno alumno = new Alumno();
@@ -35,7 +35,8 @@ namespace GestionAlumno
                 alumno.Nombre = nombreAlumno;
                 alumno.Apellido = apellidoAlumno;
                 alumno.Ci = ciAlumno;
-                alumno.Ubicacion = ubicacion;
+                alumno.UbicacionX = ubicacionX;
+                alumno.UbicacionY = ubicacionY;
                 alumnos.Add(alumno);
                 return alumno;
             }
@@ -89,10 +90,10 @@ namespace GestionAlumno
 
         public void GenerarDatos()
         {
-            alumnosPrueba.Add(AltaDatosAlumno("Juana", "Sosa", "50001002", 1.2));
-            alumnosPrueba.Add(AltaDatosAlumno("Paola", "Bianco", "49912233", 1.3));
-            alumnosPrueba.Add(AltaDatosAlumno("Hugo", "Cabral", "38824456", 1.4));
-            alumnosPrueba.Add(AltaDatosAlumno("Alejandra", "Suarez", "39937650", 1.5));
+            alumnosPrueba.Add(AltaDatosAlumno("Juana", "Sosa", "50001002", 1, 2));
+            alumnosPrueba.Add(AltaDatosAlumno("Paola", "Bianco", "49912233", 1, 3));
+            alumnosPrueba.Add(AltaDatosAlumno("Hugo", "Cabral", "38824456", 1, 4));
+            alumnosPrueba.Add(AltaDatosAlumno("Alejandra", "Suarez", "39937650", 1, 5));
             alumnos = ObtenerAlumnos();
         }
     }

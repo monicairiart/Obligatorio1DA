@@ -29,7 +29,6 @@ namespace InterfazUsuario
         {
             listaCamionetasDisponibles.Items.Clear();
             listaCamionetasDisponibles.View = View.Details;
-//Mantenimiento o mantenimiento
             foreach (Camioneta camioneta in mantenimientoCamioneta.ObtenerCamionetas())
             {
                 if (camioneta.Estado == "Disponible")

@@ -17,7 +17,6 @@ namespace InterfazUsuario
         MantenimientoCamioneta mantenimientoCamioneta = new MantenimientoCamioneta();
         public static string matriculaCamionetaSeleccionada { get; set; }
         MantenimientoAlumno mantenimientoAlumno = new MantenimientoAlumno();
-
         public GestionCamionetaUI()
         {
             InitializeComponent();
@@ -48,7 +47,6 @@ namespace InterfazUsuario
         }
         private void listaCamionetas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //           List<string> docentesDeMateria = new List<string>();
             List<string> alumnosDeCamioneta = new List<string>();
             ListView.SelectedListViewItemCollection camionetaSeleccionada = listaCamionetas.SelectedItems;
             if (camionetaSeleccionada.Count > 0)
@@ -66,7 +64,8 @@ namespace InterfazUsuario
                     ListViewItem itemAlumno = new ListViewItem(alumno.Ci);
                     itemAlumno.SubItems.Add(alumno.Nombre);
                     itemAlumno.SubItems.Add(alumno.Apellido);
-                    itemAlumno.SubItems.Add(alumno.Ubicacion.ToString());
+                    itemAlumno.SubItems.Add(alumno.UbicacionX.ToString());
+                    itemAlumno.SubItems.Add(alumno.UbicacionY.ToString());
                     listaAlumnos.Items.Add(itemAlumno);
                 }
             }
@@ -97,7 +96,6 @@ namespace InterfazUsuario
             Camioneta camionetaModificada = new Camioneta();
             camionetaModificada.Matricula = entradaMatricula.Text;
             camionetaModificada.Estado = comboBoxEstado.Text;
-
             try
             {
                 camionetaModificada.Capacidad = Int32.Parse(entradaCapacidad.Text);
@@ -106,15 +104,6 @@ namespace InterfazUsuario
             {
                 MessageBox.Show("Error: Debe ingresar un número distinto de cero.");
             }
-
-/*            if (entradaCapacidad.Text == null || entradaCapacidad.Text == "0" || entradaCapacidad.Text == "")
-            {
-                camionetaModificada.Capacidad = 0;
-            }
-            else
-            {
-                camionetaModificada.Capacidad = Int32.Parse(entradaCapacidad.Text);
-            } */
             if (ValidarDatos(camionetaModificada.Matricula, camionetaModificada, false))
             { 
                 mantenimientoCamioneta.ModificarCamioneta(matriculaCamionetaSeleccionada, camionetaModificada);
@@ -155,19 +144,13 @@ namespace InterfazUsuario
                 return (false);
             }
             return (true);
-
-        }
-        
- 
-        
+        }     
         private void listaAlumnos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
         private void botonDisponibilidadCamionetas_Click(object sender, EventArgs e)
         {
-          //  CamionetasDisponiblesUI     .ciDocenteSeleccionado = ciDocenteSeleccionado;
             Form nuevaVentana = new CamionetasDisponiblesUI();
             nuevaVentana.Show();
         }

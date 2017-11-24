@@ -29,12 +29,6 @@ namespace InterfazUsuario
         {
             InitializeComponent();
         }
-
- /*       private void tituloMantenimientoAlumnos_Click(object sender, EventArgs e)
-        {
-
-        }
-*/
         private void GestionMateriaUI_Load(object sender, EventArgs e)
         {
             listaMaterias.Columns.Add("Id");
@@ -50,8 +44,7 @@ namespace InterfazUsuario
         }
         private void cargarListaMateria()
         {
-            List<Materia> registroMaterias = new List<Materia>(); // 
-            //contextoDb.Materias.SqlQuery("Select * from Materias").ToList(); //07
+            List<Materia> registroMaterias = new List<Materia>(); 
             try
             {
                 registroMaterias = contextoDb.Materias.SqlQuery("Select * from Materias").ToList(); //07
@@ -62,13 +55,6 @@ namespace InterfazUsuario
             }
             listaMaterias.Items.Clear();
             listaMaterias.View = View.Details;
-            /*foreach (GestionMateria.Materia materia in mantenimientoMateria.ObtenerMaterias())
-            {
-                ListViewItem itemMateria = new ListViewItem(materia.CodigoMateria);
-                itemMateria.SubItems.Add(materia.Nombre);
-
-                listaMaterias.Items.Add(itemMateria);
-            }*/
             foreach (Materia materia in registroMaterias)
             {
                 //7 ListViewItem itemMateria = new ListViewItem(materia.CodigoMateria);
@@ -90,47 +76,18 @@ namespace InterfazUsuario
                 idMateriaSeleccionada = materiaSeleccionada[0].SubItems[0].Text;
                 int idMateria = Int32.Parse(idMateriaSeleccionada);
                 materiaDbSeleccionada = contextoDb.Materias.Where(materia => materia.Id == idMateria).ToList()[0];
-                //////List<Materia> materiasDb = contextoDb.Materias.ToList();
-
                 List<Docente> docentesDb = contextoDb.Docentes.ToList();
                 List<Docente> docentesDelaMateriaDb = docentesDb.FindAll(buscarDocentesDb);
                 cargarListaDocenteMateria(docentesDelaMateriaDb);
-
                 List<Alumno> alumnosDb = contextoDb.Alumnos.ToList();
                 List<Alumno> alumnosDelaMateriaDb = alumnosDb.FindAll(buscarAlumnosDb);
                 cargarListaAlumnoMateria(alumnosDelaMateriaDb);
-
-
-                //                docentesDeMateria = mantenimientoMateria.ObtenerMateriaPorCodigo(idMateriaSeleccionada).Docentes;
-                /*               alumnosDeMateria = mantenimientoMateria.ObtenerMateriaPorCodigo(idMateriaSeleccionada).Alumnos;
-                               listaMateriasDocente.Items.Clear();
-                               listaMateriasDocente.View = View.Details;
-                               listaAlumnosInscriptos.Items.Clear();
-                               listaAlumnosInscriptos.View = View.Details;
-
-                               foreach (string ci in docentesDeMateria)
-                               {
-                                   Docente docente = mantenimientoDocente.ObtenerDocentePorCi(ci);
-                                   ListViewItem itemDocente = new ListViewItem(docente.Ci);
-                                   itemDocente.SubItems.Add(docente.Nombre);
-                                   itemDocente.SubItems.Add(docente.Apellido);
-                                   listaMateriasDocente.Items.Add(itemDocente);
-                               }
-                               foreach (string ci in alumnosDeMateria)
-                               {
-                                   Alumno alumno = mantenimientoAlumno.ObtenerAlumnoPorCi(ci);
-                                   ListViewItem itemAlumno = new ListViewItem(alumno.Ci);
-                                   itemAlumno.SubItems.Add(alumno.Nombre);
-                                   itemAlumno.SubItems.Add(alumno.Apellido);
-                                   listaAlumnosInscriptos.Items.Add(itemAlumno);
-                               }*/
             }
         }
         private bool existeDocenteRelacionado(DocenteMateria docenteMateria, Docente docente)
         {
             return (docenteMateria.DocenteId == docente.Id);
         }
-
         private bool buscarDocentesDb(Docente docente)
         {
             return materiaDbSeleccionada.DocentesMaterias.ToList().Exists(materiaDocente => existeDocenteRelacionado(materiaDocente, docente));
@@ -139,7 +96,6 @@ namespace InterfazUsuario
         {
             return (alumnoMateria.AlumnoId == alumno.Id);
         }
-
         private bool buscarAlumnosDb(Alumno alumno)
         {
             return materiaDbSeleccionada.AlumnosMaterias.ToList().Exists(materiaAlumno => existeAlumnoRelacionado(materiaAlumno, alumno));
@@ -149,7 +105,6 @@ namespace InterfazUsuario
             string nombre = entradaNombreMateria.Text;
             string codigoMateria = entradaCodigoMateria.Text;
             Materia nuevosValoresMateria = new Materia();
-
             nuevosValoresMateria.CodigoMateria = codigoMateria;
             nuevosValoresMateria.Nombre = nombre;
             if (ValidarDatos(codigoMateria, nuevosValoresMateria, true))
@@ -162,62 +117,46 @@ namespace InterfazUsuario
         }
         private void botonModificarMateria_Click(object sender, EventArgs e)
         {
-            /*Materia materiaModificada = new Materia();
-            materiaModificada.Nombre = entradaNombreMateria.Text;
-            materiaModificada.CodigoMateria = entradaCodigoMateria.Text;
-            mantenimientoMateria.ModificarMateria(idMateriaSeleccionada, materiaModificada);
-            limpiarValoresViejos();
-            cargarListaMateria();*/
             Materia materiaModificado = new Materia();
             materiaModificado.Nombre = entradaNombreMateria.Text;
             materiaModificado.CodigoMateria = entradaCodigoMateria.Text;
             materiaModificado.Id = int.Parse(idMateriaSeleccionada); //7 agregue
             if (ValidarDatos(materiaModificado.CodigoMateria, materiaModificado, false))
             {
-                //mantenimientoDocente.ModificarDocente(idDocenteSeleccionado, docenteModificado); //7 ci x id
                 entradaCodigoMateria.Clear();
                 entradaNombreMateria.Clear();
-                //7 agrefe inio
                 Materia materiaBaseDatos = contextoDb.Materias.Find(materiaModificado.Id);
                 if (materiaBaseDatos != null)
                 {
                     contextoDb.Entry(materiaBaseDatos).CurrentValues.SetValues(materiaModificado);
                     contextoDb.SaveChanges();
-                } //7 fin            
+                }            
                 cargarListaMateria();
             }
         }
         private void botonBajaMateria_Click(object sender, EventArgs e)
         {
-            /*mantenimientoMateria.BajarMateria(idMateriaSeleccionada);
-            limpiarValoresViejos();
-            cargarListaMateria();*/
-            mantenimientoMateria.BajarMateria(idMateriaSeleccionada); //7 ci x id
-            //7 agrego inicio
+            mantenimientoMateria.BajarMateria(idMateriaSeleccionada);
             Materia materiaBaseDatos = contextoDb.Materias.Find(int.Parse(idMateriaSeleccionada));
             if (materiaBaseDatos != null)
             {
                 contextoDb.Materias.Remove(materiaBaseDatos);
                 contextoDb.SaveChanges();
-            } //7 fin
+            }
             limpiarValoresViejos();
             cargarListaMateria();
             listaAlumnosInscriptos.Clear();
             listaMateriasDocente.Clear();
-
         }
         private void limpiarValoresViejos()
         {
             entradaCodigoMateria.Clear();
             entradaNombreMateria.Clear();
         }
-
         public void actualizarListaDocenteMateria()
         {
             cargarListaDocenteMateria(mantenimientoDocente.ObtenerDocentes());
-
         }
-
         private void cargarListaDocenteMateria(List<Docente> docentesARetonar)
         {
             listaMateriasDocente.Items.Clear();
@@ -240,12 +179,6 @@ namespace InterfazUsuario
                 listaAlumnosInscriptos.Items.Add(itemAlumno);
             }
         }
-        // hacer validar datos, ver para mostrar docentes y alumnos??
-        // hacer existenregistros repetidos para materias
-        /*public static void LimpiarCodigoMateriaSeleccionada()
-        {
-            codigoMateriaSeleccionada = null;
-        }*/
         private Boolean ValidarDatos(string codigoMateria, Materia nuevosValores, Boolean comprobarDuplicado)
         {
 

@@ -28,10 +28,8 @@ namespace InterfazUsuario
         {
             InitializeComponent();
         }
-
         private void AsignarMateriaUI_Load(object sender, EventArgs e)
         {
-
             listaMaterias.Columns.Add("Id");
             listaMaterias.Columns.Add("Código Materia");
             listaMaterias.Columns.Add("Nombre");
@@ -39,11 +37,10 @@ namespace InterfazUsuario
         }
         private void cargarListaMateria()
         {
-            List<Materia> registroMaterias = new List<Materia>(); // contextoDb.Docentes.SqlQuery("Select * from Docentes").ToList(); //07
-
+            List<Materia> registroMaterias = new List<Materia>();
             try
             {
-                registroMaterias = contextoDb.Materias.SqlQuery("Select * from Materias").ToList(); //07
+                registroMaterias = contextoDb.Materias.SqlQuery("Select * from Materias").ToList();
             }
             catch
             {
@@ -67,14 +64,12 @@ namespace InterfazUsuario
                 idMateriaSeleccionada = materiaSeleccionada[0].SubItems[0].Text;
             }
         }
-
         private void botonAltaMateria_Click(object sender, EventArgs e)
         {
             List<Materia> materias = mantenimientoMateria.ObtenerMaterias();
             Boolean volverVentanaDocente = false;
             if (idDocenteSeleccionado != null)
             {
-                //AsignacionMateria.AsignarDocenteAMateria(materias, idDocenteSeleccionado, codigoMateriaSeleccionada);
                 List<Docente> docentesDb=contextoDb.Docentes.SqlQuery("Select * from Docentes where ci='"+idDocenteSeleccionado+"'").ToList();
                 List<Materia> materiasDb = contextoDb.Materias.SqlQuery("Select * from Materias where id='" + idMateriaSeleccionada + "'").ToList();
                 DocenteMateria docenteMateriaDb = new DocenteMateria();
@@ -87,8 +82,6 @@ namespace InterfazUsuario
             }
             else if(idAlumnoSeleccionado != null)
             {
-                //                AsignacionMateria.AsignarAlumnoAMateria(materias, idAlumnoSeleccionado, idMateriaSeleccionada);
-                //VentanaPrincipal.ventanaGestionDocenteUI.actualizarListaMateriaDocente();
                 List<Alumno> alumnosDb = contextoDb.Alumnos.SqlQuery("Select * from Alumnoes where ci='" + idAlumnoSeleccionado + "'").ToList();
                 List<Materia> materiasDb = contextoDb.Materias.SqlQuery("Select * from Materias where id='" + idMateriaSeleccionada + "'").ToList();
                 AlumnoMateria alumnoMateriaDb = new AlumnoMateria();

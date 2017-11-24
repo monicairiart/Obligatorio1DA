@@ -15,7 +15,8 @@ namespace GestionAlumno
         public string Apellido { get; set; }
         public string Ci { get; set; }
         //public Tuple<double, double> Ubicacion { get; set; }
-        public double Ubicacion { get; set; }
+        public double UbicacionX { get; set; }
+        public double UbicacionY { get; set; }
         public virtual ICollection<AlumnoMateria> AlumnosMaterias { get; set; }
 
 

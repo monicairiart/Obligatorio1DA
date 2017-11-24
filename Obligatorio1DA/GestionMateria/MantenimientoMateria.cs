@@ -23,16 +23,12 @@ namespace GestionMateria
         public List<Materia> ObtenerMaterias()
         {
             materias.OrderBy((m) => m);
-                /*.Sort(delegate(Materia m1, Materia m2) {
-                //m1.CodigoMateria > m2.CodigoMateria;
-            });*/
             return materias;
         }
         public MantenimientoMateria()
         {
             Nombre = "Gestion Materia";
             Descripcion = "Alta, Baja y Modificación de Materias";
-            //GenerarDatos();
         }
         public Materia AltaDatosMateria(string codigoMateria, string nombreMateria, List<string> docentes, List<string>alumnos)
         {

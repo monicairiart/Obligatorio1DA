@@ -26,9 +26,7 @@ namespace InterfazUsuario
         {
             InitializeComponent();
             this.CenterToScreen();
-            //this.BackgroundImage();
         }
-
         private void VentanaPrincipal_Load(object sender, EventArgs e)
         {
             mantenimientoDocente.GenerarDatos();
@@ -36,33 +34,27 @@ namespace InterfazUsuario
             mantenimientoMateria.GenerarDatos();
             mantenimientoCamioneta.GenerarDatos();
             mantenimientoActividad.GenerarDatos();
-
         }
-
         private void botonGestionAlumnos_Click(object sender, EventArgs e)
         {
             Form nuevaVentana = new GestionAlumnoUI();
             nuevaVentana.Show();
         }
-
         private void botonGestionMaterias_Click(object sender, EventArgs e)
         {
             Form nuevaVentana = new GestionMateriaUI();
             nuevaVentana.Show();
         }
-
         private void botonGestionDocentes_Click(object sender, EventArgs e)
         {
             Form nuevaVentana = new GestionDocenteUI();
             nuevaVentana.Show();
         }
-
         private void botonGestionCamionetas_Click(object sender, EventArgs e)
         {
             Form nuevaVentana = new GestionCamionetaUI();
             nuevaVentana.Show();
         }
-
         private void botonGestionActividades_Click(object sender, EventArgs e)
         {
             Form nuevaVentana = new GestionActividadUI();
